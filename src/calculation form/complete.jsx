@@ -12,6 +12,7 @@ function Complete() {
                     {/* =IF(D4="Under 30 years",0,0)+IF(D4="30-34
                     years",-0.0339731,0)+IF(D4="35-39
                     years",-0.1801173,0)+IF(D4="40 years or more",-0.5832608,0) */}
+                    {/* -----------------maternal age------------------------ */}
                     <div className="col-span-6 lg:col-span-3">
                       <label
                         htmlFor="maternal-age"
@@ -30,21 +31,9 @@ function Complete() {
                         <option value="-0.5832608">40 years or more</option>
                       </select>
                     </div>
-                    <div className="col-span-6 lg:col-span-3">
-                      <label
-                        htmlFor="maternal-age"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Maternal Age
-                      </label>
-                      <input
-                        type="text"
-                        name="maternal-age"
-                        id="maternal-age"
-                        autoComplete="given-name"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
+                    {/* -----------------maternal place of birth------------------------ */}
+                    {/* =IF(D9="Australia",0,0)+IF(D9="Europe",-0.1833732,0)+IF(D9="Africa/Middle
+                    East",-0.4323789,0)+IF(D9="Asia",-0.3443264,0)+IF(D9="Other",-0.1276015,0) */}
                     <div className="col-span-6 lg:col-span-3">
                       <label
                         htmlFor="birth-place"
@@ -52,12 +41,70 @@ function Complete() {
                       >
                         Maternal Place of Birth
                       </label>
-                      <input
-                        type="text"
+                      <select
                         name="birth-place"
                         id="birth-place"
+                        className="mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm"
+                      >
+                        <option value="0">Australia</option>
+                        <option value="-0.1833732">Europe</option>
+                        <option value="-0.432378">Africa/Middle East</option>
+                        <option value="-0.3443264">Asia</option>
+                        <option value="-0.1276015">Other</option>
+                      </select>
+                    </div>
+                    {/* -----------------maternal bmi------------------------ */}
+                    <div className="col-span-6 lg:col-span-3">
+                      <label
+                        htmlFor="maternal-bmi"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Maternal BMI
+                      </label>
+                      <input
+                        type="text"
+                        name="maternal-bmi"
+                        id="maternal-bmi"
+                        autoComplete="given-name"
+                        className="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 border-gray-300 rounded-md"
+                      />
+                    </div>
+                    {/* -----------------Number of previous Caesarean Sections------------------------ */}
+                    <div className="col-span-6 lg:col-span-3">
+                      <label
+                        htmlFor="previous-caesarean"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Number of previous Caesarean Sections
+                      </label>
+                      <input
+                        type="text"
+                        name="previous-caesarean"
+                        id="previous-caesarean"
                         autoComplete="family-name"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 border-gray-300 rounded-md"
+                      />
+                    </div>
+                    {/* -----------------Number of previous Vaginal Births------------------------ */}
+                    <div className="col-span-6 lg:col-span-3">
+                      <label htmlFor="vaginal-births">
+                        Number of Previous Vaginal Birds
+                      </label>
+                      <input
+                        type="number"
+                        name="vaginal-births"
+                        id="vaginal-births"
+                        className="w-full mt-1 p-2 border-2 border-gray-300 rounded-md block"
+                      />
+                    </div>
+                    {/* -----------------Gestational Age------------------------ */}
+                    <div className="col-span-6 lg:col-span-3">
+                      <label htmlFor="gestational-age">Gestational Age</label>
+                      <input
+                        type="number"
+                        name="gestational-age"
+                        id="gestational-age"
+                        className="p-2 mt-1 w-full block border-2 border-gray-300 rounded-md"
                       />
                     </div>
                     <div className="col-span-6 sm:col-span-4">
