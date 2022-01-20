@@ -62,10 +62,10 @@ function Complete() {
                         Maternal BMI
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         name="maternal-bmi"
                         id="maternal-bmi"
-                        autoComplete="given-name"
+                        autoComplete="material-bmi"
                         className="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 border-gray-300 rounded-md"
                       />
                     </div>
@@ -78,10 +78,10 @@ function Complete() {
                         Number of previous Caesarean Sections
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         name="previous-caesarean"
                         id="previous-caesarean"
-                        autoComplete="family-name"
+                        autoComplete="previous-caesarean"
                         className="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 border-gray-300 rounded-md"
                       />
                     </div>
@@ -94,7 +94,7 @@ function Complete() {
                         type="number"
                         name="vaginal-births"
                         id="vaginal-births"
-                        className="w-full mt-1 p-2 border-2 border-gray-300 rounded-md block"
+                        className="w-full mt-1 p-2 border-2 border-gray-300 rounded-md block focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm"
                       />
                     </div>
                     {/* -----------------Gestational Age------------------------ */}
@@ -104,9 +104,10 @@ function Complete() {
                         type="number"
                         name="gestational-age"
                         id="gestational-age"
-                        className="p-2 mt-1 w-full block border-2 border-gray-300 rounded-md"
+                        className="p-2 mt-1 w-full block border-2 border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500"
                       />
                     </div>
+                    {/* -----------------New------------------------ */}
                     <div className="col-span-6 sm:col-span-4">
                       <label
                         htmlFor="email-address"
