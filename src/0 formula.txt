@@ -1,0 +1,14 @@
+Docs
+https://docs.google.com/presentation/d/1lXJ0BcMFNj0Lyg9WUeoglPv_TEO5C9QhKPDxJoQhO9c/edit#slide=id.g10b0b4b275f_0_18
+
+Complete
+https://docs.google.com/spreadsheets/d/16TGUrHvWnJqFHord3OmAEGUPN1san1wV/edit#gid=1184964763
+=(EXP(-8.091264+E4+E9+E14+E16+E18+E20+E23+E24+E25+E26+E28+E30+E33+E37+E40+E43+E46+E51))
+/(1+(EXP(-8.091264+E4+E9+E14+E16+E18+E20+E23+E24+E25+E26+E28+E30+E33+E37+E40+E43+E46+E51)))
+
+
+Antenatal
+https://docs.google.com/spreadsheets/d/16TGUrHvWnJqFHord3OmAEGUPN1san1wV/edit#gid=1724265420
+
+=(EXP(2.801237+D4+D9+D15+D17+D19+D21+D25+D26+D27+D28+D30))
+/(1+(EXP(2.801237+D4+D9+D15+D17+D19+D21+D25+D26+D27+D28+D30)))
