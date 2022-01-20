@@ -1,55 +1,65 @@
 function Complete() {
   return (
     <>
-      <div className="mt-10 sm:mt-0">
-        <div className="md:grid md:grid-cols-3 md:gap-6">
-          <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
-                Personal Information
-              </h3>
-              <p className="mt-1 text-sm text-gray-600">
-                Use a permanent address where you can receive mail.
-              </p>
-            </div>
-          </div>
-          <div className="mt-5 md:mt-0 md:col-span-2">
+      <div className="mt-10 sm:mt-6">
+        <div className="md:grid md:grid-cols-6 md:gap-6 lg:grid-cols-8">
+          <div className="lg:col-span-2 md:col-span-1"></div>
+          <div className="mt-5 md:mt-0 md:col-span-4">
             <form action="#" method="POST">
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
-                    <div className="col-span-6 sm:col-span-3">
+                    {/* =IF(D4="Under 30 years",0,0)+IF(D4="30-34
+                    years",-0.0339731,0)+IF(D4="35-39
+                    years",-0.1801173,0)+IF(D4="40 years or more",-0.5832608,0) */}
+                    <div className="col-span-6 lg:col-span-3">
                       <label
-                        htmlFor="first-name"
+                        htmlFor="maternal-age"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        First name
+                        Maternal Age
+                      </label>
+                      <select
+                        name="maternal-age"
+                        id="maternal-age"
+                        className="mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm"
+                      >
+                        <option value="0">Under 30 years</option>
+                        <option value="-0.0339731">30-34 years</option>
+                        <option value="-0.1801173">35-39 years</option>
+                        <option value="-0.5832608">40 years or more</option>
+                      </select>
+                    </div>
+                    <div className="col-span-6 lg:col-span-3">
+                      <label
+                        htmlFor="maternal-age"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Maternal Age
                       </label>
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
+                        name="maternal-age"
+                        id="maternal-age"
                         autoComplete="given-name"
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
-
-                    <div className="col-span-6 sm:col-span-3">
+                    <div className="col-span-6 lg:col-span-3">
                       <label
-                        htmlFor="last-name"
+                        htmlFor="birth-place"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Last name
+                        Maternal Place of Birth
                       </label>
                       <input
                         type="text"
-                        name="last-name"
-                        id="last-name"
+                        name="birth-place"
+                        id="birth-place"
                         autoComplete="family-name"
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
-
                     <div className="col-span-6 sm:col-span-4">
                       <label
                         htmlFor="email-address"
@@ -65,7 +75,6 @@ function Complete() {
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
-
                     <div className="col-span-6 sm:col-span-3">
                       <label
                         htmlFor="country"
@@ -84,7 +93,6 @@ function Complete() {
                         <option>Mexico</option>
                       </select>
                     </div>
-
                     <div className="col-span-6">
                       <label
                         htmlFor="street-address"
@@ -100,7 +108,6 @@ function Complete() {
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
-
                     <div className="col-span-6 sm:col-span-6 lg:col-span-2">
                       <label
                         htmlFor="city"
@@ -116,7 +123,6 @@ function Complete() {
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
-
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                       <label
                         htmlFor="region"
@@ -132,7 +138,6 @@ function Complete() {
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
-
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                       <label
                         htmlFor="postal-code"
@@ -161,6 +166,7 @@ function Complete() {
               </div>
             </form>
           </div>
+          <div className="lg:col-span-2 md:col-span-1"></div>
         </div>
       </div>
     </>
