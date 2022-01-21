@@ -4,10 +4,13 @@ import { InnerSectionGrid } from "../tailwind/tailwindVariables";
 import { GridTwo } from "../tailwind/tailwindVariables";
 import { GridTwoSub } from "../tailwind/tailwindVariables";
 import { ShadowClass } from "../tailwind/tailwindVariables";
+import { inputClassName } from "../tailwind/tailwindVariables";
+import { selectClassName } from "../tailwind/tailwindVariables";
 
 const Antenatal = () => {
   return (
     <form action="#" method="POST">
+      <h1>Antenatal</h1>
       <ShadowClass>
         <div className="px-4 py-5 bg-white sm:p-6">
           <InnerGrid>
@@ -20,7 +23,7 @@ const Antenatal = () => {
               <select
                 name="maternal-age"
                 id="maternal-age-a"
-                className="mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm"
+                className={selectClassName}
               >
                 <option value="0">Under 30 years</option>
                 <option value="-0.0884226">30-34 years</option>
@@ -36,7 +39,7 @@ const Antenatal = () => {
               <select
                 name="maternal-birth"
                 id="maternal-birth-a"
-                className="mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm"
+                className={selectClassName}
               >
                 <option value="0">Australia</option>
                 <option value="-0.1703068">Europe</option>
@@ -48,19 +51,23 @@ const Antenatal = () => {
             {/* -----------------maternal BMI------------------------ */}
             <InnerSectionGrid>
               <Label>Maternal BMI</Label>
-              <input type="number" value={-0.0450591} />
+              <input
+                type="number"
+                value={-0.0450591}
+                className={inputClassName}
+              />
             </InnerSectionGrid>
             {/* ---------------------Number of previous Caesarean sections------------- */}
             {/* =IF(C17=1,0,0)+IF(C17=2,-1.755666,0)+IF(C17>2,-2.910313,0) */}
             <InnerSectionGrid>
               <Label>Number of previous Caesarean sections</Label>
-              <input type="number" min="1" />
+              <input type="number" min="1" className={inputClassName} />
             </InnerSectionGrid>
             {/* -----------------------Number of previous vaginal births------------- */}
             {/* =IF(C19>0,1.126513,0)+IF(C19=0,0,0) */}
             <InnerSectionGrid>
               <Label>Numer of previous Vaginal Births</Label>
-              <input type={number} />
+              <input type="number" />
             </InnerSectionGrid>
             {/* ---------------------------Was the last birth a Caesarean section?----------- */}
             <InnerSectionGrid>
@@ -82,7 +89,11 @@ const Antenatal = () => {
                 Are any of the following known to be present in this pregnancy?
                 Please select all that apply.
               </Label>
-              <select name="pregnancy" id="pregnancy">
+              <select
+                name="pregnancy"
+                id="pregnancy"
+                className={selectClassName}
+              >
                 <option value={0.0514722}>Diabetes</option>
                 <option value={-0.164456}>Hypertensive disease</option>
                 <option value={-0.2731908}>Known fetal anomaly</option>
@@ -91,19 +102,9 @@ const Antenatal = () => {
             </InnerSectionGrid>
             {/* ----------------------Parity------------------- */}
             {/* =IF(C17+C19=1,0,0)+IF(C17+C19=2,-0.1637306,0)+IF(C17+C19>2,0.0923186,0) */}
-            <Label>Parity</Label>
-            <h1>{"parity"}</h1>
-            {/* -----------------maternal age------------------------ */}
-            <InnerSectionGrid fullWidth>
-              <Label>Maternal Age</Label>
-              <GridTwo twelve>
-                <GridTwoSub one></GridTwoSub>
-                <GridTwoSub three></GridTwoSub>
-                <GridTwoSub one></GridTwoSub>
-                <GridTwoSub three></GridTwoSub>
-                <GridTwoSub one></GridTwoSub>
-                <GridTwoSub three></GridTwoSub>
-              </GridTwo>
+            <InnerSectionGrid>
+              <Label>Parity</Label>
+              <div>{"parity calculate"}</div>
             </InnerSectionGrid>
           </InnerGrid>
         </div>
