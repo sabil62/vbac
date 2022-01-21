@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import Complete from "./calculation form/complete";
+import Layout from "./container/layout";
 
 function App() {
   return (
     <React.Fragment>
-      <Complete />
+      <Layout />
     </React.Fragment>
   );
 }

@@ -37,6 +37,8 @@ export const WidthBox = styled.div(({ five, six }) => [
   six && tw`w-[6rem]`,
 ]);
 
+export const ShadowClass = tw.div`shadow overflow-hidden sm:rounded-md`;
+
 //classNames
 export const inputClassName =
   "mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 border-gray-300 rounded-md";
