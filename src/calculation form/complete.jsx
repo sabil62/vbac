@@ -1,9 +1,10 @@
 import tw, { styled } from "twin.macro";
 
 //fads
-const Label = styled.label(({ inline }) => [
+const Label = styled.label(({ inline, inlineThree }) => [
   tw`block text-sm font-medium text-gray-700`,
   inline && tw`inline-block pl-[1rem] text-base font-normal`,
+  inlineThree && tw`inline-block text-base font-normal p-0`,
 ]);
 const Grid = styled.div(({ grid8 }) => [
   tw`md:grid md:grid-cols-6 lg:grid-cols-10 md:gap-6`,
@@ -17,8 +18,17 @@ const InnerSectionGrid = styled.div(({ fullWidth }) => [
   fullWidth && tw`lg:col-span-6`,
 ]);
 
-const GridTwo = tw.div`grid grid-cols-4 gap-6 p-2 pt-3`;
-const GridTwoSub = tw.div`col-span-2`;
+const GridTwo = styled.div(({ three, twelve }) => [
+  tw`grid grid-cols-4 p-2 pt-3 gap-2`,
+  three && tw`grid-cols-6`,
+  twelve && tw`grid-cols-12 `,
+]);
+const GridTwoSub = styled.div(({ one, three, four }) => [
+  tw`col-span-2`,
+  one && tw`col-span-1 lg:pl-6 md:pl-4 pl-2`,
+  three && tw`col-span-3`,
+  four && tw`col-span-4`,
+]);
 const Block = tw.div`block my-1`;
 
 //classNames
@@ -174,7 +184,7 @@ function Complete() {
                         value={"value * 0.233957"}
                       />
                     </InnerSectionGrid>
-                    {/* -----------------New------------------------ */}
+                    {/* -----------------Onset of Labour------------------------ */}
                     <InnerSectionGrid>
                       <Label>Onset of Labour</Label>
                       <GridTwo>
@@ -193,6 +203,48 @@ function Complete() {
                             id="onset-labour-2"
                           />
                           <Label inline>Induced</Label>
+                        </GridTwoSub>
+                      </GridTwo>
+                    </InnerSectionGrid>
+                    {/* -------------------Analgesia. Please select all that apply.---------------------- */}
+                    <InnerSectionGrid fullWidth>
+                      <Label>Analgesia. Please select all that apply.</Label>
+                      <GridTwo twelve>
+                        <GridTwoSub one>
+                          <input
+                            type="radio"
+                            name="analgesia"
+                            id="analgesia1"
+                          />{" "}
+                        </GridTwoSub>
+                        <GridTwoSub three>
+                          <Label inlineThree>
+                            Epidural or spinal analgesia
+                          </Label>
+                        </GridTwoSub>
+
+                        <GridTwoSub one>
+                          <input
+                            type="radio"
+                            name="analgesia"
+                            id="analgesia2"
+                          />
+                        </GridTwoSub>
+                        <GridTwoSub three>
+                          <Label inlineThree>
+                            Nitrous or IM narcotic Analgesia
+                          </Label>
+                        </GridTwoSub>
+
+                        <GridTwoSub one>
+                          <input
+                            type="radio"
+                            name="analgesia"
+                            id="analgesia3"
+                          />
+                        </GridTwoSub>
+                        <GridTwoSub three>
+                          <Label inlineThree>No analgesia</Label>
                         </GridTwoSub>
                       </GridTwo>
                     </InnerSectionGrid>
