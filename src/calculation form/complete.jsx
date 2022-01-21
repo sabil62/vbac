@@ -1,7 +1,10 @@
 import tw, { styled } from "twin.macro";
 
 //fads
-const Label = tw.label`block text-sm font-medium text-gray-700`;
+const Label = styled.label(({ inline }) => [
+  tw`block text-sm font-medium text-gray-700`,
+  inline && tw`inline-block pl-[1rem] text-base font-normal`,
+]);
 const Grid = styled.div(({ grid8 }) => [
   tw`md:grid md:grid-cols-6 lg:grid-cols-10 md:gap-6`,
   grid8 && tw`grid`,
@@ -9,11 +12,25 @@ const Grid = styled.div(({ grid8 }) => [
 const GridOffset = tw.div`md:col-span-1 lg:col-span-2`;
 const GridContent = tw.div`md:col-span-4 lg:col-span-6 mt-5 sm:mt-6`;
 const InnerGrid = tw.div`grid grid-cols-6 gap-6`;
-const InnerSectionGrid = tw.div`col-span-6 lg:col-span-3 px-6 py-2 md:p-0`;
+const InnerSectionGrid = styled.div(({ fullWidth }) => [
+  tw`col-span-6 lg:col-span-3 px-6 py-2 md:p-0`,
+  fullWidth && tw`lg:col-span-6`,
+]);
+
+const GridTwo = tw.div`grid grid-cols-4 gap-6 p-2 pt-3`;
+const GridTwoSub = tw.div`col-span-2`;
+const Block = tw.div`block my-1`;
+
+//classNames
+const inputClassName =
+  "mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 border-gray-300 rounded-md";
+const radioClassName =
+  "form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer";
 
 function Complete() {
   return (
     <>
+      {/* <div className="font-medium text-base"></div> */}
       <div className="mt-10 sm:mt-6">
         {/* <div className="md:grid md:grid-cols-6 md:gap-6 lg:grid-cols-8"> */}
         <Grid>
@@ -66,7 +83,7 @@ function Complete() {
                         name="maternal-bmi"
                         id="maternal-bmi"
                         autoComplete="material-bmi"
-                        className="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 border-gray-300 rounded-md"
+                        className={inputClassName}
                       />
                     </InnerSectionGrid>
                     {/* -----------------Number of previous Caesarean Sections------------------------ */}
@@ -77,7 +94,7 @@ function Complete() {
                         name="previous-caesarean"
                         id="previous-caesarean"
                         autoComplete="previous-caesarean"
-                        className="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 border-gray-300 rounded-md"
+                        className={inputClassName}
                       />
                     </InnerSectionGrid>
                     {/* -----------------Number of previous Vaginal Births------------------------ */}
@@ -87,28 +104,64 @@ function Complete() {
                         type="number"
                         name="vaginal-births"
                         id="vaginal-births"
-                        className="w-full mt-1 p-2 border-2 border-gray-300 rounded-md block focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm"
+                        className={inputClassName}
                       />
                     </InnerSectionGrid>
                     {/* --------------Was the last birth a Caesarean section?------------------ */}
                     <InnerSectionGrid>
+                      <Label>Was the last birth a Caesarean section?</Label>
                       <GridTwo>
-                        <Label>Was the last birth a Caesarean section?</Label>
                         <GridTwoSub>
                           <input
                             type="radio"
                             name="caesarean-section"
-                            id="caesarean-section"
+                            id="caesarean-section1"
                           />
+
+                          <Label inline>Yes</Label>
                         </GridTwoSub>
                         <GridTwoSub>
                           <input
                             type="radio"
                             name="caesarean-section"
-                            id="caesarean-section"
+                            id="caesarean-section2"
                           />
+                          <Label inline>No</Label>
                         </GridTwoSub>
                       </GridTwo>
+                    </InnerSectionGrid>
+                    {/* --------Are any of the following known to be present in this pregnancy? Please select all that apply.--- */}
+                    <InnerSectionGrid fullWidth>
+                      <Label>
+                        Are any of the following known to be present in this
+                        pregnancy? Please select all that apply.
+                      </Label>
+                      <Block>
+                        <input
+                          type="checkbox"
+                          name="gestational-diabeties"
+                          value={0.1430483}
+                        />
+                        <Label inline>
+                          Gestational diabetes or pre-existing diabetes
+                        </Label>
+                      </Block>
+                      <Block>
+                        <input
+                          type="checkbox"
+                          name="Hypertensive-disease"
+                          value={-0.1673155}
+                        />
+                        <Label inline>Hypertensive Disease</Label>
+                      </Block>
+                      <Block>
+                        <input
+                          type="checkbox"
+                          name="fetal-anomaly"
+                          value={-0.2456491}
+                        />
+                        <Label inline>Known fetal anomaly</Label>
+                      </Block>
                     </InnerSectionGrid>
                     {/* -----------------Gestational Age------------------------ */}
                     <InnerSectionGrid>
@@ -117,7 +170,8 @@ function Complete() {
                         type="number"
                         name="gestational-age"
                         id="gestational-age"
-                        className="p-2 mt-1 w-full block border-2 border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500"
+                        className={inputClassName}
+                        value={"value * 0.233957"}
                       />
                     </InnerSectionGrid>
                     {/* -----------------New------------------------ */}
