@@ -1,25 +1,35 @@
+import tw, { styled } from "twin.macro";
+
+//fads
+const Label = tw.label`block text-sm font-medium text-gray-700`;
+const Grid = styled.div(({ grid8 }) => [
+  tw`md:grid md:grid-cols-6 lg:grid-cols-10 md:gap-6`,
+  grid8 && tw`grid`,
+]);
+const GridOffset = tw.div`md:col-span-1 lg:col-span-2`;
+const GridContent = tw.div`md:col-span-4 lg:col-span-6 mt-5 sm:mt-6`;
+const InnerGrid = tw.div`grid grid-cols-6 gap-6`;
+const InnerSectionGrid = tw.div`col-span-6 lg:col-span-3 px-6 py-2 md:p-0`;
+
 function Complete() {
   return (
     <>
       <div className="mt-10 sm:mt-6">
-        <div className="md:grid md:grid-cols-6 md:gap-6 lg:grid-cols-8">
-          <div className="lg:col-span-2 md:col-span-1"></div>
-          <div className="mt-5 md:mt-0 md:col-span-4">
+        {/* <div className="md:grid md:grid-cols-6 md:gap-6 lg:grid-cols-8"> */}
+        <Grid>
+          <GridOffset />
+          <GridContent>
             <form action="#" method="POST">
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
-                  <div className="grid grid-cols-6 gap-6">
+                  <InnerGrid>
                     {/* =IF(D4="Under 30 years",0,0)+IF(D4="30-34
                     years",-0.0339731,0)+IF(D4="35-39
                     years",-0.1801173,0)+IF(D4="40 years or more",-0.5832608,0) */}
                     {/* -----------------maternal age------------------------ */}
-                    <div className="col-span-6 lg:col-span-3">
-                      <label
-                        htmlFor="maternal-age"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Maternal Age
-                      </label>
+                    <InnerSectionGrid>
+                      <Label>Maternal Age</Label>
+
                       <select
                         name="maternal-age"
                         id="maternal-age"
@@ -30,17 +40,12 @@ function Complete() {
                         <option value="-0.1801173">35-39 years</option>
                         <option value="-0.5832608">40 years or more</option>
                       </select>
-                    </div>
+                    </InnerSectionGrid>
                     {/* -----------------maternal place of birth------------------------ */}
                     {/* =IF(D9="Australia",0,0)+IF(D9="Europe",-0.1833732,0)+IF(D9="Africa/Middle
                     East",-0.4323789,0)+IF(D9="Asia",-0.3443264,0)+IF(D9="Other",-0.1276015,0) */}
-                    <div className="col-span-6 lg:col-span-3">
-                      <label
-                        htmlFor="birth-place"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Maternal Place of Birth
-                      </label>
+                    <InnerSectionGrid>
+                      <Label>Maternal Place of Birth</Label>
                       <select
                         name="birth-place"
                         id="birth-place"
@@ -52,15 +57,10 @@ function Complete() {
                         <option value="-0.3443264">Asia</option>
                         <option value="-0.1276015">Other</option>
                       </select>
-                    </div>
+                    </InnerSectionGrid>
                     {/* -----------------maternal bmi------------------------ */}
-                    <div className="col-span-6 lg:col-span-3">
-                      <label
-                        htmlFor="maternal-bmi"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Maternal BMI
-                      </label>
+                    <InnerSectionGrid>
+                      <Label>Maternal BMI</Label>
                       <input
                         type="number"
                         name="maternal-bmi"
@@ -68,15 +68,10 @@ function Complete() {
                         autoComplete="material-bmi"
                         className="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 border-gray-300 rounded-md"
                       />
-                    </div>
+                    </InnerSectionGrid>
                     {/* -----------------Number of previous Caesarean Sections------------------------ */}
-                    <div className="col-span-6 lg:col-span-3">
-                      <label
-                        htmlFor="previous-caesarean"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Number of previous Caesarean Sections
-                      </label>
+                    <InnerSectionGrid>
+                      <Label>Number of previous Caesarean Sections</Label>
                       <input
                         type="number"
                         name="previous-caesarean"
@@ -84,29 +79,47 @@ function Complete() {
                         autoComplete="previous-caesarean"
                         className="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 border-gray-300 rounded-md"
                       />
-                    </div>
+                    </InnerSectionGrid>
                     {/* -----------------Number of previous Vaginal Births------------------------ */}
-                    <div className="col-span-6 lg:col-span-3">
-                      <label htmlFor="vaginal-births">
-                        Number of Previous Vaginal Birds
-                      </label>
+                    <InnerSectionGrid>
+                      <Label>Number of Previous Vaginal Birds</Label>
                       <input
                         type="number"
                         name="vaginal-births"
                         id="vaginal-births"
                         className="w-full mt-1 p-2 border-2 border-gray-300 rounded-md block focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm"
                       />
-                    </div>
+                    </InnerSectionGrid>
+                    {/* --------------Was the last birth a Caesarean section?------------------ */}
+                    <InnerSectionGrid>
+                      <GridTwo>
+                        <Label>Was the last birth a Caesarean section?</Label>
+                        <GridTwoSub>
+                          <input
+                            type="radio"
+                            name="caesarean-section"
+                            id="caesarean-section"
+                          />
+                        </GridTwoSub>
+                        <GridTwoSub>
+                          <input
+                            type="radio"
+                            name="caesarean-section"
+                            id="caesarean-section"
+                          />
+                        </GridTwoSub>
+                      </GridTwo>
+                    </InnerSectionGrid>
                     {/* -----------------Gestational Age------------------------ */}
-                    <div className="col-span-6 lg:col-span-3">
-                      <label htmlFor="gestational-age">Gestational Age</label>
+                    <InnerSectionGrid>
+                      <Label>Gestational Age</Label>
                       <input
                         type="number"
                         name="gestational-age"
                         id="gestational-age"
                         className="p-2 mt-1 w-full block border-2 border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500"
                       />
-                    </div>
+                    </InnerSectionGrid>
                     {/* -----------------New------------------------ */}
                     <div className="col-span-6 sm:col-span-4">
                       <label
@@ -201,7 +214,7 @@ function Complete() {
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
-                  </div>
+                  </InnerGrid>
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                   <button
@@ -213,9 +226,10 @@ function Complete() {
                 </div>
               </div>
             </form>
-          </div>
-          <div className="lg:col-span-2 md:col-span-1"></div>
-        </div>
+          </GridContent>
+
+          <GridOffset />
+        </Grid>
       </div>
     </>
   );
