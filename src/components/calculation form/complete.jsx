@@ -1,7 +1,4 @@
 import { Label } from "../tailwind/tailwindVariables";
-import { Grid } from "../tailwind/tailwindVariables";
-import { GridOffset } from "../tailwind/tailwindVariables";
-import { GridContent } from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
 import { GridTwo } from "../tailwind/tailwindVariables";
