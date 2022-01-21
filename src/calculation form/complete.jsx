@@ -3,8 +3,8 @@ import tw, { styled } from "twin.macro";
 //fads
 const Label = styled.label(({ inline, inlineThree }) => [
   tw`block text-sm font-medium text-gray-700`,
-  inline && tw`inline-block pl-[1rem] text-base font-normal`,
-  inlineThree && tw`inline-block text-base font-normal p-0`,
+  inline && tw`inline-block pl-[1rem] text-sm md:text-base font-normal`,
+  inlineThree && tw`inline-block md:text-base text-sm font-normal p-0`,
 ]);
 const Grid = styled.div(({ grid8 }) => [
   tw`md:grid md:grid-cols-6 lg:grid-cols-10 md:gap-6`,
@@ -14,7 +14,7 @@ const GridOffset = tw.div`md:col-span-1 lg:col-span-2`;
 const GridContent = tw.div`md:col-span-4 lg:col-span-6 mt-5 sm:mt-6`;
 const InnerGrid = tw.div`grid grid-cols-6 gap-6`;
 const InnerSectionGrid = styled.div(({ fullWidth }) => [
-  tw`col-span-6 lg:col-span-3 px-6 py-2 md:p-0`,
+  tw`col-span-6 lg:col-span-3 px-6 py-2 md:(p-0 pt-2)`,
   fullWidth && tw`lg:col-span-6`,
 ]);
 
@@ -30,6 +30,12 @@ const GridTwoSub = styled.div(({ one, three, four }) => [
   four && tw`col-span-4`,
 ]);
 const Block = tw.div`block my-1`;
+const FlexDisplay = tw.div`flex justify-between flex-wrap`;
+const WidthBox = styled.div(({ five, six }) => [
+  tw`w-[10rem] mt-3`,
+  five && tw`w-[5rem]`,
+  six && tw`w-[6rem]`,
+]);
 
 //classNames
 const inputClassName =
@@ -117,6 +123,17 @@ function Complete() {
                         className={inputClassName}
                       />
                     </InnerSectionGrid>
+                    {/* -----------------Gestational Age------------------------ */}
+                    <InnerSectionGrid>
+                      <Label>Gestational Age</Label>
+                      <input
+                        type="number"
+                        name="gestational-age"
+                        id="gestational-age"
+                        className={inputClassName}
+                        value={"value * 0.233957"}
+                      />
+                    </InnerSectionGrid>
                     {/* --------------Was the last birth a Caesarean section?------------------ */}
                     <InnerSectionGrid>
                       <Label>Was the last birth a Caesarean section?</Label>
@@ -135,6 +152,101 @@ function Complete() {
                             type="radio"
                             name="caesarean-section"
                             id="caesarean-section2"
+                          />
+                          <Label inline>No</Label>
+                        </GridTwoSub>
+                      </GridTwo>
+                    </InnerSectionGrid>
+                    {/* -----------------Onset of Labour------------------------ */}
+                    <InnerSectionGrid>
+                      <Label>Onset of Labour</Label>
+                      <GridTwo>
+                        <GridTwoSub>
+                          <input
+                            type="radio"
+                            name="onset-labour"
+                            id="onset-labour-1"
+                            value={0}
+                          />
+                          <Label inline>Spontaneous</Label>
+                        </GridTwoSub>
+                        <GridTwoSub>
+                          <input
+                            type="radio"
+                            name="onset-labour"
+                            id="onset-labour-2"
+                            value={-0.0940149}
+                          />
+                          <Label inline>Induced</Label>
+                        </GridTwoSub>
+                      </GridTwo>
+                    </InnerSectionGrid>
+                    {/* -----------------Fetal Presentation------------------------ */}
+                    <InnerSectionGrid>
+                      <Label>Fetal Presentation</Label>
+                      <GridTwo>
+                        <GridTwoSub>
+                          <input
+                            type="radio"
+                            name="fetal-presentation"
+                            id="fetal1"
+                            value={1.400273}
+                          />
+                          <Label inline>Vertex</Label>
+                        </GridTwoSub>
+                        <GridTwoSub>
+                          <input
+                            type="radio"
+                            name="fetal-presentation"
+                            id="fetal2"
+                          />
+                          <Label inline>Non-vertex</Label>
+                        </GridTwoSub>
+                      </GridTwo>
+                    </InnerSectionGrid>
+                    {/* -----------------Was cervical ripening used?------------------------ */}
+                    <InnerSectionGrid>
+                      <Label>Was cervical ripening used?</Label>
+                      <GridTwo>
+                        <GridTwoSub>
+                          <input
+                            type="radio"
+                            name="cervical-ripening"
+                            id="cervical1"
+                            value={-0.0949787}
+                          />
+                          <Label inline>Yes</Label>
+                        </GridTwoSub>
+                        <GridTwoSub>
+                          <input
+                            type="radio"
+                            name="cervical-ripening"
+                            id="cervical2"
+                            value={0}
+                          />
+                          <Label inline>No</Label>
+                        </GridTwoSub>
+                      </GridTwo>
+                    </InnerSectionGrid>
+                    {/* -------------------Was oxytocin used?---------------------- */}
+                    <InnerSectionGrid>
+                      <Label>Was oxytocin used?</Label>
+                      <GridTwo>
+                        <GridTwoSub>
+                          <input
+                            type="radio"
+                            name="oxytocin"
+                            id="oxytocin1"
+                            value={0.191545}
+                          />
+                          <Label inline>Yes</Label>
+                        </GridTwoSub>
+                        <GridTwoSub>
+                          <input
+                            type="radio"
+                            name="oxytocin"
+                            id="oxytocin2"
+                            value={0}
                           />
                           <Label inline>No</Label>
                         </GridTwoSub>
@@ -173,40 +285,10 @@ function Complete() {
                         <Label inline>Known fetal anomaly</Label>
                       </Block>
                     </InnerSectionGrid>
-                    {/* -----------------Gestational Age------------------------ */}
-                    <InnerSectionGrid>
-                      <Label>Gestational Age</Label>
-                      <input
-                        type="number"
-                        name="gestational-age"
-                        id="gestational-age"
-                        className={inputClassName}
-                        value={"value * 0.233957"}
-                      />
-                    </InnerSectionGrid>
-                    {/* -----------------Onset of Labour------------------------ */}
-                    <InnerSectionGrid>
-                      <Label>Onset of Labour</Label>
-                      <GridTwo>
-                        <GridTwoSub>
-                          <input
-                            type="radio"
-                            name="onset-labour"
-                            id="onset-labour-1"
-                          />
-                          <Label inline>Spontaneous</Label>
-                        </GridTwoSub>
-                        <GridTwoSub>
-                          <input
-                            type="radio"
-                            name="onset-labour"
-                            id="onset-labour-2"
-                          />
-                          <Label inline>Induced</Label>
-                        </GridTwoSub>
-                      </GridTwo>
-                    </InnerSectionGrid>
+
                     {/* -------------------Analgesia. Please select all that apply.---------------------- */}
+                    {/* =IF(D33="Epidural or spinal",0,0)+IF(D33="Nitrous or IM
+                    narcotic",1.096508,0)+IF(D33="No analgesia",-0.0872948,0) */}
                     <InnerSectionGrid fullWidth>
                       <Label>Analgesia. Please select all that apply.</Label>
                       <GridTwo twelve>
@@ -215,6 +297,7 @@ function Complete() {
                             type="radio"
                             name="analgesia"
                             id="analgesia1"
+                            value={0}
                           />{" "}
                         </GridTwoSub>
                         <GridTwoSub three>
@@ -228,6 +311,7 @@ function Complete() {
                             type="radio"
                             name="analgesia"
                             id="analgesia2"
+                            value={1.096508}
                           />
                         </GridTwoSub>
                         <GridTwoSub three>
@@ -241,12 +325,66 @@ function Complete() {
                             type="radio"
                             name="analgesia"
                             id="analgesia3"
+                            value={-0.0872948}
                           />
                         </GridTwoSub>
                         <GridTwoSub three>
                           <Label inlineThree>No analgesia</Label>
                         </GridTwoSub>
                       </GridTwo>
+                    </InnerSectionGrid>
+
+                    {/* -----------------Estimated Fetal Weight------------------------ */}
+                    {/* =IF(D46="Under 3000g",0,0)+IF(D46="3000-3499g",0.0612233,0)+IF(D46="3500-3999g",-0.1181972,0)+IF(D46="4000g or more",-0.5706141,0) */}
+                    <InnerSectionGrid fullWidth>
+                      <Label>Estimated Fetal Weight</Label>
+                      <FlexDisplay>
+                        <WidthBox>
+                          <input
+                            type="radio"
+                            name="fetal-weight"
+                            id="fetalWeight1"
+                            value={0}
+                          />
+                          <Label inline>Under 3000g</Label>
+                        </WidthBox>
+                        <WidthBox>
+                          <input
+                            type="radio"
+                            name="fetal-weight"
+                            id="fetalWeight1"
+                            value={0.0612233}
+                          />
+                          <Label inline>3000 - 3499g</Label>
+                        </WidthBox>
+                        <WidthBox>
+                          <input
+                            type="radio"
+                            name="fetal-weight"
+                            id="fetalWeight1"
+                            value={-0.1181972}
+                          />
+                          <Label inline> 3500-3999g</Label>
+                        </WidthBox>
+                        <WidthBox>
+                          <input
+                            type="radio"
+                            name="fetal-weight"
+                            id="fetalWeight1"
+                            value={-0.5706141}
+                          />
+                          <Label inline>4000g or more</Label>
+                        </WidthBox>
+                      </FlexDisplay>
+                    </InnerSectionGrid>
+                    {/* -----------------Parity------------------------ */}
+                    {/* =IF(D16+D18=1,0,0)+IF(D16+D18=2,-0.1458645,0)+IF(D16+D18>2,0.1307764,0) */}
+                    {/* if Number of previous Caesarean Sections + Number of previous vaginal births = 1 ? 0
+                    if Number of previous Caesarean Sections + Number of previous vaginal births = 2 ? -0.1458645
+                    if Number of previous Caesarean Sections + Number of previous vaginal births > 2 ? 0.1307764 */}
+                    <InnerSectionGrid fullWidth>
+                      <Label>Parity</Label>
+                      {/* Line number 107 and 128  */}
                     </InnerSectionGrid>
                     {/* -----------------Finish------------------------ */}
                   </InnerGrid>
