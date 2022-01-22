@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Label } from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
@@ -8,6 +9,23 @@ import { inputClassName } from "../tailwind/tailwindVariables";
 import { selectClassName } from "../tailwind/tailwindVariables";
 
 const Antenatal = () => {
+  //After form is submit change string to number parseInt()
+  const [formData, setFormData] = useState({
+    maternalAge: "",
+    maternalBirth: "",
+    maternalBmi: "",
+    caesarean: 1,
+    previousVaginal: "",
+    caesareanA: "",
+    pregnancy: "",
+  });
+  const handleOnChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setFormData({ ...formData, [name]: value });
+    console.log(formData);
+  };
   return (
     <form action="#" method="POST">
       <ShadowClass>
@@ -20,9 +38,10 @@ const Antenatal = () => {
             <InnerSectionGrid>
               <Label>Maternal Age</Label>
               <select
-                name="maternal-age"
+                name="maternalAge"
                 id="maternal-age-a"
                 className={selectClassName}
+                onChange={handleOnChange}
               >
                 <option value="0">Under 30 years</option>
                 <option value="-0.0884226">30-34 years</option>
@@ -36,9 +55,10 @@ const Antenatal = () => {
             <InnerSectionGrid>
               <Label>Maternal place of birth</Label>
               <select
-                name="maternal-birth"
+                name="maternalBirth"
                 id="maternal-birth-a"
                 className={selectClassName}
+                onChange={handleOnChange}
               >
                 <option value="0">Australia</option>
                 <option value="-0.1703068">Europe</option>
@@ -52,10 +72,12 @@ const Antenatal = () => {
               <Label>Maternal BMI</Label>
               <input
                 type="number"
-                name="maternal-bmi"
-                value={-0.0450591}
+                name="maternalBmi"
+                // value={-0.0450591}
+                value={formData.maternalBmi}
                 title="Body Mass Index"
                 className={inputClassName}
+                onChange={handleOnChange}
               />
             </InnerSectionGrid>
             {/* ---------------------Number of previous Caesarean sections------------- */}
@@ -66,7 +88,9 @@ const Antenatal = () => {
                 type="number"
                 name="caesarean"
                 min="1"
+                value={formData.caesarean}
                 className={inputClassName}
+                onChange={handleOnChange}
                 title="This calculator is to be used by previous Caesareanb"
               />
             </InnerSectionGrid>
@@ -76,8 +100,11 @@ const Antenatal = () => {
               <Label>Numer of previous Vaginal Births</Label>
               <input
                 type="number"
-                name="previous-vaginal"
+                name="previousVaginal"
                 title="Vaginal Births Greater than 20 weeks"
+                value={formData.previousVaginal}
+                onChange={handleOnChange}
+                className={inputClassName}
               />
             </InnerSectionGrid>
             {/* ---------------------------Was the last birth a Caesarean section?----------- */}
@@ -85,11 +112,24 @@ const Antenatal = () => {
               <Label>Was the last birth a Caesarean section?</Label>
               <GridTwo>
                 <GridTwoSub>
-                  <input type="radio" name="caesarean-a" id="caesarean-a1" />
+                  <input
+                    type="radio"
+                    name="caesareanA"
+                    id="caesarean-a1"
+                    value={-1.35218}
+                    onChange={handleOnChange}
+                  />
                   <Label inline>Yes</Label>
                 </GridTwoSub>
                 <GridTwoSub>
-                  <input type="radio" name="caesarean-a" id="caesarean-b1" />
+                  <input
+                    type="radio"
+                    name="caesareanA"
+                    id="caesarean-b1"
+                    value={0}
+                    onChange={handleOnChange}
+                    checked
+                  />
                   <Label inline>No</Label>
                 </GridTwoSub>
               </GridTwo>
@@ -104,6 +144,7 @@ const Antenatal = () => {
                 name="pregnancy"
                 id="pregnancy"
                 className={selectClassName}
+                onChange={handleOnChange}
                 title="Pre-Existing or Gestational Diabetes"
               >
                 <option value={0.0514722}>Diabetes</option>
