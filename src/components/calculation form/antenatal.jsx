@@ -52,7 +52,9 @@ const Antenatal = () => {
               <Label>Maternal BMI</Label>
               <input
                 type="number"
+                name="maternal-bmi"
                 value={-0.0450591}
+                title="Body Mass Index"
                 className={inputClassName}
               />
             </InnerSectionGrid>
@@ -60,13 +62,23 @@ const Antenatal = () => {
             {/* =IF(C17=1,0,0)+IF(C17=2,-1.755666,0)+IF(C17>2,-2.910313,0) */}
             <InnerSectionGrid>
               <Label>Number of previous Caesarean sections</Label>
-              <input type="number" min="1" className={inputClassName} />
+              <input
+                type="number"
+                name="caesarean"
+                min="1"
+                className={inputClassName}
+                title="This calculator is to be used by previous Caesareanb"
+              />
             </InnerSectionGrid>
             {/* -----------------------Number of previous vaginal births------------- */}
             {/* =IF(C19>0,1.126513,0)+IF(C19=0,0,0) */}
             <InnerSectionGrid>
               <Label>Numer of previous Vaginal Births</Label>
-              <input type="number" />
+              <input
+                type="number"
+                name="previous-vaginal"
+                title="Vaginal Births Greater than 20 weeks"
+              />
             </InnerSectionGrid>
             {/* ---------------------------Was the last birth a Caesarean section?----------- */}
             <InnerSectionGrid>
@@ -77,7 +89,7 @@ const Antenatal = () => {
                   <Label inline>Yes</Label>
                 </GridTwoSub>
                 <GridTwoSub>
-                  <input type="radio" name="caesarean-b" id="caesarean-b1" />
+                  <input type="radio" name="caesarean-a" id="caesarean-b1" />
                   <Label inline>No</Label>
                 </GridTwoSub>
               </GridTwo>
@@ -92,6 +104,7 @@ const Antenatal = () => {
                 name="pregnancy"
                 id="pregnancy"
                 className={selectClassName}
+                title="Pre-Existing or Gestational Diabetes"
               >
                 <option value={0.0514722}>Diabetes</option>
                 <option value={-0.164456}>Hypertensive disease</option>

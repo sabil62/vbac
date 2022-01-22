@@ -58,6 +58,7 @@ function Complete() {
                   type="number"
                   name="maternal-bmi"
                   id="maternal-bmi"
+                  title="Body Mass Index"
                   autoComplete="material-bmi"
                   className={inputClassName}
                 />
@@ -69,6 +70,7 @@ function Complete() {
                   type="number"
                   name="previous-caesarean"
                   id="previous-caesarean"
+                  title="Answer must be 1 or greater, this calculator is only to be used where previous Caesareans sections have occurred"
                   autoComplete="previous-caesarean"
                   className={inputClassName}
                 />
@@ -80,6 +82,7 @@ function Complete() {
                   type="number"
                   name="vaginal-births"
                   id="vaginal-births"
+                  title="Only consider Vaginal Births where Gestational age > than 20 weeks"
                   className={inputClassName}
                 />
               </InnerSectionGrid>
@@ -218,6 +221,7 @@ function Complete() {
                   <input
                     type="checkbox"
                     name="gestational-diabeties"
+                    title="Pre-Existing or Gestational Diabetes"
                     value={0.1430483}
                   />
                   <Label inline>
