@@ -10,7 +10,6 @@ import { selectClassName } from "../tailwind/tailwindVariables";
 const Antenatal = () => {
   return (
     <form action="#" method="POST">
-      <h1>Antenatal</h1>
       <ShadowClass>
         <div className="px-4 py-5 bg-white sm:p-6">
           <InnerGrid>

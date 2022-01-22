@@ -10,7 +10,7 @@ const Toggle = (props) => {
         <div>Complete</div>
         <div>Antenatal</div>
         <div
-          className={props.toggle ? leftToogle : rightToogle}
+          className={props.toggle ? rightToogle : leftToogle}
           onClick={dono}
         ></div>
       </div>

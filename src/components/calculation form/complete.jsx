@@ -7,13 +7,13 @@ import { Block } from "../tailwind/tailwindVariables";
 import { FlexDisplay } from "../tailwind/tailwindVariables";
 import { WidthBox } from "../tailwind/tailwindVariables";
 import { inputClassName } from "../tailwind/tailwindVariables";
+import { ShadowClass } from "../tailwind/tailwindVariables";
 
 function Complete() {
   return (
     <>
       <form action="#" method="POST">
-        <div className="shadow overflow-hidden sm:rounded-md">
-          <h1>Complete</h1>
+        <ShadowClass>
           <div className="px-4 py-5 bg-white sm:p-6">
             <InnerGrid>
               {/* =IF(D4="Under 30 years",0,0)+IF(D4="30-34
@@ -349,7 +349,7 @@ function Complete() {
               Save
             </button>
           </div>
-        </div>
+        </ShadowClass>
       </form>
     </>
   );

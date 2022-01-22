@@ -29,19 +29,21 @@ code {
   background-color: bisque;
   position: relative;
   cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.125);
+  margin: 1rem 0;
 }
+
 .flex-center .toggle-container div {
   position: absolute;
   font-size: 1.1rem;
   font-weight: 600;
+  top: 0.4rem;
 }
 .flex-center .toggle-container div:nth-child(1) {
-  top: 0.4rem;
-  left: 1rem;
+  left: 1.8rem;
 }
 .flex-center .toggle-container div:nth-child(2) {
-  top: 0.4rem;
-  right: 1rem;
+  right: 1.8rem;
 }
 
 .flex-center .toggle-container .toggle-button {
@@ -59,4 +61,12 @@ code {
 
 .flex-center .toggle-container .toggle-button-right {
   left: 50%;
+}
+
+@media (max-width: 768px) {
+  .flex-center .toggle-container div {
+    font-size: 0.98rem;
+    font-weight: 500;
+    top: 0.52rem;
+  }
 }

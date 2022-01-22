@@ -17,13 +17,6 @@ const Layout = () => {
     <Grid>
       <GridOffset />
       <GridContent>
-        <button
-          onClick={toggleCalculator}
-          className="bg-yellow-400 hover:bg-yellow-600 text-white py-2 px-4 rounded-md calser "
-        >
-          Change to {antenatalDisplay ? "Complete VBAC" : "Antenatal"}
-        </button>
-        <br />
         <Toggle toggle={antenatalDisplay} onToggle={toggleCalculator} />
         {antenatalDisplay ? <Antenatal /> : <Complete />}
       </GridContent>
