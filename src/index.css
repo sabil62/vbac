@@ -15,3 +15,48 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* ------------------for toggle------------------ */
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+.flex-center .toggle-container {
+  height: 2.6rem;
+  max-width: 22rem;
+  width: 100%;
+  border-radius: 1.2rem;
+  background-color: bisque;
+  position: relative;
+  cursor: pointer;
+}
+.flex-center .toggle-container div {
+  position: absolute;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.flex-center .toggle-container div:nth-child(1) {
+  top: 0.4rem;
+  left: 1rem;
+}
+.flex-center .toggle-container div:nth-child(2) {
+  top: 0.4rem;
+  right: 1rem;
+}
+
+.flex-center .toggle-container .toggle-button {
+  height: 2.6rem;
+  width: 50%;
+  z-index: 10;
+  background-color: rgba(255, 0, 0, 0.226);
+  border-radius: 1.2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: left 0.2s ease;
+  cursor: initial;
+}
+
+.flex-center .toggle-container .toggle-button-right {
+  left: 50%;
+}
