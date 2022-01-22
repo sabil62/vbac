@@ -12,9 +12,9 @@ export const Grid = styled.div(({ grid8 }) => [
 ]);
 export const GridOffset = tw.div`md:col-span-1 lg:col-span-2`;
 export const GridContent = tw.div`md:col-span-4 lg:col-span-6 mt-5 sm:mt-6`;
-export const InnerGrid = tw.div`grid grid-cols-6 gap-6`;
+export const InnerGrid = tw.div`grid grid-cols-6 gap-6 p-2`;
 export const InnerSectionGrid = styled.div(({ fullWidth }) => [
-  tw`col-span-6 lg:col-span-3 px-6 py-2 md:(p-0 pt-2)`,
+  tw`col-span-6 lg:col-span-3 px-6 py-2 md:(p-0 pt-3)`,
   fullWidth && tw`lg:col-span-6`,
 ]);
 
