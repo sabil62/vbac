@@ -12,3 +12,30 @@ https://docs.google.com/spreadsheets/d/16TGUrHvWnJqFHord3OmAEGUPN1san1wV/edit#gi
 
 =(EXP(2.801237+D4+D9+D15+D17+D19+D21+D25+D26+D27+D28+D30))
 /(1+(EXP(2.801237+D4+D9+D15+D17+D19+D21+D25+D26+D27+D28+D30)))
+
+
+   pregnancy: {
+      gestationalDiabeties: "",
+      hypertensiveDisease: "",
+      fetalAnomally: "",
+      none: "",
+    },
+
+    E4 maternal-age
+    E9+maternal place of birth
+    E14+maternal bmi
+    E16+no of caesarean sections
+    E18+previous vaginal birth
+    E20+last birth caesarean?
+    E23+ are any of following pregnancy (multiselect radio)
+    E24+ 
+    E25+
+    E26+
+    E28+gestationalAge
+    E30+ onsetLabour
+    E33+ analgesia
+    E37+fetalPresentation
+    E40+cervicalRipening
+    E43+oxytocin
+    E46+fetalWeight
+    E51+ parity

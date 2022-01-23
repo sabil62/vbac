@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Label } from "../tailwind/tailwindVariables";
+import { buttonClassName, Label } from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
 import { GridTwo } from "../tailwind/tailwindVariables";
@@ -23,18 +23,66 @@ function Complete() {
     fetalPresentation: "",
     cervicalRipening: "",
     oxytocin: "",
-    gestationalDiabeties: "",
-    hypertensiveDisease: "",
-    fetalAnomally: "",
+    pregnancy: {
+      gestationalDiabeties: "12",
+      hypertensiveDisease: "",
+      fetalAnomaly: "",
+      none: "",
+    },
     analgesia: "",
     fetalWeight: "",
+    parity: "",
   });
-  const handleOnChange = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    setFormData({ ...formData, [name]: value });
+
+  const [errors, setErrors] = useState({});
+
+  const handleOnChange = (e, type) => {
+    if (!type) {
+      let name = e.target.name;
+      let value = e.target.value;
+      setFormData({ ...formData, [name]: value });
+    } else {
+      let newForm = { ...formData };
+      newForm[type][e.target.name] = e.target.value;
+      setFormData(newForm);
+    }
     console.log(formData);
   };
+
+  const handleRefresh = (e) => {
+    e.preventDefault();
+    for (let keys in formData) {
+      formData[keys] = "";
+    }
+  };
+
+  const handleValidation = (e) => {
+    let errorss = {};
+    let formIsValid = true;
+
+    for (let key in formData) {
+      if (!formData[key]) {
+        formIsValid = false;
+        errorss[key] = "Cannot Be Empty";
+      }
+    }
+    setErrors(errors);
+
+    return formIsValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (handleValidation()) {
+      //write formulas
+      //       =(EXP(-8.091264+E4+E9+E14+E16+E18+E20+E23+E24+E25+E26+E28+E30+E33+E37+E40+E43+E46+E51))
+      // /(1+(EXP(-8.091264+E4+E9+E14+E16+E18+E20+E23+E24+E25+E26+E28+E30+E33+E37+E40+E43+E46+E51)))
+      console.log("successful");
+    } else {
+      console.log("unsuccessful");
+    }
+  };
+
   return (
     <>
       <form action="#" method="POST">
@@ -88,7 +136,6 @@ function Complete() {
                   value={formData.maternalBmi}
                   id="maternal-bmi"
                   title="Body Mass Index"
-                  autoComplete="material-bmi"
                   className={inputClassName}
                 />
               </InnerSectionGrid>
@@ -268,7 +315,7 @@ function Complete() {
                     type="checkbox"
                     name="gestationalDiabeties"
                     title="Pre-Existing or Gestational Diabetes"
-                    onChange={handleOnChange}
+                    onChange={(event) => handleOnChange(event, "pregnancy")}
                     value={0.1430483}
                   />
                   <Label inline>
@@ -280,7 +327,7 @@ function Complete() {
                     type="checkbox"
                     name="hypertensiveDisease"
                     value={-0.1673155}
-                    onChange={handleOnChange}
+                    onChange={(event) => handleOnChange(event, "pregnancy")}
                   />
                   <Label inline>Hypertensive Disease</Label>
                 </Block>
@@ -289,9 +336,18 @@ function Complete() {
                     type="checkbox"
                     name="fetalAnomaly"
                     value={-0.2456491}
-                    onChange={handleOnChange}
+                    onChange={(event) => handleOnChange(event, "pregnancy")}
                   />
                   <Label inline>Known fetal anomaly</Label>
+                </Block>
+                <Block>
+                  <input
+                    type="checkbox"
+                    name="none"
+                    value={0}
+                    onChange={(event) => handleOnChange(event, "pregnancy")}
+                  />
+                  <Label inline>None</Label>
                 </Block>
               </InnerSectionGrid>
 
@@ -396,15 +452,20 @@ function Complete() {
                     if Number of previous Caesarean Sections + Number of previous vaginal births > 2 ? 0.1307764 */}
               <InnerSectionGrid fullWidth>
                 <Label>Parity</Label>
+                <Label>{formData.parity}</Label>
                 {/* Line number 107 and 128  */}
               </InnerSectionGrid>
               {/* -----------------Finish------------------------ */}
             </InnerGrid>
           </div>
           <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <button className={buttonClassName} onClick={handleRefresh}>
+              Refresh
+            </button>
             <button
               type="submit"
-              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              onClick={handleSubmit}
+              className={buttonClassName}
             >
               Save
             </button>
