@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Label } from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
@@ -10,6 +11,30 @@ import { inputClassName } from "../tailwind/tailwindVariables";
 import { ShadowClass } from "../tailwind/tailwindVariables";
 
 function Complete() {
+  const [formData, setFormData] = useState({
+    maternalAge: "",
+    birthPlace: "",
+    maternalBmi: "",
+    previousCaesarean: "",
+    vaginalBirths: "",
+    gestationalAge: "",
+    caesareanSection: "",
+    onsetLabour: "",
+    fetalPresentation: "",
+    cervicalRipening: "",
+    oxytocin: "",
+    gestationalDiabeties: "",
+    hypertensiveDisease: "",
+    fetalAnomally: "",
+    analgesia: "",
+    fetalWeight: "",
+  });
+  const handleOnChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    setFormData({ ...formData, [name]: value });
+    console.log(formData);
+  };
   return (
     <>
       <form action="#" method="POST">
@@ -24,8 +49,9 @@ function Complete() {
                 <Label>Maternal Age</Label>
 
                 <select
-                  name="maternal-age"
+                  name="maternalAge"
                   id="maternal-age"
+                  onChange={handleOnChange}
                   className="mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm"
                 >
                   <option value="0">Under 30 years</option>
@@ -40,8 +66,9 @@ function Complete() {
               <InnerSectionGrid>
                 <Label>Maternal Place of Birth</Label>
                 <select
-                  name="birth-place"
+                  name="birthPlace"
                   id="birth-place"
+                  onChange={handleOnChange}
                   className="mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm"
                 >
                   <option value="0">Australia</option>
@@ -56,7 +83,9 @@ function Complete() {
                 <Label>Maternal BMI</Label>
                 <input
                   type="number"
-                  name="maternal-bmi"
+                  name="maternalBmi"
+                  onChange={handleOnChange}
+                  value={formData.maternalBmi}
                   id="maternal-bmi"
                   title="Body Mass Index"
                   autoComplete="material-bmi"
@@ -68,8 +97,10 @@ function Complete() {
                 <Label>Number of previous Caesarean Sections</Label>
                 <input
                   type="number"
-                  name="previous-caesarean"
+                  name="previousCaesarean"
                   id="previous-caesarean"
+                  value={formData.previousCaesarean}
+                  onChange={handleOnChange}
                   title="Answer must be 1 or greater, this calculator is only to be used where previous Caesareans sections have occurred"
                   autoComplete="previous-caesarean"
                   className={inputClassName}
@@ -80,8 +111,10 @@ function Complete() {
                 <Label>Number of Previous Vaginal Birds</Label>
                 <input
                   type="number"
-                  name="vaginal-births"
+                  name="vaginalBirths"
                   id="vaginal-births"
+                  value={formData.vaginalBirths}
+                  onChange={handleOnChange}
                   title="Only consider Vaginal Births where Gestational age > than 20 weeks"
                   className={inputClassName}
                 />
@@ -91,10 +124,12 @@ function Complete() {
                 <Label>Gestational Age</Label>
                 <input
                   type="number"
-                  name="gestational-age"
+                  name="gestationalAge"
                   id="gestational-age"
+                  value={formData.gestationalAge}
+                  onChange={handleOnChange}
                   className={inputClassName}
-                  value={"value * 0.233957"}
+                  // value={"0.233957"}
                 />
               </InnerSectionGrid>
               {/* --------------Was the last birth a Caesarean section?------------------ */}
@@ -104,8 +139,10 @@ function Complete() {
                   <GridTwoSub>
                     <input
                       type="radio"
-                      name="caesarean-section"
+                      name="caesareanSection"
                       id="caesarean-section1"
+                      value={-1.390563}
+                      onChange={handleOnChange}
                     />
 
                     <Label inline>Yes</Label>
@@ -113,8 +150,10 @@ function Complete() {
                   <GridTwoSub>
                     <input
                       type="radio"
-                      name="caesarean-section"
+                      name="caesareanSection"
                       id="caesarean-section2"
+                      value={0}
+                      onChange={handleOnChange}
                     />
                     <Label inline>No</Label>
                   </GridTwoSub>
@@ -127,8 +166,9 @@ function Complete() {
                   <GridTwoSub>
                     <input
                       type="radio"
-                      name="onset-labour"
+                      name="onsetLabour"
                       id="onset-labour-1"
+                      onChange={handleOnChange}
                       value={0}
                     />
                     <Label inline>Spontaneous</Label>
@@ -136,8 +176,9 @@ function Complete() {
                   <GridTwoSub>
                     <input
                       type="radio"
-                      name="onset-labour"
+                      name="onsetLabour"
                       id="onset-labour-2"
+                      onChange={handleOnChange}
                       value={-0.0940149}
                     />
                     <Label inline>Induced</Label>
@@ -151,14 +192,15 @@ function Complete() {
                   <GridTwoSub>
                     <input
                       type="radio"
-                      name="fetal-presentation"
+                      name="fetalPresentation"
                       id="fetal1"
+                      onChange={handleOnChange}
                       value={1.400273}
                     />
                     <Label inline>Vertex</Label>
                   </GridTwoSub>
                   <GridTwoSub>
-                    <input type="radio" name="fetal-presentation" id="fetal2" />
+                    <input type="radio" name="fetalPresentation" id="fetal2" />
                     <Label inline>Non-vertex</Label>
                   </GridTwoSub>
                 </GridTwo>
@@ -170,8 +212,9 @@ function Complete() {
                   <GridTwoSub>
                     <input
                       type="radio"
-                      name="cervical-ripening"
+                      name="cervicalRipening"
                       id="cervical1"
+                      onChange={handleOnChange}
                       value={-0.0949787}
                     />
                     <Label inline>Yes</Label>
@@ -179,8 +222,9 @@ function Complete() {
                   <GridTwoSub>
                     <input
                       type="radio"
-                      name="cervical-ripening"
+                      name="cervicalRipening"
                       id="cervical2"
+                      onChange={handleOnChange}
                       value={0}
                     />
                     <Label inline>No</Label>
@@ -196,6 +240,7 @@ function Complete() {
                       type="radio"
                       name="oxytocin"
                       id="oxytocin1"
+                      onChange={handleOnChange}
                       value={0.191545}
                     />
                     <Label inline>Yes</Label>
@@ -205,6 +250,7 @@ function Complete() {
                       type="radio"
                       name="oxytocin"
                       id="oxytocin2"
+                      onChange={handleOnChange}
                       value={0}
                     />
                     <Label inline>No</Label>
@@ -220,8 +266,9 @@ function Complete() {
                 <Block>
                   <input
                     type="checkbox"
-                    name="gestational-diabeties"
+                    name="gestationalDiabeties"
                     title="Pre-Existing or Gestational Diabetes"
+                    onChange={handleOnChange}
                     value={0.1430483}
                   />
                   <Label inline>
@@ -231,16 +278,18 @@ function Complete() {
                 <Block>
                   <input
                     type="checkbox"
-                    name="Hypertensive-disease"
+                    name="hypertensiveDisease"
                     value={-0.1673155}
+                    onChange={handleOnChange}
                   />
                   <Label inline>Hypertensive Disease</Label>
                 </Block>
                 <Block>
                   <input
                     type="checkbox"
-                    name="fetal-anomaly"
+                    name="fetalAnomaly"
                     value={-0.2456491}
+                    onChange={handleOnChange}
                   />
                   <Label inline>Known fetal anomaly</Label>
                 </Block>
@@ -258,6 +307,7 @@ function Complete() {
                       name="analgesia"
                       id="analgesia1"
                       value={0}
+                      onChange={handleOnChange}
                     />{" "}
                   </GridTwoSub>
                   <GridTwoSub three>
@@ -269,6 +319,7 @@ function Complete() {
                       type="radio"
                       name="analgesia"
                       id="analgesia2"
+                      onChange={handleOnChange}
                       value={1.096508}
                     />
                   </GridTwoSub>
@@ -281,6 +332,7 @@ function Complete() {
                       type="radio"
                       name="analgesia"
                       id="analgesia3"
+                      onChange={handleOnChange}
                       value={-0.0872948}
                     />
                   </GridTwoSub>
@@ -298,8 +350,9 @@ function Complete() {
                   <WidthBox>
                     <input
                       type="radio"
-                      name="fetal-weight"
+                      name="fetalWeight"
                       id="fetalWeight1"
+                      onChange={handleOnChange}
                       value={0}
                     />
                     <Label inline>Under 3000g</Label>
@@ -307,8 +360,9 @@ function Complete() {
                   <WidthBox>
                     <input
                       type="radio"
-                      name="fetal-weight"
+                      name="fetalWeight"
                       id="fetalWeight1"
+                      onChange={handleOnChange}
                       value={0.0612233}
                     />
                     <Label inline>3000 - 3499g</Label>
@@ -316,8 +370,9 @@ function Complete() {
                   <WidthBox>
                     <input
                       type="radio"
-                      name="fetal-weight"
+                      name="fetalWeight"
                       id="fetalWeight1"
+                      onChange={handleOnChange}
                       value={-0.1181972}
                     />
                     <Label inline> 3500-3999g</Label>
@@ -325,7 +380,8 @@ function Complete() {
                   <WidthBox>
                     <input
                       type="radio"
-                      name="fetal-weight"
+                      name="fetalWeight"
+                      onChange={handleOnChange}
                       id="fetalWeight1"
                       value={-0.5706141}
                     />
