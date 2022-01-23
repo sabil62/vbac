@@ -24,10 +24,10 @@ function Complete() {
     cervicalRipening: "",
     oxytocin: "",
     pregnancy: {
-      gestationalDiabeties: "12",
-      hypertensiveDisease: "",
-      fetalAnomaly: "",
-      none: "",
+      gestationalDiabeties: 0,
+      hypertensiveDisease: 0,
+      fetalAnomaly: 0,
+      none: 0,
     },
     analgesia: "",
     fetalWeight: "",
@@ -52,7 +52,14 @@ function Complete() {
   const handleRefresh = (e) => {
     e.preventDefault();
     for (let keys in formData) {
-      formData[keys] = "";
+      console.log(typeof keys);
+      if (keys == "pregnancy") {
+        for (let insideKeys in formData[keys]) {
+          formData[keys][insideKeys] = 0;
+        }
+      } else {
+        formData[keys] = "";
+      }
     }
   };
 
