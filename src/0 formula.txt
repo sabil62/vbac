@@ -17,6 +17,17 @@ https://docs.google.com/spreadsheets/d/16TGUrHvWnJqFHord3OmAEGUPN1san1wV/edit#gi
 =(EXP(2.801237+D4+D9+D15+D17+D19+D21+D25+D26+D27+D28+D30))/
 (1+(EXP(2.801237+D4+D9+D15+D17+D19+D21+D25+D26+D27+D28+D30)))
 
+    caesarean: 1,
+    previousVaginal: "",
+    
+   maternalAge: "",
+    maternalBirth: "",
+    maternalBmi: "",
+    caesarean: 1,
+    previousVaginal: "",
+    caesareanA: "",
+    pregnancy: "",
+
    pregnancy: {
       gestationalDiabeties: "",
       hypertensiveDisease: "",

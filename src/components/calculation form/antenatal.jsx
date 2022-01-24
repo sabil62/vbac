@@ -10,9 +10,10 @@ import { selectClassName } from "../tailwind/tailwindVariables";
 
 const Antenatal = () => {
   //After form is submit change string to number parseInt()
+  const [parity, setParity] = useState(0);
   const [formData, setFormData] = useState({
-    maternalAge: "",
-    maternalBirth: "",
+    maternalAge: 0,
+    maternalBirth: 0,
     maternalBmi: "",
     caesarean: 1,
     previousVaginal: "",
@@ -33,6 +34,25 @@ const Antenatal = () => {
 
     setFormData({ ...formData, [name]: value });
     console.log(formData);
+
+    let parityValue =
+      parseInt(formData["caesarean"]) + parseInt(formData["previousVaginal"]);
+    console.log(parityValue);
+
+    handleParity(parityValue);
+  };
+
+  const handleParity = (parityValue) => {
+    // =IF(C17+C19=1,0,0)+IF(C17+C19=2,-0.1637306,0)+IF(C17+C19>2,0.0923186,0)
+    let parit = 0;
+    if (parityValue === 1) {
+      parit = 0;
+    } else if (parityValue === 2) {
+      parit = -0.1637306;
+    } else if (parityValue > 2) {
+      parit = 0.0923186;
+    }
+    setParity(parit);
   };
 
   const handleValidation = () => {
@@ -74,9 +94,12 @@ const Antenatal = () => {
           }
         } else {
           total += parseFloat(formData[key]);
+          console.log(total);
         }
       }
-      setAnswer(total);
+      let expAns = Math.exp(2.801237 + total);
+      let ans = expAns / (1 + expAns);
+      setAnswer(ans);
     } else {
       console.log("Unsuccessful");
     }
@@ -88,9 +111,7 @@ const Antenatal = () => {
           <div className="px-4 py-5 bg-white sm:p-6">
             <InnerGrid>
               {/* -----------------maternal age------------------------ */}
-              {/* =IF(C4="Under 30 years",0,0)+IF(C4="30-34
-            years",-0.0884226,0)+IF(C4="35-39 years",-0.2523265,0)+IF(C4="40
-            years or more",-0.6299476,0) */}
+
               <InnerSectionGrid>
                 <Label>Maternal Age</Label>
                 <select
@@ -106,8 +127,6 @@ const Antenatal = () => {
                 </select>
               </InnerSectionGrid>
               {/* -----------------maternal place of birth------------------------ */}
-              {/* =IF(C9="Australia",0,0)+IF(C9="Europe",-0.1703068,0)+IF(C9="Africa/Middle
-            East",-0.3479744,0)+IF(C9="Asia",-0.3429032,0)+IF(C9="Other",-0.0699769,0) */}
               <InnerSectionGrid>
                 <Label>Maternal place of birth</Label>
                 <select
@@ -137,7 +156,6 @@ const Antenatal = () => {
                 />
               </InnerSectionGrid>
               {/* ---------------------Number of previous Caesarean sections------------- */}
-              {/* =IF(C17=1,0,0)+IF(C17=2,-1.755666,0)+IF(C17>2,-2.910313,0) */}
               <InnerSectionGrid>
                 <Label>Number of previous Caesarean sections</Label>
                 <input
@@ -151,7 +169,6 @@ const Antenatal = () => {
                 />
               </InnerSectionGrid>
               {/* -----------------------Number of previous vaginal births------------- */}
-              {/* =IF(C19>0,1.126513,0)+IF(C19=0,0,0) */}
               <InnerSectionGrid>
                 <Label>Numer of previous Vaginal Births</Label>
                 <input
@@ -184,7 +201,6 @@ const Antenatal = () => {
                       id="caesarean-b1"
                       value={0}
                       onChange={handleOnChange}
-                      checked
                     />
                     <Label inline>No</Label>
                   </GridTwoSub>
@@ -213,7 +229,7 @@ const Antenatal = () => {
               {/* =IF(C17+C19=1,0,0)+IF(C17+C19=2,-0.1637306,0)+IF(C17+C19>2,0.0923186,0) */}
               <InnerSectionGrid>
                 <Label>Parity</Label>
-                <div>{"parity calculate"}</div>
+                <div>{parity}</div>
               </InnerSectionGrid>
             </InnerGrid>
           </div>
