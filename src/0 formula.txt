@@ -39,3 +39,30 @@ https://docs.google.com/spreadsheets/d/16TGUrHvWnJqFHord3OmAEGUPN1san1wV/edit#gi
     E43+oxytocin
     E46+fetalWeight
     E51+ parity
+
+     maternalBmi: "",//-0.043509
+    previousCaesarean: "",
+    vaginalBirths: "",//=IF(D18>0,1.167351,0)+IF(D18=0,0,0)
+    gestationalAge: "",//this =D28*0.233957
+    previousCaesarean: "",//IF(D16=1,0,0)+IF(D16=2,-1.496422,0)+IF(D16>2,-2.445079,0)
+
+     maternalAge: "",
+    birthPlace: "",
+    maternalBmi: "",
+    previousCaesarean: "",
+    vaginalBirths: "",
+    gestationalAge: "",
+    caesareanSection: "",
+    onsetLabour: "",
+    fetalPresentation: "",
+    cervicalRipening: "",
+    oxytocin: "",
+    pregnancy: {
+      gestationalDiabeties: 0,
+      hypertensiveDisease: 0,
+      fetalAnomaly: 0,
+      none: 0,
+    },
+    analgesia: "",
+    fetalWeight: "",
+    parity: "",

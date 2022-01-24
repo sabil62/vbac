@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { buttonClassName, Label } from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
@@ -11,13 +11,14 @@ import { inputClassName } from "../tailwind/tailwindVariables";
 import { ShadowClass } from "../tailwind/tailwindVariables";
 
 function Complete() {
+  const [answer, setAnswer] = useState("");
   const [formData, setFormData] = useState({
     maternalAge: "",
     birthPlace: "",
-    maternalBmi: "",
-    previousCaesarean: "",
-    vaginalBirths: "",
-    gestationalAge: "",
+    maternalBmi: "", //-0.043509
+    previousCaesarean: "", //IF(D16=1,0,0)+IF(D16=2,-1.496422,0)+IF(D16>2,-2.445079,0)
+    vaginalBirths: "", //=IF(D18>0,1.167351,0)+IF(D18=0,0,0)
+    gestationalAge: "", //this =D28*0.233957
     caesareanSection: "",
     onsetLabour: "",
     fetalPresentation: "",
@@ -31,10 +32,13 @@ function Complete() {
     },
     analgesia: "",
     fetalWeight: "",
-    parity: "",
+    parity: "0",
   });
 
   const [errors, setErrors] = useState({});
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
 
   const handleOnChange = (e, type) => {
     if (!type) {
@@ -47,6 +51,8 @@ function Complete() {
       setFormData(newForm);
     }
     console.log(formData);
+    // =IF(D16+D18=1,0,0)+IF(D16+D18=2,-0.1458645,0)+IF(D16+D18>2,0.1307764,0)
+    // formData.parity
   };
 
   const handleRefresh = (e) => {
@@ -70,10 +76,11 @@ function Complete() {
     for (let key in formData) {
       if (!formData[key]) {
         formIsValid = false;
+        console.log(key);
         errorss[key] = "Cannot Be Empty";
       }
     }
-    setErrors(errors);
+    setErrors(errorss);
 
     return formIsValid;
   };
@@ -81,10 +88,35 @@ function Complete() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (handleValidation()) {
-      //write formulas
-      //       =(EXP(-8.091264+E4+E9+E14+E16+E18+E20+E23+E24+E25+E26+E28+E30+E33+E37+E40+E43+E46+E51))
-      // /(1+(EXP(-8.091264+E4+E9+E14+E16+E18+E20+E23+E24+E25+E26+E28+E30+E33+E37+E40+E43+E46+E51)))
       console.log("successful");
+      let total = 0;
+      for (let key in formData) {
+        if (key == "pregnancy") {
+          for (let inKey in formData[key]) {
+            total += parseFloat(formData[key][inKey]);
+          }
+        } else if (key == "maternalBmi") {
+          total += parseFloat(formData[key]) * -0.043509;
+        } else if (key == "previousCaesarean") {
+          let value = parseFloat(formData[key]);
+          if (value === 2) {
+            total += 2;
+          } else if (value > 2) {
+            total += -2.445079;
+          }
+        } else if (key == "vaginalBirths") {
+          if (parseFloat(formData[key]) > 0) {
+            total += 1.167351;
+          }
+        } else if (key == "gestationalAge") {
+          total += parseInt(formData[key]) * 0.233957;
+        } else {
+          total += parseFloat(formData[key]);
+        }
+      }
+      let variable = Math.exp(-8.091264 + total);
+      let answer = variable / (1 + variable);
+      setAnswer(answer);
     } else {
       console.log("unsuccessful");
     }
@@ -254,7 +286,13 @@ function Complete() {
                     <Label inline>Vertex</Label>
                   </GridTwoSub>
                   <GridTwoSub>
-                    <input type="radio" name="fetalPresentation" id="fetal2" />
+                    <input
+                      type="radio"
+                      name="fetalPresentation"
+                      id="fetal2"
+                      onChange={handleOnChange}
+                      value={0}
+                    />
                     <Label inline>Non-vertex</Label>
                   </GridTwoSub>
                 </GridTwo>
@@ -359,8 +397,6 @@ function Complete() {
               </InnerSectionGrid>
 
               {/* -------------------Analgesia. Please select all that apply.---------------------- */}
-              {/* =IF(D33="Epidural or spinal",0,0)+IF(D33="Nitrous or IM
-                    narcotic",1.096508,0)+IF(D33="No analgesia",-0.0872948,0) */}
               <InnerSectionGrid fullWidth>
                 <Label>Analgesia. Please select all that apply.</Label>
                 <GridTwo twelve>
@@ -454,9 +490,7 @@ function Complete() {
               </InnerSectionGrid>
               {/* -----------------Parity------------------------ */}
               {/* =IF(D16+D18=1,0,0)+IF(D16+D18=2,-0.1458645,0)+IF(D16+D18>2,0.1307764,0) */}
-              {/* if Number of previous Caesarean Sections + Number of previous vaginal births = 1 ? 0
-                    if Number of previous Caesarean Sections + Number of previous vaginal births = 2 ? -0.1458645
-                    if Number of previous Caesarean Sections + Number of previous vaginal births > 2 ? 0.1307764 */}
+
               <InnerSectionGrid fullWidth>
                 <Label>Parity</Label>
                 <Label>{formData.parity}</Label>
@@ -479,6 +513,7 @@ function Complete() {
           </div>
         </ShadowClass>
       </form>
+      <div className="text-2xl">{answer}</div>
     </>
   );
 }
