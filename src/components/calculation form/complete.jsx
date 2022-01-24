@@ -32,7 +32,7 @@ function Complete() {
     },
     analgesia: "",
     fetalWeight: "",
-    parity: "0",
+    parity: 0,
   });
 
   const [errors, setErrors] = useState({});
@@ -50,9 +50,31 @@ function Complete() {
       newForm[type][e.target.name] = e.target.value;
       setFormData(newForm);
     }
-    console.log(formData);
-    // =IF(D16+D18=1,0,0)+IF(D16+D18=2,-0.1458645,0)+IF(D16+D18>2,0.1307764,0)
-    // formData.parity
+
+    if (formData["parity"] === 0) {
+      let parityVariable =
+        parseInt(formData["previousCaesarean"]) +
+        parseInt(formData["vaginalBirths"]);
+      handleParity(parityVariable);
+    }
+
+    // if (parityVariable === 1) {
+    //   setFormData({ ...formData, ["parity"]: 0 });
+    // } else if (parityVariable === 2) {
+    //   setFormData({ ...formData, ["parity"]: -0.145864 });
+    // } else if (parityVariable > 2) {
+    //   setFormData({ ...formData, ["parity"]: 0.1307764 });
+    // }
+  };
+
+  const handleParity = (parityVariable) => {
+    if (parityVariable === 1) {
+      setFormData({ ...formData, ["parity"]: 0 });
+    } else if (parityVariable === 2) {
+      setFormData({ ...formData, ["parity"]: -0.145864 });
+    } else if (parityVariable > 2) {
+      setFormData({ ...formData, ["parity"]: 0.1307764 });
+    }
   };
 
   const handleRefresh = (e) => {
@@ -513,7 +535,9 @@ function Complete() {
           </div>
         </ShadowClass>
       </form>
-      <div className="text-2xl">{answer}</div>
+      <div className="text-2xl">
+        {parseFloat(answer).toFixed(4) * 100 + "%"}
+      </div>
     </>
   );
 }
