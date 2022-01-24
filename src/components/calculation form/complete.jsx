@@ -41,6 +41,9 @@ function Complete() {
   }, [errors]);
 
   const handleOnChange = (e, type) => {
+    if (Object.keys(errors).length > 0) {
+      setErrors({});
+    }
     if (!type) {
       let name = e.target.name;
       let value = e.target.value;
@@ -57,14 +60,6 @@ function Complete() {
         parseInt(formData["vaginalBirths"]);
       handleParity(parityVariable);
     }
-
-    // if (parityVariable === 1) {
-    //   setFormData({ ...formData, ["parity"]: 0 });
-    // } else if (parityVariable === 2) {
-    //   setFormData({ ...formData, ["parity"]: -0.145864 });
-    // } else if (parityVariable > 2) {
-    //   setFormData({ ...formData, ["parity"]: 0.1307764 });
-    // }
   };
 
   const handleParity = (parityVariable) => {
@@ -216,7 +211,7 @@ function Complete() {
               </InnerSectionGrid>
               {/* -----------------Number of previous Vaginal Births------------------------ */}
               <InnerSectionGrid>
-                <Label>Number of Previous Vaginal Birds</Label>
+                <Label>Number of Previous Vaginal Births</Label>
                 <input
                   type="number"
                   name="vaginalBirths"
@@ -535,9 +530,19 @@ function Complete() {
           </div>
         </ShadowClass>
       </form>
-      <div className="text-2xl">
-        {parseFloat(answer).toFixed(4) * 100 + "%"}
-      </div>
+      {answer ? (
+        <div className="display-box">
+          Likelihood of achieving VBAC is
+          <span style={{ fontSize: "1.7rem" }}>
+            {" " + parseFloat(answer).toFixed(4) * 100 + "%"}
+          </span>
+        </div>
+      ) : null}
+      {Object.keys(errors).length > 0 ? (
+        <div className="display-box box-red ">
+          Please Complete all the fields
+        </div>
+      ) : null}
     </>
   );
 }

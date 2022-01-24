@@ -19,6 +19,9 @@ const Layout = () => {
       <GridContent>
         <Toggle toggle={antenatalDisplay} onToggle={toggleCalculator} />
         {antenatalDisplay ? <Antenatal /> : <Complete />}
+        <div className="my-4">
+          This calculator is base on the study published here
+        </div>
       </GridContent>
       <GridOffset />
     </Grid>

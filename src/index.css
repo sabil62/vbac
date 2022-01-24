@@ -64,6 +64,22 @@ code {
   left: 50%;
 }
 
+.display-box {
+  max-width: 100%;
+  padding: 2rem;
+  font-size: 1.4rem;
+  border-radius: 0.8rem;
+  border: 2px solid bisque;
+  background-color: bisque;
+  margin: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.45px;
+  text-align: center;
+}
+.box-red {
+  background-color: rgb(241, 134, 134);
+}
+
 @media (max-width: 768px) {
   .flex-center .toggle-container div {
     font-size: 0.98rem;

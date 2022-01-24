@@ -25,6 +25,7 @@ https://docs.google.com/spreadsheets/d/16TGUrHvWnJqFHord3OmAEGUPN1san1wV/edit#gi
     E9+maternal place of birth
     E14+maternal bmi
     E16+no of caesarean sections
+
     E18+previous vaginal birth
     E20+last birth caesarean?
     E23+ are any of following pregnancy (multiselect radio)
@@ -41,7 +42,9 @@ https://docs.google.com/spreadsheets/d/16TGUrHvWnJqFHord3OmAEGUPN1san1wV/edit#gi
     E51+ parity
 
      maternalBmi: "",//-0.043509
+     
     previousCaesarean: "",
+
     vaginalBirths: "",//=IF(D18>0,1.167351,0)+IF(D18=0,0,0)
     gestationalAge: "",//this =D28*0.233957
     previousCaesarean: "",//IF(D16=1,0,0)+IF(D16=2,-1.496422,0)+IF(D16>2,-2.445079,0)
