@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { buttonClassName, Label, selectClassName, selectClassNameError } from "../tailwind/tailwindVariables";
+import { buttonClassName, inputClassNameError, Label, selectClassName, selectClassNameError } from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
 import { GridTwo } from "../tailwind/tailwindVariables";
@@ -42,8 +42,12 @@ function Complete() {
 
   const handleOnChange = (e, type) => {
     if (Object.keys(errors).length > 0) {
-      setErrors({});
+      let newErrObj = {...errors};
+      newErrObj[e.target.name] = "";
+      setErrors(newErrObj);
     }
+    console.log(errors)
+
     if (!type) {
       let name = e.target.name;
       let value = e.target.value;
@@ -158,7 +162,7 @@ function Complete() {
                 <select
                   name="maternalAge"                 
                   onChange={handleOnChange}
-                  className={selectClassName}
+                  className={errors["maternalAge"] ? selectClassNameError : selectClassName}
                 >
                   <option value="0">Under 30 years</option>
                   <option value="-0.0339731">30-34 years</option>
@@ -173,7 +177,6 @@ function Complete() {
                 <Label>Maternal Place of Birth</Label>
                 <select
                   name="birthPlace"
-                  id="birth-place"
                   onChange={handleOnChange}
                   className={errors["birthPlace"]?selectClassNameError:selectClassName}
                 >
@@ -192,9 +195,8 @@ function Complete() {
                   name="maternalBmi"
                   onChange={handleOnChange}
                   value={formData.maternalBmi}
-                  id="maternal-bmi"
                   title="Body Mass Index"
-                  className={inputClassName}
+                  className={errors["maternalBmi"]?inputClassNameError :inputClassName}
                 />
               </InnerSectionGrid>
               {/* -----------------Number of previous Caesarean Sections------------------------ */}
@@ -203,12 +205,11 @@ function Complete() {
                 <input
                   type="number"
                   name="previousCaesarean"
-                  id="previous-caesarean"
                   value={formData.previousCaesarean}
                   onChange={handleOnChange}
                   title="Answer must be 1 or greater, this calculator is only to be used where previous Caesareans sections have occurred"
                   autoComplete="previous-caesarean"
-                  className={inputClassName}
+                  className={errors["previousCaesarean"]?inputClassNameError:inputClassName}
                 />
               </InnerSectionGrid>
               {/* -----------------Number of previous Vaginal Births------------------------ */}
@@ -217,11 +218,10 @@ function Complete() {
                 <input
                   type="number"
                   name="vaginalBirths"
-                  id="vaginal-births"
                   value={formData.vaginalBirths}
                   onChange={handleOnChange}
                   title="Only consider Vaginal Births where Gestational age > than 20 weeks"
-                  className={inputClassName}
+                  className={errors["vaginalBirths"]?inputClassNameError:inputClassName}
                 />
               </InnerSectionGrid>
               {/* -----------------Gestational Age------------------------ */}
@@ -230,22 +230,20 @@ function Complete() {
                 <input
                   type="number"
                   name="gestationalAge"
-                  id="gestational-age"
                   value={formData.gestationalAge}
                   onChange={handleOnChange}
-                  className={inputClassName}
-                  // value={"0.233957"}
+                  className={errors["gestationalAge"]?inputClassNameError:inputClassName}
                 />
               </InnerSectionGrid>
               {/* --------------Was the last birth a Caesarean section?------------------ */}
               <InnerSectionGrid>
-                <Label>Was the last birth a Caesarean section?</Label>
+                <Label error={errors["caesareanSection"]}>Was the last birth a Caesarean section?</Label>
                 <GridTwo>
                   <GridTwoSub>
                     <input
                       type="radio"
                       name="caesareanSection"
-                      id="caesarean-section1"
+                      
                       value={-1.390563}
                       onChange={handleOnChange}
                     />
@@ -256,7 +254,7 @@ function Complete() {
                     <input
                       type="radio"
                       name="caesareanSection"
-                      id="caesarean-section2"
+                      
                       value={0}
                       onChange={handleOnChange}
                     />
@@ -266,13 +264,13 @@ function Complete() {
               </InnerSectionGrid>
               {/* -----------------Onset of Labour------------------------ */}
               <InnerSectionGrid>
-                <Label>Onset of Labour</Label>
+                <Label error={errors["onsetLabour"]}>Onset of Labour</Label>
                 <GridTwo>
                   <GridTwoSub>
                     <input
                       type="radio"
                       name="onsetLabour"
-                      id="onset-labour-1"
+                      
                       onChange={handleOnChange}
                       value={0}
                     />
@@ -282,7 +280,7 @@ function Complete() {
                     <input
                       type="radio"
                       name="onsetLabour"
-                      id="onset-labour-2"
+                      
                       onChange={handleOnChange}
                       value={-0.0940149}
                     />
@@ -292,13 +290,13 @@ function Complete() {
               </InnerSectionGrid>
               {/* -----------------Fetal Presentation------------------------ */}
               <InnerSectionGrid>
-                <Label>Fetal Presentation</Label>
+                <Label error={errors["fetalPresentation"]}>Fetal Presentation</Label>
                 <GridTwo>
                   <GridTwoSub>
                     <input
                       type="radio"
                       name="fetalPresentation"
-                      id="fetal1"
+                      
                       onChange={handleOnChange}
                       value={1.400273}
                     />
@@ -308,7 +306,7 @@ function Complete() {
                     <input
                       type="radio"
                       name="fetalPresentation"
-                      id="fetal2"
+                      
                       onChange={handleOnChange}
                       value={0}
                     />
@@ -318,13 +316,13 @@ function Complete() {
               </InnerSectionGrid>
               {/* -----------------Was cervical ripening used?------------------------ */}
               <InnerSectionGrid>
-                <Label>Was cervical ripening used?</Label>
+                <Label error={errors["cervicalRipening"]}>Was cervical ripening used?</Label>
                 <GridTwo>
                   <GridTwoSub>
                     <input
                       type="radio"
                       name="cervicalRipening"
-                      id="cervical1"
+                      
                       onChange={handleOnChange}
                       value={-0.0949787}
                     />
@@ -334,7 +332,7 @@ function Complete() {
                     <input
                       type="radio"
                       name="cervicalRipening"
-                      id="cervical2"
+                      
                       onChange={handleOnChange}
                       value={0}
                     />
@@ -344,13 +342,13 @@ function Complete() {
               </InnerSectionGrid>
               {/* -------------------Was oxytocin used?---------------------- */}
               <InnerSectionGrid>
-                <Label>Was oxytocin used?</Label>
+                <Label error={errors["oxytocin"]}>Was oxytocin used?</Label>
                 <GridTwo>
                   <GridTwoSub>
                     <input
                       type="radio"
                       name="oxytocin"
-                      id="oxytocin1"
+                      
                       onChange={handleOnChange}
                       value={0.191545}
                     />
@@ -360,7 +358,7 @@ function Complete() {
                     <input
                       type="radio"
                       name="oxytocin"
-                      id="oxytocin2"
+                      
                       onChange={handleOnChange}
                       value={0}
                     />
@@ -370,7 +368,7 @@ function Complete() {
               </InnerSectionGrid>
               {/* --------Are any of the following known to be present in this pregnancy? Please select all that apply.--- */}
               <InnerSectionGrid fullWidth>
-                <Label>
+                <Label> 
                   Are any of the following known to be present in this
                   pregnancy? Please select all that apply.
                 </Label>
@@ -417,13 +415,13 @@ function Complete() {
 
               {/* -------------------Analgesia. Please select all that apply.---------------------- */}
               <InnerSectionGrid fullWidth>
-                <Label>Analgesia. Please select all that apply.</Label>
+                <Label error={errors["analgesia"]}>Analgesia. Please select all that apply.</Label>
                 <GridTwo twelve>
                   <GridTwoSub one>
                     <input
                       type="radio"
                       name="analgesia"
-                      id="analgesia1"
+                      
                       value={0}
                       onChange={handleOnChange}
                     />{" "}
@@ -436,7 +434,7 @@ function Complete() {
                     <input
                       type="radio"
                       name="analgesia"
-                      id="analgesia2"
+                      
                       onChange={handleOnChange}
                       value={1.096508}
                     />
@@ -463,13 +461,13 @@ function Complete() {
               {/* -----------------Estimated Fetal Weight------------------------ */}
               {/* =IF(D46="Under 3000g",0,0)+IF(D46="3000-3499g",0.0612233,0)+IF(D46="3500-3999g",-0.1181972,0)+IF(D46="4000g or more",-0.5706141,0) */}
               <InnerSectionGrid fullWidth>
-                <Label>Estimated Fetal Weight</Label>
+                <Label error={errors["fetalWeight"]}>Estimated Fetal Weight</Label>
                 <FlexDisplay>
                   <WidthBox>
                     <input
                       type="radio"
                       name="fetalWeight"
-                      id="fetalWeight1"
+                      
                       onChange={handleOnChange}
                       value={0}
                     />
@@ -479,7 +477,7 @@ function Complete() {
                     <input
                       type="radio"
                       name="fetalWeight"
-                      id="fetalWeight1"
+                      
                       onChange={handleOnChange}
                       value={0.0612233}
                     />
@@ -489,7 +487,7 @@ function Complete() {
                     <input
                       type="radio"
                       name="fetalWeight"
-                      id="fetalWeight1"
+                      
                       onChange={handleOnChange}
                       value={-0.1181972}
                     />
@@ -540,11 +538,11 @@ function Complete() {
           </span>
         </div>
       ) : null}
-      {Object.keys(errors).length > 0 ? (
+      {/* {Object.keys(errors).length > 0 ? (
         <div className="display-box box-red ">
           Please Complete all the fields
         </div>
-      ) : null}
+      ) : null} */}
     </>
   );
 }
