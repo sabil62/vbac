@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { buttonClassName, Label } from "../tailwind/tailwindVariables";
+import { buttonClassName, Label, selectClassName, selectClassNameError } from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
 import { GridTwo } from "../tailwind/tailwindVariables";
@@ -63,12 +63,13 @@ function Complete() {
   };
 
   const handleParity = (parityVariable) => {
+    let parity = "parity";
     if (parityVariable === 1) {
-      setFormData({ ...formData, ["parity"]: 0 });
+      setFormData({ ...formData, [parity]: 0 });
     } else if (parityVariable === 2) {
-      setFormData({ ...formData, ["parity"]: -0.145864 });
+      setFormData({ ...formData, [parity]: -0.145864 });
     } else if (parityVariable > 2) {
-      setFormData({ ...formData, ["parity"]: 0.1307764 });
+      setFormData({ ...formData, [parity]: 0.1307764 });
     }
   };
 
@@ -76,7 +77,7 @@ function Complete() {
     e.preventDefault();
     for (let keys in formData) {
       console.log(typeof keys);
-      if (keys == "pregnancy") {
+      if (keys === "pregnancy") {
         for (let insideKeys in formData[keys]) {
           formData[keys][insideKeys] = 0;
         }
@@ -97,7 +98,9 @@ function Complete() {
         errorss[key] = "Cannot Be Empty";
       }
     }
+   
     setErrors(errorss);
+    console.log(errors);
 
     return formIsValid;
   };
@@ -108,24 +111,24 @@ function Complete() {
       console.log("successful");
       let total = 0;
       for (let key in formData) {
-        if (key == "pregnancy") {
+        if (key === "pregnancy") {
           for (let inKey in formData[key]) {
             total += parseFloat(formData[key][inKey]);
           }
-        } else if (key == "maternalBmi") {
+        } else if (key === "maternalBmi") {
           total += parseFloat(formData[key]) * -0.043509;
-        } else if (key == "previousCaesarean") {
+        } else if (key === "previousCaesarean") {
           let value = parseFloat(formData[key]);
           if (value === 2) {
             total += 2;
           } else if (value > 2) {
             total += -2.445079;
           }
-        } else if (key == "vaginalBirths") {
+        } else if (key === "vaginalBirths") {
           if (parseFloat(formData[key]) > 0) {
             total += 1.167351;
           }
-        } else if (key == "gestationalAge") {
+        } else if (key === "gestationalAge") {
           total += parseInt(formData[key]) * 0.233957;
         } else {
           total += parseFloat(formData[key]);
@@ -153,10 +156,9 @@ function Complete() {
                 <Label>Maternal Age</Label>
 
                 <select
-                  name="maternalAge"
-                  id="maternal-age"
+                  name="maternalAge"                 
                   onChange={handleOnChange}
-                  className="mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm"
+                  className={selectClassName}
                 >
                   <option value="0">Under 30 years</option>
                   <option value="-0.0339731">30-34 years</option>
@@ -173,7 +175,7 @@ function Complete() {
                   name="birthPlace"
                   id="birth-place"
                   onChange={handleOnChange}
-                  className="mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm"
+                  className={errors["birthPlace"]?selectClassNameError:selectClassName}
                 >
                   <option value="0">Australia</option>
                   <option value="-0.1833732">Europe</option>

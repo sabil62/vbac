@@ -74,18 +74,18 @@ const Antenatal = () => {
     if (handleValidation()) {
       let total = 0;
       for (let key in formData) {
-        if (key == "maternalBmi") {
+        if (key === "maternalBmi") {
           total += parseFloat(formData[key]) * -0.0450591;
-        } else if (key == "caesarean") {
+        } else if (key === "caesarean") {
           let prevCae = parseInt(formData[key]);
-          if (prevCae == 1) {
+          if (prevCae === 1) {
             total += 0;
-          } else if (prevCae == 2) {
+          } else if (prevCae === 2) {
             total += -1.755666;
           } else if (prevCae > 2) {
             total += -2.910313;
           }
-        } else if (key == "previousVaginal") {
+        } else if (key === "previousVaginal") {
           let preVa = parseInt(formData[key]);
           if (preVa === 0) {
             total += 0;
