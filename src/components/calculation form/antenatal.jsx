@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { buttonClassName, Label } from "../tailwind/tailwindVariables";
+import { buttonClassName, inputClassNameError, Label, selectClassNameError } from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
 import { GridTwo } from "../tailwind/tailwindVariables";
@@ -20,7 +20,11 @@ const Antenatal = () => {
     caesareanA: "",
     pregnancy: "",
   });
+
+  const [displayError,setDisplayError]=useState(false);
+
   const [errors, setErrors] = useState({});
+
   const [answer, setAnswer] = useState("");
 
   useEffect(() => {}, [errors]);
@@ -43,7 +47,7 @@ const Antenatal = () => {
   };
 
   const handleParity = (parityValue) => {
-    // =IF(C17+C19=1,0,0)+IF(C17+C19=2,-0.1637306,0)+IF(C17+C19>2,0.0923186,0)
+
     let parit = 0;
     if (parityValue === 1) {
       parit = 0;
@@ -66,6 +70,14 @@ const Antenatal = () => {
       }
     }
     setErrors(errs);
+
+    if (errors) {
+      setDisplayError(true);
+      setTimeout(() => {
+        setDisplayError(false)
+      }, 4000);
+    }
+
     return isFormValid;
   };
 
@@ -115,9 +127,8 @@ const Antenatal = () => {
               <InnerSectionGrid>
                 <Label>Maternal Age</Label>
                 <select
-                  name="maternalAge"
-                  id="maternal-age-a"
-                  className={selectClassName}
+                  name="maternalAge"                 
+                  className={errors["maternalAge"]?selectClassNameError:selectClassName}
                   onChange={handleOnChange}
                 >
                   <option value="0">Under 30 years</option>
@@ -131,8 +142,7 @@ const Antenatal = () => {
                 <Label>Maternal place of birth</Label>
                 <select
                   name="maternalBirth"
-                  id="maternal-birth-a"
-                  className={selectClassName}
+                  className={errors["maternalBirth"]? selectClassNameError:selectClassName}
                   onChange={handleOnChange}
                 >
                   <option value="0">Australia</option>
@@ -148,10 +158,9 @@ const Antenatal = () => {
                 <input
                   type="number"
                   name="maternalBmi"
-                  // value={-0.0450591}
-                  value={formData.maternalBmi}
+                    value={formData.maternalBmi}
                   title="Body Mass Index"
-                  className={inputClassName}
+                  className={errors["maternalBmi"]?inputClassNameError:inputClassName}
                   onChange={handleOnChange}
                 />
               </InnerSectionGrid>
@@ -163,7 +172,7 @@ const Antenatal = () => {
                   name="caesarean"
                   min="1"
                   value={formData.caesarean}
-                  className={inputClassName}
+                  className={errors["caesarean"]?inputClassNameError:inputClassName}
                   onChange={handleOnChange}
                   title="This calculator is to be used by previous Caesareanb"
                 />
@@ -177,12 +186,12 @@ const Antenatal = () => {
                   title="Vaginal Births Greater than 20 weeks"
                   value={formData.previousVaginal}
                   onChange={handleOnChange}
-                  className={inputClassName}
+                  className={errors["previousVaginal"]?inputClassNameError:inputClassName}
                 />
               </InnerSectionGrid>
               {/* ---------------------------Was the last birth a Caesarean section?----------- */}
               <InnerSectionGrid>
-                <Label>Was the last birth a Caesarean section?</Label>
+                <Label error={errors["caesareanA"]}>Was the last birth a Caesarean section?</Label>
                 <GridTwo>
                   <GridTwoSub>
                     <input
@@ -214,8 +223,7 @@ const Antenatal = () => {
                 </Label>
                 <select
                   name="pregnancy"
-                  id="pregnancy"
-                  className={selectClassName}
+                  className={errors["pregnancy"]?selectClassNameError:selectClassName}
                   onChange={handleOnChange}
                   title="Pre-Existing or Gestational Diabetes"
                 >
@@ -242,7 +250,7 @@ const Antenatal = () => {
               className={buttonClassName}
               onClick={handleOnSubmit}
             >
-              Save
+              Calculate
             </button>
           </div>
         </ShadowClass>
@@ -252,11 +260,12 @@ const Antenatal = () => {
           {" "}
           Likelihood of achieving VBAC is
           <span style={{ fontSize: "1.7rem" }}>
-            {" " + parseFloat(answer).toFixed(4) * 100 + "%"}
+            {" " + (parseFloat(answer) * 100).toFixed(2) + "%"}
           </span>
         </div>
       ) : null}
       {Object.keys(errors).length > 0 ? (
+        displayError &&
         <div className="display-box box-red">
           Please Complete all the Fields
         </div>

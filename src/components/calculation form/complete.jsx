@@ -12,6 +12,7 @@ import { ShadowClass } from "../tailwind/tailwindVariables";
 
 function Complete() {
   const [answer, setAnswer] = useState("");
+
   const [formData, setFormData] = useState({
     maternalAge: "",
     birthPlace: "",
@@ -35,6 +36,8 @@ function Complete() {
     parity: 0,
   });
 
+  const [displayError,setDisplayError] =useState(false);
+
   const [errors, setErrors] = useState({});
   useEffect(() => {
     console.log(errors);
@@ -46,7 +49,6 @@ function Complete() {
       newErrObj[e.target.name] = "";
       setErrors(newErrObj);
     }
-    console.log(errors)
 
     if (!type) {
       let name = e.target.name;
@@ -98,13 +100,15 @@ function Complete() {
     for (let key in formData) {
       if (!formData[key]) {
         formIsValid = false;
-        console.log(key);
         errorss[key] = "Cannot Be Empty";
       }
     }
    
     setErrors(errorss);
-    console.log(errors);
+    if(errors){
+      setDisplayError(true);
+      setTimeout(()=>{setDisplayError(false)},4000)
+    }
 
     return formIsValid;
   };
@@ -117,6 +121,7 @@ function Complete() {
       for (let key in formData) {
         if (key === "pregnancy") {
           for (let inKey in formData[key]) {
+
             total += parseFloat(formData[key][inKey]);
           }
         } else if (key === "maternalBmi") {
@@ -145,6 +150,8 @@ function Complete() {
       console.log("unsuccessful");
     }
   };
+
+  
 
   return (
     <>
@@ -525,7 +532,7 @@ function Complete() {
               onClick={handleSubmit}
               className={buttonClassName}
             >
-              Save
+              Calculate
             </button>
           </div>
         </ShadowClass>
@@ -534,15 +541,20 @@ function Complete() {
         <div className="display-box">
           Likelihood of achieving VBAC is
           <span style={{ fontSize: "1.7rem" }}>
-            {" " + parseFloat(answer).toFixed(4) * 100 + "%"}
+            {" " + (parseFloat(answer) * 100).toFixed(2) + "%"}
           </span>
         </div>
       ) : null}
-      {/* {Object.keys(errors).length > 0 ? (
+     
+      {
+        
+
+      Object.keys(errors).length > 0 ? (
+        displayError && 
         <div className="display-box box-red ">
           Please Complete all the fields
-        </div>
-      ) : null} */}
+        </div> 
+      ) : null}
     </>
   );
 }
