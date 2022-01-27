@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { buttonClassName, inputClassNameError, Label, selectClassName, selectClassNameError } from "../tailwind/tailwindVariables";
+import { BlockA, buttonClassName, inputClassNameError, Label, selectClassName, selectClassNameError } from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
 import { GridTwo } from "../tailwind/tailwindVariables";
@@ -105,6 +105,7 @@ function Complete() {
     }
    
     setErrors(errorss);
+    
     if(errors){
       setDisplayError(true);
       setTimeout(()=>{setDisplayError(false)},4000)
@@ -232,6 +233,7 @@ function Complete() {
                 />
               </InnerSectionGrid>
               {/* -----------------Gestational Age------------------------ */}
+              <div className="bg-red-100"></div>
               <InnerSectionGrid>
                 <Label>Gestational Age</Label>
                 <input
@@ -380,6 +382,7 @@ function Complete() {
                   pregnancy? Please select all that apply.
                 </Label>
                 <Block>
+                  <BlockA>
                   <input
                     type="checkbox"
                     name="gestationalDiabeties"
@@ -390,6 +393,7 @@ function Complete() {
                   <Label inline>
                     Gestational diabetes or pre-existing diabetes
                   </Label>
+                  </BlockA>
                 </Block>
                 <Block>
                   <input
