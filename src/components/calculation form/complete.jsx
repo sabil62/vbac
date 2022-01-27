@@ -73,7 +73,7 @@ function Complete() {
     if (parityVariable === 1) {
       setFormData({ ...formData, [parity]: 0 });
     } else if (parityVariable === 2) {
-      setFormData({ ...formData, [parity]: -0.145864 });
+      setFormData({ ...formData, [parity]: -0.1458645 });
     } else if (parityVariable > 2) {
       setFormData({ ...formData, [parity]: 0.1307764 });
     }
@@ -143,8 +143,8 @@ function Complete() {
         } else {
           total += parseFloat(formData[key]);
         }
-        console.log(key);
-        console.log(total);
+        // console.log(key);
+        // console.log(total);
       }
       let variable = Math.exp(-8.091264 + total);
       let answer = variable / (1 + variable);
@@ -162,9 +162,6 @@ function Complete() {
         <ShadowClass>
           <div className="px-4 py-5 bg-white sm:p-6">
             <InnerGrid>
-              {/* =IF(D4="Under 30 years",0,0)+IF(D4="30-34
-                    years",-0.0339731,0)+IF(D4="35-39
-                    years",-0.1801173,0)+IF(D4="40 years or more",-0.5832608,0) */}
               {/* -----------------maternal age------------------------ */}
               <InnerSectionGrid>
                 <Label>Maternal Age</Label>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { buttonClassName, inputClassNameError, Label, selectClassNameError } from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
-import { GridTwo } from "../tailwind/tailwindVariables";
+import { GridTwo, Block } from "../tailwind/tailwindVariables";
 import { GridTwoSub } from "../tailwind/tailwindVariables";
 import { ShadowClass } from "../tailwind/tailwindVariables";
 import { inputClassName } from "../tailwind/tailwindVariables";
@@ -18,7 +18,12 @@ const Antenatal = () => {
     caesarean: 1,
     previousVaginal: "",
     caesareanA: "",
-    pregnancy: "",
+    pregnancy: {
+      getstationalDiabeties:0,
+      hypertensiveDisease:0,
+      fetalAnomally:0,
+      none:0
+    },
   });
 
   const [displayError,setDisplayError]=useState(false);
@@ -29,7 +34,7 @@ const Antenatal = () => {
 
   useEffect(() => {}, [errors]);
 
-  const handleOnChange = (e) => {
+  const handleOnChange = (e,type) => {
     if (Object.keys(errors).length > 0) {
       setErrors({...errors,[e.target.name]:""})
     }
@@ -37,7 +42,15 @@ const Antenatal = () => {
     let name = e.target.name;
     let value = e.target.value;
 
-    setFormData({ ...formData, [name]: value });
+    if (!type) {
+      setFormData({ ...formData, [name]: value });
+    } else{
+      let newForm = {...formData};
+      formData[type][e.target.name] = e.target.value;
+      setFormData(newForm);
+    }
+
+    
     // console.log(formData);
 
     let parityValue =
@@ -105,14 +118,20 @@ const Antenatal = () => {
           } else if (preVa > 1) {
             total += 1.126513;
           }
+        } else if(key === "pregnancy"){
+          for(let inKey in formData[key]){
+            total += parseFLoat(formData[key][inKey]);
+          }
         } else {
           total += parseFloat(formData[key]);
           // console.log(total);
         }
       }
+      total += parity;
       let expAns = Math.exp(2.801237 + total);
       let ans = expAns / (1 + expAns);
       setAnswer(ans);
+      console.log(total);
     } else {
       console.log("Unsuccessful");
     }
@@ -222,17 +241,28 @@ const Antenatal = () => {
                   Are any of the following known to be present in this
                   pregnancy? Please select all that apply.
                 </Label>
-                <select
-                  name="pregnancy"
-                  className={errors["pregnancy"]?selectClassNameError:selectClassName}
-                  onChange={handleOnChange}
-                  title="Pre-Existing or Gestational Diabetes"
-                >
-                  <option value={0.0514722}>Diabetes</option>
+             
+                  <Block>
+                    <input type="checkbox" name="gestationalDiabeties" value={0.0514722} onChange={(event)=>handleOnChange(event,"pregnancy")}/>
+                    <Label inline>Diabetes</Label>
+                  </Block>
+                  <Block>
+                  <input type="checkbox" name="hypertensiveDisease" value={-0.164456} onChange={(event)=>handleOnChange(event,"pregnancy")} />
+                  <Label inline>Hypertensive DIsease</Label>
+                  </Block>
+                  <Block>
+                  <input type="checkbox" name="fetalAnomaly" value={-0.2731908} onChange={(event)=>handleOnChange(event,"pregnancy")} />
+                  <Label inline>KNown fetal anomaly</Label>
+                  </Block>
+                  <Block>
+                  <input type="checkbox" name="none" value={0} onChange={(event) => handleOnChange(event, "pregnancy")}/>
+                  <Label inline>None</Label>
+                  </Block>
+                  {/* <option value={0.0514722}>Diabetes</option>
                   <option value={-0.164456}>Hypertensive disease</option>
                   <option value={-0.2731908}>Known fetal anomaly</option>
-                  <option value={0}>None</option>
-                </select>
+                  <option value={0}>None</option> */}
+               
               </InnerSectionGrid>
               {/* ----------------------Parity------------------- */}
               {/* =IF(C17+C19=1,0,0)+IF(C17+C19=2,-0.1637306,0)+IF(C17+C19>2,0.0923186,0) */}
