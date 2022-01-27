@@ -31,17 +31,18 @@ const Antenatal = () => {
 
   const handleOnChange = (e) => {
     if (Object.keys(errors).length > 0) {
-      setErrors({});
+      setErrors({...errors,[e.target.name]:""})
     }
+  
     let name = e.target.name;
     let value = e.target.value;
 
     setFormData({ ...formData, [name]: value });
-    console.log(formData);
+    // console.log(formData);
 
     let parityValue =
       parseInt(formData["caesarean"]) + parseInt(formData["previousVaginal"]);
-    console.log(parityValue);
+    // console.log(parityValue);
 
     handleParity(parityValue);
   };
@@ -106,7 +107,7 @@ const Antenatal = () => {
           }
         } else {
           total += parseFloat(formData[key]);
-          console.log(total);
+          // console.log(total);
         }
       }
       let expAns = Math.exp(2.801237 + total);

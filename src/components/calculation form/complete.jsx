@@ -40,7 +40,7 @@ function Complete() {
 
   const [errors, setErrors] = useState({});
   useEffect(() => {
-    console.log(errors);
+    // console.log(errors);
   }, [errors]);
 
   const handleOnChange = (e, type) => {
@@ -143,6 +143,8 @@ function Complete() {
         } else {
           total += parseFloat(formData[key]);
         }
+        console.log(key);
+        console.log(total);
       }
       let variable = Math.exp(-8.091264 + total);
       let answer = variable / (1 + variable);
@@ -233,7 +235,7 @@ function Complete() {
                 />
               </InnerSectionGrid>
               {/* -----------------Gestational Age------------------------ */}
-              <div className="bg-red-100"></div>
+            
               <InnerSectionGrid>
                 <Label>Gestational Age</Label>
                 <input
