@@ -187,6 +187,7 @@ function Complete() {
       <form action="#" method="POST">
         <ShadowClass>
           <div className="px-4 py-5 bg-white sm:p-6">
+            {/* <div className="bg-red-100 text-yellow-50"></div> */}
             <InnerGrid>
               {/* -----------------maternal age------------------------ */}
               <InnerSectionGrid>

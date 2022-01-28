@@ -26,7 +26,8 @@ code {
   max-width: 22rem;
   width: 100%;
   border-radius: 1.2rem;
-  background-color: bisque;
+  /* background-color: bisque; */
+  background-color: rgb(255, 237, 213);
   position: relative;
   cursor: pointer;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.125);
@@ -36,22 +37,23 @@ code {
 
 .flex-center .toggle-container div {
   position: absolute;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  top: 0.4rem;
+  top: 0.5rem;
 }
 .flex-center .toggle-container div:nth-child(1) {
-  left: 1.8rem;
+  left: 12%;
 }
 .flex-center .toggle-container div:nth-child(2) {
-  right: 1.8rem;
+  right: 12%;
 }
 
 .flex-center .toggle-container .toggle-button {
   height: 2.6rem;
   width: 50%;
   z-index: 10;
-  background-color: rgba(255, 0, 0, 0.226);
+  /* background-color: rgba(255, 0, 0, 0.226); */
+  background-color: #4f46aff6;
   border-radius: 1.2rem;
   position: absolute;
   top: 0;
