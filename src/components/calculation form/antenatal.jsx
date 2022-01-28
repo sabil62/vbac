@@ -47,17 +47,17 @@ const Antenatal = () => {
     } else{ //multiple option checked
       let newForm = {...formData};
       if (name === "none" && e.target.checked) {
-        console.log("none checked")
+        // console.log("none checked")
         for(let inKey in newForm["pregnancy"]){
           newForm["pregnancy"][inKey] = 0;
-          newForm["pregnancy"]["none"]=0.0001;
+          newForm["pregnancy"]["none"]=0.00001;//setting none only true so that it can be checked
         }
       }else{
-        console.log(e.target.checked);
-        if (e.target.checked) {
+        // console.log(e.target.checked);
+        if (e.target.checked) { //if individual option is checked then put its data
           newForm[type][e.target.name] = e.target.value;
           
-        } else{
+        } else{ //else uncheck the checkbox
         newForm[type][e.target.name] = 0
         
         }
@@ -65,7 +65,7 @@ const Antenatal = () => {
       }      
       
       setFormData(newForm);
-      console.log(formData)
+      // console.log(formData)
     }
     
     // console.log(formData);

@@ -14,8 +14,8 @@ function Complete() {
   const [answer, setAnswer] = useState("");
 
   const [formData, setFormData] = useState({
-    maternalAge: "",
-    birthPlace: "",
+    maternalAge: "0",
+    birthPlace: "0",
     maternalBmi: "", //-0.043509
     previousCaesarean: "", //IF(D16=1,0,0)+IF(D16=2,-1.496422,0)+IF(D16>2,-2.445079,0)
     vaginalBirths: "", //=IF(D18>0,1.167351,0)+IF(D18=0,0,0)
@@ -56,8 +56,27 @@ function Complete() {
       setFormData({ ...formData, [name]: value });
     } else {
       let newForm = { ...formData };
-      newForm[type][e.target.name] = e.target.value;
+      if (e.target.name === "none" && e.target.checked) {
+        //if none is checked then uncheck all other fields
+        for(let inKey in newForm["pregnancy"]){
+          newForm["pregnancy"][inKey] = 0;
+          newForm["pregnancy"]["none"] = 0.00001;
+        }
+      } else {
+        //if other checkboxes are pressed then none should be unchecked
+        newForm["pregnancy"]["none"]=0;
+        // newForm[type][e.target.name] = e.target.value;
+        if (e.target.checked) {
+          newForm[type][e.target.name] = e.target.value;
+        } else {
+          //if unchecked then remove check icon
+          newForm[type][e.target.name] = 0;
+        }
+        
+      }
+      
       setFormData(newForm);
+      console.log(formData)
     }
 
     if (formData["parity"] === 0) {
@@ -122,8 +141,10 @@ function Complete() {
       for (let key in formData) {
         if (key === "pregnancy") {
           for (let inKey in formData[key]) {
-
-            total += parseFloat(formData[key][inKey]);
+            if (inKey !== "none") {
+              total += parseFloat(formData[key][inKey]); 
+            }
+            
           }
         } else if (key === "maternalBmi") {
           total += parseFloat(formData[key]) * -0.043509;
@@ -388,6 +409,7 @@ function Complete() {
                     title="Pre-Existing or Gestational Diabetes"
                     onChange={(event) => handleOnChange(event, "pregnancy")}
                     value={0.1430483}
+                    checked={formData["pregnancy"]["gestationalDiabeties"]}
                   />
                   <Label inline>
                     Gestational diabetes or pre-existing diabetes
@@ -400,6 +422,7 @@ function Complete() {
                     name="hypertensiveDisease"
                     value={-0.1673155}
                     onChange={(event) => handleOnChange(event, "pregnancy")}
+                    checked={formData["pregnancy"]["hypertensiveDisease"]}
                   />
                   <Label inline>Hypertensive Disease</Label>
                 </Block>
@@ -409,6 +432,7 @@ function Complete() {
                     name="fetalAnomaly"
                     value={-0.2456491}
                     onChange={(event) => handleOnChange(event, "pregnancy")}
+                    checked={formData["pregnancy"]["fetalAnomaly"]}
                   />
                   <Label inline>Known fetal anomaly</Label>
                 </Block>
@@ -418,6 +442,7 @@ function Complete() {
                     name="none"
                     value={0}
                     onChange={(event) => handleOnChange(event, "pregnancy")}
+                    checked={formData["pregnancy"]["none"]}
                   />
                   <Label inline>None</Label>
                 </Block>
