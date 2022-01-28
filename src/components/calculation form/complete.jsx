@@ -76,7 +76,7 @@ function Complete() {
       }
       
       setFormData(newForm);
-      console.log(formData)
+      // console.log(formData)
     }
 
     if (formData["parity"] === 0) {
@@ -136,8 +136,11 @@ function Complete() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (handleValidation()) {
-      console.log("successful");
+
+      // console.log("successful");
+
       let total = 0;
+
       for (let key in formData) {
         // console.log(total);
         if (key === "pregnancy") {
@@ -171,7 +174,7 @@ function Complete() {
         // console.log(key);
         // console.log(formData[key]);
       }
-      console.log(total);
+      // console.log(total);
       let variable = Math.exp(-8.091264 + total);
       let answer = variable / (1 + variable);
       setAnswer(answer);

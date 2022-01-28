@@ -109,7 +109,7 @@ const Antenatal = () => {
       }, 4000);
     }
 
-    console.log(errors);
+    // console.log(errors);
 
     return isFormValid;
    
@@ -154,7 +154,7 @@ const Antenatal = () => {
       let expAns = Math.exp(2.801237 + total);
       let ans = expAns / (1 + expAns);
       setAnswer(ans);
-      console.log(total);
+      // console.log(total);
     } else {
       console.log("Unsuccessful");
     }
