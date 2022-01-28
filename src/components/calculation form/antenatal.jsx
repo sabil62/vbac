@@ -12,14 +12,14 @@ const Antenatal = () => {
   //After form is submit change string to number parseInt()
   const [parity, setParity] = useState(0);
   const [formData, setFormData] = useState({
-    maternalAge: 0,
-    maternalBirth: 0,
+    maternalAge: "0",
+    maternalBirth: "0",
     maternalBmi: "",
     caesarean: 1,
     previousVaginal: "",
     caesareanA: "",
     pregnancy: {
-      getstationalDiabeties:0,
+      gestationalDiabeties:0,
       hypertensiveDisease:0,
       fetalAnomally:0,
       none:0
@@ -44,12 +44,29 @@ const Antenatal = () => {
 
     if (!type) {
       setFormData({ ...formData, [name]: value });
-    } else{
+    } else{ //multiple option checked
       let newForm = {...formData};
-      formData[type][e.target.name] = e.target.value;
+      if (name === "none" && e.target.checked) {
+        console.log("none checked")
+        for(let inKey in newForm["pregnancy"]){
+          newForm["pregnancy"][inKey] = 0;
+          newForm["pregnancy"]["none"]=0.0001;
+        }
+      }else{
+        console.log(e.target.checked);
+        if (e.target.checked) {
+          newForm[type][e.target.name] = e.target.value;
+          
+        } else{
+        newForm[type][e.target.name] = 0
+        
+        }
+        newForm[type]["none"]=0;
+      }      
+      
       setFormData(newForm);
+      console.log(formData)
     }
-
     
     // console.log(formData);
 
@@ -92,7 +109,10 @@ const Antenatal = () => {
       }, 4000);
     }
 
+    console.log(errors);
+
     return isFormValid;
+   
   };
 
   const handleOnSubmit = (e) => {
@@ -120,7 +140,10 @@ const Antenatal = () => {
           }
         } else if(key === "pregnancy"){
           for(let inKey in formData[key]){
-            total += parseFLoat(formData[key][inKey]);
+            if (inKey !== "none") {
+              total += parseFloat(formData[key][inKey]);
+            }
+            
           }
         } else {
           total += parseFloat(formData[key]);
@@ -243,25 +266,21 @@ const Antenatal = () => {
                 </Label>
              
                   <Block>
-                    <input type="checkbox" name="gestationalDiabeties" value={0.0514722} onChange={(event)=>handleOnChange(event,"pregnancy")}/>
+                    <input type="checkbox" name="gestationalDiabeties" value={0.0514722} onChange={(event)=>handleOnChange(event,"pregnancy")} checked={formData["pregnancy"]["gestationalDiabeties"]}/>
                     <Label inline>Diabetes</Label>
                   </Block>
                   <Block>
-                  <input type="checkbox" name="hypertensiveDisease" value={-0.164456} onChange={(event)=>handleOnChange(event,"pregnancy")} />
+                  <input type="checkbox" name="hypertensiveDisease" value={-0.164456} onChange={(event)=>handleOnChange(event,"pregnancy")} checked={formData["pregnancy"]["hypertensiveDisease"]}/>
                   <Label inline>Hypertensive DIsease</Label>
                   </Block>
                   <Block>
-                  <input type="checkbox" name="fetalAnomaly" value={-0.2731908} onChange={(event)=>handleOnChange(event,"pregnancy")} />
-                  <Label inline>KNown fetal anomaly</Label>
+                  <input type="checkbox" name="fetalAnomaly" value={-0.2731908} onChange={(event)=>handleOnChange(event,"pregnancy")} checked={formData["pregnancy"]["fetalAnomaly"]} />
+                  <Label inline>Known fetal anomaly</Label>
                   </Block>
                   <Block>
-                  <input type="checkbox" name="none" value={0} onChange={(event) => handleOnChange(event, "pregnancy")}/>
+                  <input type="checkbox" name="none" value={1} onChange={(event) => handleOnChange(event, "pregnancy")} checked={formData["pregnancy"]["none"]}/>
                   <Label inline>None</Label>
                   </Block>
-                  {/* <option value={0.0514722}>Diabetes</option>
-                  <option value={-0.164456}>Hypertensive disease</option>
-                  <option value={-0.2731908}>Known fetal anomaly</option>
-                  <option value={0}>None</option> */}
                
               </InnerSectionGrid>
               {/* ----------------------Parity------------------- */}
