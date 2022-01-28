@@ -222,7 +222,7 @@ const Antenatal = () => {
               </InnerSectionGrid>
               {/* -----------------------Number of previous vaginal births------------- */}
               <InnerSectionGrid>
-                <Label>Numer of previous Vaginal Births</Label>
+                <Label>Number of previous Vaginal Births</Label>
                 <input
                   type="number"
                   name="previousVaginal"

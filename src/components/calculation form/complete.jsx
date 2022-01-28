@@ -17,7 +17,7 @@ function Complete() {
     maternalAge: "0",
     birthPlace: "0",
     maternalBmi: "", //-0.043509
-    previousCaesarean: "", //IF(D16=1,0,0)+IF(D16=2,-1.496422,0)+IF(D16>2,-2.445079,0)
+    previousCaesarean: 1, //IF(D16=1,0,0)+IF(D16=2,-1.496422,0)+IF(D16>2,-2.445079,0)
     vaginalBirths: "", //=IF(D18>0,1.167351,0)+IF(D18=0,0,0)
     gestationalAge: "", //this =D28*0.233957
     caesareanSection: "",
@@ -139,6 +139,7 @@ function Complete() {
       console.log("successful");
       let total = 0;
       for (let key in formData) {
+        // console.log(total);
         if (key === "pregnancy") {
           for (let inKey in formData[key]) {
             if (inKey !== "none") {
@@ -148,25 +149,29 @@ function Complete() {
           }
         } else if (key === "maternalBmi") {
           total += parseFloat(formData[key]) * -0.043509;
+          // =IF(D16=1,0,0)+IF(D16=2,-1.496422,0)+IF(D16>2,-2.445079,0)
         } else if (key === "previousCaesarean") {
           let value = parseFloat(formData[key]);
           if (value === 2) {
-            total += 2;
+            total += -1.496422;
           } else if (value > 2) {
             total += -2.445079;
+          } else if (value === 1){
+            total += 0;
           }
         } else if (key === "vaginalBirths") {
           if (parseFloat(formData[key]) > 0) {
             total += 1.167351;
           }
         } else if (key === "gestationalAge") {
-          total += parseInt(formData[key]) * 0.233957;
+          total += parseInt(formData[key]) * 0.233957; 
         } else {
           total += parseFloat(formData[key]);
         }
         // console.log(key);
-        // console.log(total);
+        // console.log(formData[key]);
       }
+      console.log(total);
       let variable = Math.exp(-8.091264 + total);
       let answer = variable / (1 + variable);
       setAnswer(answer);
@@ -236,7 +241,7 @@ function Complete() {
                   value={formData.previousCaesarean}
                   onChange={handleOnChange}
                   title="Answer must be 1 or greater, this calculator is only to be used where previous Caesareans sections have occurred"
-                  autoComplete="previous-caesarean"
+                  min={1}
                   className={errors["previousCaesarean"]?inputClassNameError:inputClassName}
                 />
               </InnerSectionGrid>
