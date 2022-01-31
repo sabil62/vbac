@@ -31,6 +31,27 @@ const Antenatal = () => {
     },
   });
 
+  const handleRefresh = (e) => {
+    e.preventDefault();
+    // window.location.reload();
+    for (let key in formData) {
+      if (key === "maternalAge" || key === "maternalBirth") {
+        formData[key] = "0";
+      } else if (key === "caesarean") {
+        formData[key] = 1;
+      } else if (key === "pregnancy") {
+        for (let inKey in formData[key]) {
+          formData[key][inKey] = 0;
+        }
+      } else {
+        formData[key] = "";
+      }
+    }
+    setAnswer("");
+    setErrors("");
+    setParity(0);
+  };
+
   const [displayError, setDisplayError] = useState(false);
 
   const [errors, setErrors] = useState({});
@@ -163,11 +184,6 @@ const Antenatal = () => {
     }
   };
 
-  const handleRefresh = (e) => {
-    e.preventDefault();
-    window.location.reload();
-  };
-
   return (
     <React.Fragment>
       <form action="#" method="POST">
@@ -186,6 +202,7 @@ const Antenatal = () => {
                       : selectClassName
                   }
                   onChange={handleOnChange}
+                  value={formData["maternalAge"]}
                 >
                   <option value="0">Under 30 years</option>
                   <option value="-0.0884226">30-34 years</option>
@@ -204,6 +221,8 @@ const Antenatal = () => {
                       : selectClassName
                   }
                   onChange={handleOnChange}
+                  //the value is only needed for refresh
+                  value={formData["maternalBirth"]}
                 >
                   <option value="0">Australia</option>
                   <option value="-0.1703068">Europe</option>
@@ -267,9 +286,9 @@ const Antenatal = () => {
                     <input
                       type="radio"
                       name="caesareanA"
-                      id="caesarean-a1"
                       value={-1.35218}
                       onChange={handleOnChange}
+                      checked={formData["caesareanA"] === "-1.35218"}
                     />
                     <Label inline>Yes</Label>
                   </GridTwoSub>
@@ -277,9 +296,9 @@ const Antenatal = () => {
                     <input
                       type="radio"
                       name="caesareanA"
-                      id="caesarean-b1"
                       value={0}
                       onChange={handleOnChange}
+                      checked={formData["caesareanA"] === "0"}
                     />
                     <Label inline>No</Label>
                   </GridTwoSub>
@@ -315,10 +334,10 @@ const Antenatal = () => {
                 <Block>
                   <input
                     type="checkbox"
-                    name="fetalAnomaly"
+                    name="fetalAnomally"
                     value={-0.2731908}
                     onChange={(event) => handleOnChange(event, "pregnancy")}
-                    checked={formData["pregnancy"]["fetalAnomaly"]}
+                    checked={formData["pregnancy"]["fetalAnomally"]}
                   />
                   <Label inline>Known fetal anomaly</Label>
                 </Block>
@@ -342,11 +361,7 @@ const Antenatal = () => {
             </InnerGrid>
           </div>
           <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button
-              type="submit"
-              className={buttonClassName}
-              onClick={handleRefresh}
-            >
+            <button className={buttonClassName} onClick={handleRefresh}>
               Refresh
             </button>
             <button
