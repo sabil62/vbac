@@ -49,6 +49,7 @@ const Antenatal = () => {
     }
     setAnswer("");
     setErrors("");
+    setDisplayError(false);
     setParity(0);
   };
 

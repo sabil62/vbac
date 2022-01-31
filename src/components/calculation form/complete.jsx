@@ -54,6 +54,7 @@ function Complete() {
     e.preventDefault();
     // window.location.reload();
     setErrors("");
+    setDisplayError(false);
     setAnswer("");
     for (let key in formData) {
       if (key === "maternalAge" || key === "birthPlace") {
@@ -105,7 +106,7 @@ function Complete() {
 
       setFormData(newForm);
     }
-    console.log(formData);
+    // console.log(formData);
 
     if (formData["parity"] === 0) {
       let parityVariable =
@@ -404,7 +405,7 @@ function Complete() {
                       name="cervicalRipening"
                       onChange={handleOnChange}
                       value={-0.0949787}
-                      checked={formData["cervicalRipening"] === "-0.0949787}"}
+                      checked={formData["cervicalRipening"] === "-0.0949787"}
                     />
                     <Label inline>Yes</Label>
                   </GridTwoSub>
