@@ -50,6 +50,28 @@ function Complete() {
     // console.log(errors);
   }, [errors]);
 
+  const handleRefresh = (e) => {
+    e.preventDefault();
+    // window.location.reload();
+    setErrors("");
+    setAnswer("");
+    for (let key in formData) {
+      if (key === "maternalAge" || key === "birthPlace") {
+        formData[key] = "0";
+      } else if (key == "previousCaesarean") {
+        formData[key] = 1;
+      } else if (key === "parity") {
+        formData[key] = 0;
+      } else if (key === "pregnancy") {
+        for (let inKey in formData[key]) {
+          formData[key][inKey] = 0;
+        }
+      } else {
+        formData[key] = "";
+      }
+    }
+  };
+
   const handleOnChange = (e, type) => {
     if (Object.keys(errors).length > 0) {
       let newErrObj = { ...errors };
@@ -82,8 +104,8 @@ function Complete() {
       }
 
       setFormData(newForm);
-      // console.log(formData)
     }
+    console.log(formData);
 
     if (formData["parity"] === 0) {
       let parityVariable =
@@ -102,11 +124,6 @@ function Complete() {
     } else if (parityVariable > 2) {
       setFormData({ ...formData, [parity]: 0.1307764 });
     }
-  };
-
-  const handleRefresh = (e) => {
-    e.preventDefault();
-    window.location.reload();
   };
 
   const handleValidation = (e) => {
@@ -199,6 +216,7 @@ function Complete() {
                       ? selectClassNameError
                       : selectClassName
                   }
+                  value={formData["maternalAge"]}
                 >
                   <option value="0">Under 30 years</option>
                   <option value="-0.0339731">30-34 years</option>
@@ -219,6 +237,7 @@ function Complete() {
                       ? selectClassNameError
                       : selectClassName
                   }
+                  value={formData["birthPlace"]}
                 >
                   <option value="0">Australia</option>
                   <option value="-0.1833732">Europe</option>
@@ -302,6 +321,7 @@ function Complete() {
                       name="caesareanSection"
                       value={-1.390563}
                       onChange={handleOnChange}
+                      checked={formData["caesareanSection"] === "-1.390563"}
                     />
 
                     <Label inline>Yes</Label>
@@ -312,6 +332,7 @@ function Complete() {
                       name="caesareanSection"
                       value={0}
                       onChange={handleOnChange}
+                      checked={formData["caesareanSection"] === "0"}
                     />
                     <Label inline>No</Label>
                   </GridTwoSub>
@@ -327,6 +348,7 @@ function Complete() {
                       name="onsetLabour"
                       onChange={handleOnChange}
                       value={0}
+                      checked={formData["onsetLabour"] === "0"}
                     />
                     <Label inline>Spontaneous</Label>
                   </GridTwoSub>
@@ -336,6 +358,7 @@ function Complete() {
                       name="onsetLabour"
                       onChange={handleOnChange}
                       value={-0.0940149}
+                      checked={formData["onsetLabour"] === "-0.0940149"}
                     />
                     <Label inline>Induced</Label>
                   </GridTwoSub>
@@ -353,6 +376,7 @@ function Complete() {
                       name="fetalPresentation"
                       onChange={handleOnChange}
                       value={1.400273}
+                      checked={formData["fetalPresentation"] === "1.400273"}
                     />
                     <Label inline>Vertex</Label>
                   </GridTwoSub>
@@ -362,6 +386,7 @@ function Complete() {
                       name="fetalPresentation"
                       onChange={handleOnChange}
                       value={0}
+                      checked={formData["fetalPresentation"] === "0"}
                     />
                     <Label inline>Non-vertex</Label>
                   </GridTwoSub>
@@ -379,6 +404,7 @@ function Complete() {
                       name="cervicalRipening"
                       onChange={handleOnChange}
                       value={-0.0949787}
+                      checked={formData["cervicalRipening"] === "-0.0949787}"}
                     />
                     <Label inline>Yes</Label>
                   </GridTwoSub>
@@ -387,6 +413,7 @@ function Complete() {
                       type="radio"
                       name="cervicalRipening"
                       onChange={handleOnChange}
+                      checked={formData["cervicalRipening"] === "0"}
                       value={0}
                     />
                     <Label inline>No</Label>
@@ -403,6 +430,7 @@ function Complete() {
                       name="oxytocin"
                       onChange={handleOnChange}
                       value={0.191545}
+                      checked={formData["oxytocin"] === "0.191545"}
                     />
                     <Label inline>Yes</Label>
                   </GridTwoSub>
@@ -412,6 +440,7 @@ function Complete() {
                       name="oxytocin"
                       onChange={handleOnChange}
                       value={0}
+                      checked={formData["oxytocin"] === "0"}
                     />
                     <Label inline>No</Label>
                   </GridTwoSub>
@@ -482,6 +511,7 @@ function Complete() {
                       name="analgesia"
                       value={0}
                       onChange={handleOnChange}
+                      checked={formData["analgesia"] === "0"}
                     />{" "}
                   </GridTwoSub>
                   <GridTwoSub three>
@@ -494,6 +524,7 @@ function Complete() {
                       name="analgesia"
                       onChange={handleOnChange}
                       value={1.096508}
+                      checked={formData["analgesia"] === "1.096508"}
                     />
                   </GridTwoSub>
                   <GridTwoSub three>
@@ -507,6 +538,7 @@ function Complete() {
                       id="analgesia3"
                       onChange={handleOnChange}
                       value={-0.0872948}
+                      checked={formData["analgesia"] === "-0.0872948"}
                     />
                   </GridTwoSub>
                   <GridTwoSub three>
@@ -528,6 +560,7 @@ function Complete() {
                       name="fetalWeight"
                       onChange={handleOnChange}
                       value={0}
+                      checked={formData["fetalWeight"] === "0"}
                     />
                     <Label inline>Under 3000g</Label>
                   </WidthBox>
@@ -537,6 +570,7 @@ function Complete() {
                       name="fetalWeight"
                       onChange={handleOnChange}
                       value={0.0612233}
+                      checked={formData["fetalWeight"] === "0.0612233"}
                     />
                     <Label inline>3000 - 3499g</Label>
                   </WidthBox>
@@ -546,6 +580,7 @@ function Complete() {
                       name="fetalWeight"
                       onChange={handleOnChange}
                       value={-0.1181972}
+                      checked={formData["fetalWeight"] === "-0.1181972"}
                     />
                     <Label inline> 3500-3999g</Label>
                   </WidthBox>
@@ -556,6 +591,7 @@ function Complete() {
                       onChange={handleOnChange}
                       id="fetalWeight1"
                       value={-0.5706141}
+                      checked={formData["fetalWeight"] === "-0.5706141"}
                     />
                     <Label inline>4000g or more</Label>
                   </WidthBox>
