@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { buttonClassName, inputClassNameError, Label, selectClassNameError } from "../tailwind/tailwindVariables";
+import {
+  buttonClassName,
+  inputClassNameError,
+  Label,
+  selectClassNameError,
+} from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
 import { GridTwo, Block } from "../tailwind/tailwindVariables";
@@ -19,14 +24,14 @@ const Antenatal = () => {
     previousVaginal: "",
     caesareanA: "",
     pregnancy: {
-      gestationalDiabeties:0,
-      hypertensiveDisease:0,
-      fetalAnomally:0,
-      none:0
+      gestationalDiabeties: 0,
+      hypertensiveDisease: 0,
+      fetalAnomally: 0,
+      none: 0,
     },
   });
 
-  const [displayError,setDisplayError]=useState(false);
+  const [displayError, setDisplayError] = useState(false);
 
   const [errors, setErrors] = useState({});
 
@@ -34,40 +39,41 @@ const Antenatal = () => {
 
   useEffect(() => {}, [errors]);
 
-  const handleOnChange = (e,type) => {
+  const handleOnChange = (e, type) => {
     if (Object.keys(errors).length > 0) {
-      setErrors({...errors,[e.target.name]:""})
+      setErrors({ ...errors, [e.target.name]: "" });
     }
-  
+
     let name = e.target.name;
     let value = e.target.value;
 
     if (!type) {
       setFormData({ ...formData, [name]: value });
-    } else{ //multiple option checked
-      let newForm = {...formData};
+    } else {
+      //multiple option checked
+      let newForm = { ...formData };
       if (name === "none" && e.target.checked) {
         // console.log("none checked")
-        for(let inKey in newForm["pregnancy"]){
+        for (let inKey in newForm["pregnancy"]) {
           newForm["pregnancy"][inKey] = 0;
-          newForm["pregnancy"]["none"]=0.00001;//setting none only true so that it can be checked
+          newForm["pregnancy"]["none"] = 0.00001; //setting none only true so that it can be checked
         }
-      }else{
+      } else {
         // console.log(e.target.checked);
-        if (e.target.checked) { //if individual option is checked then put its data
+        if (e.target.checked) {
+          //if individual option is checked then put its data
           newForm[type][e.target.name] = e.target.value;
-          
-        } else{ //else uncheck the checkbox
-        newForm[type][e.target.name] = 0
-        
+        } else {
+          //else uncheck the checkbox
+          newForm[type][e.target.name] = 0;
         }
-        newForm[type]["none"]=0;
-      }      
-      
+        newForm[type]["none"] = 0;
+      }
+
       setFormData(newForm);
       // console.log(formData)
     }
-    
+
     // console.log(formData);
 
     let parityValue =
@@ -78,7 +84,6 @@ const Antenatal = () => {
   };
 
   const handleParity = (parityValue) => {
-
     let parit = 0;
     if (parityValue === 1) {
       parit = 0;
@@ -105,14 +110,13 @@ const Antenatal = () => {
     if (errors) {
       setDisplayError(true);
       setTimeout(() => {
-        setDisplayError(false)
+        setDisplayError(false);
       }, 4000);
     }
 
     // console.log(errors);
 
     return isFormValid;
-   
   };
 
   const handleOnSubmit = (e) => {
@@ -138,12 +142,11 @@ const Antenatal = () => {
           } else if (preVa > 1) {
             total += 1.126513;
           }
-        } else if(key === "pregnancy"){
-          for(let inKey in formData[key]){
+        } else if (key === "pregnancy") {
+          for (let inKey in formData[key]) {
             if (inKey !== "none") {
               total += parseFloat(formData[key][inKey]);
             }
-            
           }
         } else {
           total += parseFloat(formData[key]);
@@ -159,6 +162,12 @@ const Antenatal = () => {
       console.log("Unsuccessful");
     }
   };
+
+  const handleRefresh = (e) => {
+    e.preventDefault();
+    window.location.reload();
+  };
+
   return (
     <React.Fragment>
       <form action="#" method="POST">
@@ -170,8 +179,12 @@ const Antenatal = () => {
               <InnerSectionGrid>
                 <Label>Maternal Age</Label>
                 <select
-                  name="maternalAge"                 
-                  className={errors["maternalAge"]?selectClassNameError:selectClassName}
+                  name="maternalAge"
+                  className={
+                    errors["maternalAge"]
+                      ? selectClassNameError
+                      : selectClassName
+                  }
                   onChange={handleOnChange}
                 >
                   <option value="0">Under 30 years</option>
@@ -185,7 +198,11 @@ const Antenatal = () => {
                 <Label>Maternal place of birth</Label>
                 <select
                   name="maternalBirth"
-                  className={errors["maternalBirth"]? selectClassNameError:selectClassName}
+                  className={
+                    errors["maternalBirth"]
+                      ? selectClassNameError
+                      : selectClassName
+                  }
                   onChange={handleOnChange}
                 >
                   <option value="0">Australia</option>
@@ -201,9 +218,11 @@ const Antenatal = () => {
                 <input
                   type="number"
                   name="maternalBmi"
-                    value={formData.maternalBmi}
+                  value={formData.maternalBmi}
                   title="Body Mass Index"
-                  className={errors["maternalBmi"]?inputClassNameError:inputClassName}
+                  className={
+                    errors["maternalBmi"] ? inputClassNameError : inputClassName
+                  }
                   onChange={handleOnChange}
                 />
               </InnerSectionGrid>
@@ -215,7 +234,9 @@ const Antenatal = () => {
                   name="caesarean"
                   min="1"
                   value={formData.caesarean}
-                  className={errors["caesarean"]?inputClassNameError:inputClassName}
+                  className={
+                    errors["caesarean"] ? inputClassNameError : inputClassName
+                  }
                   onChange={handleOnChange}
                   title="This calculator is to be used by previous Caesareanb"
                 />
@@ -229,12 +250,18 @@ const Antenatal = () => {
                   title="Vaginal Births Greater than 20 weeks"
                   value={formData.previousVaginal}
                   onChange={handleOnChange}
-                  className={errors["previousVaginal"]?inputClassNameError:inputClassName}
+                  className={
+                    errors["previousVaginal"]
+                      ? inputClassNameError
+                      : inputClassName
+                  }
                 />
               </InnerSectionGrid>
               {/* ---------------------------Was the last birth a Caesarean section?----------- */}
               <InnerSectionGrid>
-                <Label error={errors["caesareanA"]}>Was the last birth a Caesarean section?</Label>
+                <Label error={errors["caesareanA"]}>
+                  Was the last birth a Caesarean section?
+                </Label>
                 <GridTwo>
                   <GridTwoSub>
                     <input
@@ -264,24 +291,47 @@ const Antenatal = () => {
                   Are any of the following known to be present in this
                   pregnancy? Please select all that apply.
                 </Label>
-             
-                  <Block>
-                    <input type="checkbox" name="gestationalDiabeties" value={0.0514722} onChange={(event)=>handleOnChange(event,"pregnancy")} checked={formData["pregnancy"]["gestationalDiabeties"]}/>
-                    <Label inline>Diabetes</Label>
-                  </Block>
-                  <Block>
-                  <input type="checkbox" name="hypertensiveDisease" value={-0.164456} onChange={(event)=>handleOnChange(event,"pregnancy")} checked={formData["pregnancy"]["hypertensiveDisease"]}/>
+
+                <Block>
+                  <input
+                    type="checkbox"
+                    name="gestationalDiabeties"
+                    value={0.0514722}
+                    onChange={(event) => handleOnChange(event, "pregnancy")}
+                    checked={formData["pregnancy"]["gestationalDiabeties"]}
+                  />
+                  <Label inline>Diabetes</Label>
+                </Block>
+                <Block>
+                  <input
+                    type="checkbox"
+                    name="hypertensiveDisease"
+                    value={-0.164456}
+                    onChange={(event) => handleOnChange(event, "pregnancy")}
+                    checked={formData["pregnancy"]["hypertensiveDisease"]}
+                  />
                   <Label inline>Hypertensive DIsease</Label>
-                  </Block>
-                  <Block>
-                  <input type="checkbox" name="fetalAnomaly" value={-0.2731908} onChange={(event)=>handleOnChange(event,"pregnancy")} checked={formData["pregnancy"]["fetalAnomaly"]} />
+                </Block>
+                <Block>
+                  <input
+                    type="checkbox"
+                    name="fetalAnomaly"
+                    value={-0.2731908}
+                    onChange={(event) => handleOnChange(event, "pregnancy")}
+                    checked={formData["pregnancy"]["fetalAnomaly"]}
+                  />
                   <Label inline>Known fetal anomaly</Label>
-                  </Block>
-                  <Block>
-                  <input type="checkbox" name="none" value={1} onChange={(event) => handleOnChange(event, "pregnancy")} checked={formData["pregnancy"]["none"]}/>
+                </Block>
+                <Block>
+                  <input
+                    type="checkbox"
+                    name="none"
+                    value={1}
+                    onChange={(event) => handleOnChange(event, "pregnancy")}
+                    checked={formData["pregnancy"]["none"]}
+                  />
                   <Label inline>None</Label>
-                  </Block>
-               
+                </Block>
               </InnerSectionGrid>
               {/* ----------------------Parity------------------- */}
               {/* =IF(C17+C19=1,0,0)+IF(C17+C19=2,-0.1637306,0)+IF(C17+C19>2,0.0923186,0) */}
@@ -292,7 +342,11 @@ const Antenatal = () => {
             </InnerGrid>
           </div>
           <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button type="submit" className={buttonClassName}>
+            <button
+              type="submit"
+              className={buttonClassName}
+              onClick={handleRefresh}
+            >
               Refresh
             </button>
             <button
@@ -314,12 +368,13 @@ const Antenatal = () => {
           </span>
         </div>
       ) : null}
-      {Object.keys(errors).length > 0 ? (
-        displayError &&
-        <div className="display-box box-red">
-          Please Complete all the Fields
-        </div>
-      ) : null}
+      {Object.keys(errors).length > 0
+        ? displayError && (
+            <div className="display-box box-red">
+              Please Complete all the Fields
+            </div>
+          )
+        : null}
     </React.Fragment>
   );
 };

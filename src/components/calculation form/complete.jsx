@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { BlockA, buttonClassName, inputClassNameError, Label, selectClassName, selectClassNameError } from "../tailwind/tailwindVariables";
+import {
+  BlockA,
+  buttonClassName,
+  inputClassNameError,
+  Label,
+  selectClassName,
+  selectClassNameError,
+} from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
 import { GridTwo } from "../tailwind/tailwindVariables";
@@ -36,7 +43,7 @@ function Complete() {
     parity: 0,
   });
 
-  const [displayError,setDisplayError] =useState(false);
+  const [displayError, setDisplayError] = useState(false);
 
   const [errors, setErrors] = useState({});
   useEffect(() => {
@@ -45,7 +52,7 @@ function Complete() {
 
   const handleOnChange = (e, type) => {
     if (Object.keys(errors).length > 0) {
-      let newErrObj = {...errors};
+      let newErrObj = { ...errors };
       newErrObj[e.target.name] = "";
       setErrors(newErrObj);
     }
@@ -58,13 +65,13 @@ function Complete() {
       let newForm = { ...formData };
       if (e.target.name === "none" && e.target.checked) {
         //if none is checked then uncheck all other fields
-        for(let inKey in newForm["pregnancy"]){
+        for (let inKey in newForm["pregnancy"]) {
           newForm["pregnancy"][inKey] = 0;
           newForm["pregnancy"]["none"] = 0.00001;
         }
       } else {
         //if other checkboxes are pressed then none should be unchecked
-        newForm["pregnancy"]["none"]=0;
+        newForm["pregnancy"]["none"] = 0;
         // newForm[type][e.target.name] = e.target.value;
         if (e.target.checked) {
           newForm[type][e.target.name] = e.target.value;
@@ -72,9 +79,8 @@ function Complete() {
           //if unchecked then remove check icon
           newForm[type][e.target.name] = 0;
         }
-        
       }
-      
+
       setFormData(newForm);
       // console.log(formData)
     }
@@ -100,16 +106,7 @@ function Complete() {
 
   const handleRefresh = (e) => {
     e.preventDefault();
-    for (let keys in formData) {
-      console.log(typeof keys);
-      if (keys === "pregnancy") {
-        for (let insideKeys in formData[keys]) {
-          formData[keys][insideKeys] = 0;
-        }
-      } else {
-        formData[keys] = "";
-      }
-    }
+    window.location.reload();
   };
 
   const handleValidation = (e) => {
@@ -122,12 +119,14 @@ function Complete() {
         errorss[key] = "Cannot Be Empty";
       }
     }
-   
+
     setErrors(errorss);
-    
-    if(errors){
+
+    if (errors) {
       setDisplayError(true);
-      setTimeout(()=>{setDisplayError(false)},4000)
+      setTimeout(() => {
+        setDisplayError(false);
+      }, 4000);
     }
 
     return formIsValid;
@@ -136,7 +135,6 @@ function Complete() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (handleValidation()) {
-
       // console.log("successful");
 
       let total = 0;
@@ -146,9 +144,8 @@ function Complete() {
         if (key === "pregnancy") {
           for (let inKey in formData[key]) {
             if (inKey !== "none") {
-              total += parseFloat(formData[key][inKey]); 
+              total += parseFloat(formData[key][inKey]);
             }
-            
           }
         } else if (key === "maternalBmi") {
           total += parseFloat(formData[key]) * -0.043509;
@@ -159,7 +156,7 @@ function Complete() {
             total += -1.496422;
           } else if (value > 2) {
             total += -2.445079;
-          } else if (value === 1){
+          } else if (value === 1) {
             total += 0;
           }
         } else if (key === "vaginalBirths") {
@@ -167,7 +164,7 @@ function Complete() {
             total += 1.167351;
           }
         } else if (key === "gestationalAge") {
-          total += parseInt(formData[key]) * 0.233957; 
+          total += parseInt(formData[key]) * 0.233957;
         } else {
           total += parseFloat(formData[key]);
         }
@@ -183,8 +180,6 @@ function Complete() {
     }
   };
 
-  
-
   return (
     <>
       <form action="#" method="POST">
@@ -197,9 +192,13 @@ function Complete() {
                 <Label>Maternal Age</Label>
 
                 <select
-                  name="maternalAge"                 
+                  name="maternalAge"
                   onChange={handleOnChange}
-                  className={errors["maternalAge"] ? selectClassNameError : selectClassName}
+                  className={
+                    errors["maternalAge"]
+                      ? selectClassNameError
+                      : selectClassName
+                  }
                 >
                   <option value="0">Under 30 years</option>
                   <option value="-0.0339731">30-34 years</option>
@@ -215,7 +214,11 @@ function Complete() {
                 <select
                   name="birthPlace"
                   onChange={handleOnChange}
-                  className={errors["birthPlace"]?selectClassNameError:selectClassName}
+                  className={
+                    errors["birthPlace"]
+                      ? selectClassNameError
+                      : selectClassName
+                  }
                 >
                   <option value="0">Australia</option>
                   <option value="-0.1833732">Europe</option>
@@ -233,7 +236,9 @@ function Complete() {
                   onChange={handleOnChange}
                   value={formData.maternalBmi}
                   title="Body Mass Index"
-                  className={errors["maternalBmi"]?inputClassNameError :inputClassName}
+                  className={
+                    errors["maternalBmi"] ? inputClassNameError : inputClassName
+                  }
                 />
               </InnerSectionGrid>
               {/* -----------------Number of previous Caesarean Sections------------------------ */}
@@ -246,7 +251,11 @@ function Complete() {
                   onChange={handleOnChange}
                   title="Answer must be 1 or greater, this calculator is only to be used where previous Caesareans sections have occurred"
                   min={1}
-                  className={errors["previousCaesarean"]?inputClassNameError:inputClassName}
+                  className={
+                    errors["previousCaesarean"]
+                      ? inputClassNameError
+                      : inputClassName
+                  }
                 />
               </InnerSectionGrid>
               {/* -----------------Number of previous Vaginal Births------------------------ */}
@@ -258,11 +267,15 @@ function Complete() {
                   value={formData.vaginalBirths}
                   onChange={handleOnChange}
                   title="Only consider Vaginal Births where Gestational age > than 20 weeks"
-                  className={errors["vaginalBirths"]?inputClassNameError:inputClassName}
+                  className={
+                    errors["vaginalBirths"]
+                      ? inputClassNameError
+                      : inputClassName
+                  }
                 />
               </InnerSectionGrid>
               {/* -----------------Gestational Age------------------------ */}
-            
+
               <InnerSectionGrid>
                 <Label>Gestational Age</Label>
                 <input
@@ -270,18 +283,23 @@ function Complete() {
                   name="gestationalAge"
                   value={formData.gestationalAge}
                   onChange={handleOnChange}
-                  className={errors["gestationalAge"]?inputClassNameError:inputClassName}
+                  className={
+                    errors["gestationalAge"]
+                      ? inputClassNameError
+                      : inputClassName
+                  }
                 />
               </InnerSectionGrid>
               {/* --------------Was the last birth a Caesarean section?------------------ */}
               <InnerSectionGrid>
-                <Label error={errors["caesareanSection"]}>Was the last birth a Caesarean section?</Label>
+                <Label error={errors["caesareanSection"]}>
+                  Was the last birth a Caesarean section?
+                </Label>
                 <GridTwo>
                   <GridTwoSub>
                     <input
                       type="radio"
                       name="caesareanSection"
-                      
                       value={-1.390563}
                       onChange={handleOnChange}
                     />
@@ -292,7 +310,6 @@ function Complete() {
                     <input
                       type="radio"
                       name="caesareanSection"
-                      
                       value={0}
                       onChange={handleOnChange}
                     />
@@ -308,7 +325,6 @@ function Complete() {
                     <input
                       type="radio"
                       name="onsetLabour"
-                      
                       onChange={handleOnChange}
                       value={0}
                     />
@@ -318,7 +334,6 @@ function Complete() {
                     <input
                       type="radio"
                       name="onsetLabour"
-                      
                       onChange={handleOnChange}
                       value={-0.0940149}
                     />
@@ -328,13 +343,14 @@ function Complete() {
               </InnerSectionGrid>
               {/* -----------------Fetal Presentation------------------------ */}
               <InnerSectionGrid>
-                <Label error={errors["fetalPresentation"]}>Fetal Presentation</Label>
+                <Label error={errors["fetalPresentation"]}>
+                  Fetal Presentation
+                </Label>
                 <GridTwo>
                   <GridTwoSub>
                     <input
                       type="radio"
                       name="fetalPresentation"
-                      
                       onChange={handleOnChange}
                       value={1.400273}
                     />
@@ -344,7 +360,6 @@ function Complete() {
                     <input
                       type="radio"
                       name="fetalPresentation"
-                      
                       onChange={handleOnChange}
                       value={0}
                     />
@@ -354,13 +369,14 @@ function Complete() {
               </InnerSectionGrid>
               {/* -----------------Was cervical ripening used?------------------------ */}
               <InnerSectionGrid>
-                <Label error={errors["cervicalRipening"]}>Was cervical ripening used?</Label>
+                <Label error={errors["cervicalRipening"]}>
+                  Was cervical ripening used?
+                </Label>
                 <GridTwo>
                   <GridTwoSub>
                     <input
                       type="radio"
                       name="cervicalRipening"
-                      
                       onChange={handleOnChange}
                       value={-0.0949787}
                     />
@@ -370,7 +386,6 @@ function Complete() {
                     <input
                       type="radio"
                       name="cervicalRipening"
-                      
                       onChange={handleOnChange}
                       value={0}
                     />
@@ -386,7 +401,6 @@ function Complete() {
                     <input
                       type="radio"
                       name="oxytocin"
-                      
                       onChange={handleOnChange}
                       value={0.191545}
                     />
@@ -396,7 +410,6 @@ function Complete() {
                     <input
                       type="radio"
                       name="oxytocin"
-                      
                       onChange={handleOnChange}
                       value={0}
                     />
@@ -406,23 +419,23 @@ function Complete() {
               </InnerSectionGrid>
               {/* --------Are any of the following known to be present in this pregnancy? Please select all that apply.--- */}
               <InnerSectionGrid fullWidth>
-                <Label> 
+                <Label>
                   Are any of the following known to be present in this
                   pregnancy? Please select all that apply.
                 </Label>
                 <Block>
                   <BlockA>
-                  <input
-                    type="checkbox"
-                    name="gestationalDiabeties"
-                    title="Pre-Existing or Gestational Diabetes"
-                    onChange={(event) => handleOnChange(event, "pregnancy")}
-                    value={0.1430483}
-                    checked={formData["pregnancy"]["gestationalDiabeties"]}
-                  />
-                  <Label inline>
-                    Gestational diabetes or pre-existing diabetes
-                  </Label>
+                    <input
+                      type="checkbox"
+                      name="gestationalDiabeties"
+                      title="Pre-Existing or Gestational Diabetes"
+                      onChange={(event) => handleOnChange(event, "pregnancy")}
+                      value={0.1430483}
+                      checked={formData["pregnancy"]["gestationalDiabeties"]}
+                    />
+                    <Label inline>
+                      Gestational diabetes or pre-existing diabetes
+                    </Label>
                   </BlockA>
                 </Block>
                 <Block>
@@ -459,13 +472,14 @@ function Complete() {
 
               {/* -------------------Analgesia. Please select all that apply.---------------------- */}
               <InnerSectionGrid fullWidth>
-                <Label error={errors["analgesia"]}>Analgesia. Please select all that apply.</Label>
+                <Label error={errors["analgesia"]}>
+                  Analgesia. Please select all that apply.
+                </Label>
                 <GridTwo twelve>
                   <GridTwoSub one>
                     <input
                       type="radio"
                       name="analgesia"
-                      
                       value={0}
                       onChange={handleOnChange}
                     />{" "}
@@ -478,7 +492,6 @@ function Complete() {
                     <input
                       type="radio"
                       name="analgesia"
-                      
                       onChange={handleOnChange}
                       value={1.096508}
                     />
@@ -505,13 +518,14 @@ function Complete() {
               {/* -----------------Estimated Fetal Weight------------------------ */}
               {/* =IF(D46="Under 3000g",0,0)+IF(D46="3000-3499g",0.0612233,0)+IF(D46="3500-3999g",-0.1181972,0)+IF(D46="4000g or more",-0.5706141,0) */}
               <InnerSectionGrid fullWidth>
-                <Label error={errors["fetalWeight"]}>Estimated Fetal Weight</Label>
+                <Label error={errors["fetalWeight"]}>
+                  Estimated Fetal Weight
+                </Label>
                 <FlexDisplay>
                   <WidthBox>
                     <input
                       type="radio"
                       name="fetalWeight"
-                      
                       onChange={handleOnChange}
                       value={0}
                     />
@@ -521,7 +535,6 @@ function Complete() {
                     <input
                       type="radio"
                       name="fetalWeight"
-                      
                       onChange={handleOnChange}
                       value={0.0612233}
                     />
@@ -531,7 +544,6 @@ function Complete() {
                     <input
                       type="radio"
                       name="fetalWeight"
-                      
                       onChange={handleOnChange}
                       value={-0.1181972}
                     />
@@ -561,7 +573,11 @@ function Complete() {
             </InnerGrid>
           </div>
           <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button className={buttonClassName} onClick={handleRefresh}>
+            <button
+              className={buttonClassName}
+              type="submit"
+              onClick={handleRefresh}
+            >
               Refresh
             </button>
             <button
@@ -582,16 +598,14 @@ function Complete() {
           </span>
         </div>
       ) : null}
-     
-      {
-        
 
-      Object.keys(errors).length > 0 ? (
-        displayError && 
-        <div className="display-box box-red ">
-          Please Complete all the fields
-        </div> 
-      ) : null}
+      {Object.keys(errors).length > 0
+        ? displayError && (
+            <div className="display-box box-red ">
+              Please Complete all the fields
+            </div>
+          )
+        : null}
     </>
   );
 }

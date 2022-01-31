@@ -3,16 +3,16 @@ import tw, { styled } from "twin.macro";
 //fads
 export const Label = styled.label(({ inline, inlineThree, error }) => [
   tw`block text-sm font-medium text-gray-700`,
-  inline && tw`inline-block pl-[0.5rem] sm:pl-[1rem] text-sm md:text-base font-normal`,
+  inline &&
+    tw`inline-block pl-[0.5rem] sm:pl-[1rem] text-sm md:text-base font-normal`,
   inlineThree && tw`inline-block md:text-base text-sm font-normal p-0`,
-  error && tw`text-red-700`
+  error && tw`text-red-700`,
 ]);
 
 export const Grid = styled.div(({ grid8 }) => [
   tw`md:grid md:grid-cols-6 lg:grid-cols-10 md:gap-6`,
   grid8 && tw`grid`,
 ]);
-
 
 export const GridOffset = tw.div`md:col-span-1 lg:col-span-2`;
 
@@ -60,10 +60,10 @@ export const inputClassNameError =
 export const selectClassName =
   "mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm rounded-md";
 
-export const selectClassNameError = "mt-1 block w-full py-2 px-3 border-2 border-red-400 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm rounded-md bg-red-100";
+export const selectClassNameError =
+  "mt-1 block w-full py-2 px-3 border-2 border-red-400 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm rounded-md bg-red-100";
 
 export const buttonClassName =
   "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-4";
 
 // export const selectClassName = "mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm";
-
