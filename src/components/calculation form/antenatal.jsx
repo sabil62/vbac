@@ -193,7 +193,7 @@ const Antenatal = () => {
             <InnerGrid>
               {/* -----------------maternal age------------------------ */}
 
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label>Maternal Age</Label>
                 <select
                   name="maternalAge"
@@ -212,7 +212,7 @@ const Antenatal = () => {
                 </select>
               </InnerSectionGrid>
               {/* -----------------maternal place of birth------------------------ */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label>Maternal place of birth</Label>
                 <select
                   name="maternalBirth"
@@ -233,7 +233,7 @@ const Antenatal = () => {
                 </select>
               </InnerSectionGrid>
               {/* -----------------maternal BMI------------------------ */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label>Maternal BMI</Label>
                 <input
                   type="number"
@@ -247,7 +247,7 @@ const Antenatal = () => {
                 />
               </InnerSectionGrid>
               {/* ---------------------Number of previous Caesarean sections------------- */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label>Number of previous Caesarean sections</Label>
                 <input
                   type="number"
@@ -262,7 +262,7 @@ const Antenatal = () => {
                 />
               </InnerSectionGrid>
               {/* -----------------------Number of previous vaginal births------------- */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label>Number of previous Vaginal Births</Label>
                 <input
                   type="number"
@@ -278,7 +278,7 @@ const Antenatal = () => {
                 />
               </InnerSectionGrid>
               {/* ---------------------------Was the last birth a Caesarean section?----------- */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label error={errors["caesareanA"]}>
                   Was the last birth a Caesarean section?
                 </Label>
