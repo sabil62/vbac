@@ -219,9 +219,15 @@ function Complete() {
     }
   };
 
-  if (refSize.current.offsetWidth < 400) {
-    console.log(size);
-  }
+  const refSmall = useRef(null);
+  // useEffect(() => {}, [refSmall]);
+  // if (refSmall.current.offsetWidth < 400) {
+  //   console.log(refSmall.current.offsetWidth);
+  // }
+
+  // if (refSize.current.offsetWidth < 400) {
+  //   console.log(size);
+  // }
 
   return (
     <>
@@ -313,7 +319,7 @@ function Complete() {
               <InnerSectionGrid fullWidth>
                 <Label className="large-text">
                   Number of Previous Vaginal Births
-                  <div className="tooltiptitle">
+                  <div className="tooltiptitle" ref={refSmall}>
                     Only consider Vaginal Births where Gestational age greater
                     than 20 weeks
                   </div>

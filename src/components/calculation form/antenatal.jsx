@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useRef } from "react/cjs/react.development";
 import {
   buttonClassName,
   inputClassNameError,
@@ -185,11 +186,32 @@ const Antenatal = () => {
     }
   };
 
+  //useRef
+  const refUse = useRef(null);
+  const [size, setSize] = useState({});
+
+  useEffect(() => {
+    const hanldeWidth = () => {
+      setSize({
+        height: refUse.current.offsetHeight,
+        width: refUse.current.offsetWidth,
+      });
+    };
+    window.addEventListener("resize", hanldeWidth);
+    return () => {
+      window.removeEventListener("resize", hanldeWidth);
+    };
+  }, [refUse]);
+
+  if (size.width < 500) {
+    console.log(size);
+  }
+
   return (
     <React.Fragment>
       <form action="#" method="POST">
         <ShadowClass>
-          <div className="px-4 py-5 bg-white sm:p-6">
+          <div className="px-4 py-5 bg-white sm:p-6" ref={refUse}>
             <InnerGrid>
               {/* -----------------maternal age------------------------ */}
 
