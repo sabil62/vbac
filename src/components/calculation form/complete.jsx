@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   BlockA,
   buttonClassName,
@@ -43,12 +43,33 @@ function Complete() {
     parity: 0,
   });
 
+  //useref
+  const [size, setSize] = useState({});
+  const refSize = useRef(null);
+
+  useEffect(() => {
+    const setTheSize = () => {
+      setSize({
+        height: refSize.current.offsetHeight,
+        width: refSize.current.offsetWidth,
+      });
+    };
+    window.addEventListener("resize", setTheSize);
+    return () => {
+      window.removeEventListener("resize", setTheSize);
+    };
+  }, [refSize]);
+
+  // useEffect(() => {
+  //   if (refBigOne.current) {
+  //     console.log(refBigOne.current.offsetWidth);
+  //   }
+  // }, [refBigOne.current]);
+
   const [displayError, setDisplayError] = useState(false);
 
   const [errors, setErrors] = useState({});
-  useEffect(() => {
-    // console.log(errors);
-  }, [errors]);
+  useEffect(() => {}, [errors]);
 
   const handleRefresh = (e) => {
     e.preventDefault();
@@ -198,6 +219,10 @@ function Complete() {
     }
   };
 
+  if (refSize.current.offsetWidth < 400) {
+    console.log(size);
+  }
+
   return (
     <>
       <form action="#" method="POST">
@@ -265,7 +290,7 @@ function Complete() {
               <InnerSectionGrid fullWidth>
                 <Label className="large-text">
                   Number of previous Caesarean Sections
-                  <div className="tooltiptitle">
+                  <div className="tooltiptitle" ref={refSize}>
                     Answer must be 1 or greater, this calculator is only to be
                     used where previous Caesareans sections have occurred
                   </div>
