@@ -234,7 +234,10 @@ const Antenatal = () => {
               </InnerSectionGrid>
               {/* -----------------maternal BMI------------------------ */}
               <InnerSectionGrid fullWidth>
-                <Label>Maternal BMI</Label>
+                <Label className="large-text">
+                  Maternal BMI
+                  <div className="tooltiptitle">Body Mass Index</div>
+                </Label>
                 <input
                   type="number"
                   name="maternalBmi"
@@ -248,7 +251,12 @@ const Antenatal = () => {
               </InnerSectionGrid>
               {/* ---------------------Number of previous Caesarean sections------------- */}
               <InnerSectionGrid fullWidth>
-                <Label>Number of previous Caesarean sections</Label>
+                <Label className="large-text">
+                  Number of previous Caesarean sections
+                  <div className="tooltiptitle">
+                    This calculatior is to be used by previous Caesarean
+                  </div>
+                </Label>
                 <input
                   type="number"
                   name="caesarean"
@@ -258,12 +266,17 @@ const Antenatal = () => {
                     errors["caesarean"] ? inputClassNameError : inputClassName
                   }
                   onChange={handleOnChange}
-                  title="This calculator is to be used by previous Caesareanb"
+                  title="This calculator is to be used by previous Caesarean"
                 />
               </InnerSectionGrid>
               {/* -----------------------Number of previous vaginal births------------- */}
               <InnerSectionGrid fullWidth>
-                <Label>Number of previous Vaginal Births</Label>
+                <Label className="large-text">
+                  Number of previous Vaginal Births{" "}
+                  <div className="tooltiptitle">
+                    Vaginal BIrths Greather than 20 weeks
+                  </div>{" "}
+                </Label>
                 <input
                   type="number"
                   name="previousVaginal"
