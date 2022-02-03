@@ -203,7 +203,6 @@ function Complete() {
       <form action="#" method="POST">
         <ShadowClass>
           <div className="px-4 py-5 bg-white sm:p-6">
-            {/* <div className="bg-red-100 text-yellow-50"></div> */}
             <InnerGrid>
               {/* -----------------maternal age------------------------ */}
               <InnerSectionGrid fullWidth>
@@ -226,8 +225,6 @@ function Complete() {
                 </select>
               </InnerSectionGrid>
               {/* -----------------maternal place of birth------------------------ */}
-              {/* =IF(D9="Australia",0,0)+IF(D9="Europe",-0.1833732,0)+IF(D9="Africa/Middle
-                    East",-0.4323789,0)+IF(D9="Asia",-0.3443264,0)+IF(D9="Other",-0.1276015,0) */}
               <InnerSectionGrid fullWidth>
                 <Label>Maternal Place of Birth</Label>
                 <select
@@ -309,22 +306,7 @@ function Complete() {
                   }
                 />
               </InnerSectionGrid>
-              {/* -----------------Gestational Age------------------------ */}
 
-              <InnerSectionGrid fullWidth>
-                <Label>Gestational Age</Label>
-                <input
-                  type="number"
-                  name="gestationalAge"
-                  value={formData.gestationalAge}
-                  onChange={handleOnChange}
-                  className={
-                    errors["gestationalAge"]
-                      ? inputClassNameError
-                      : inputClassName
-                  }
-                />
-              </InnerSectionGrid>
               {/* --------------Was the last birth a Caesarean section?------------------ */}
               <InnerSectionGrid fullWidth>
                 <Label error={errors["caesareanSection"]}>
@@ -354,6 +336,74 @@ function Complete() {
                   </GridTwoSub>
                 </GridTwo>
               </InnerSectionGrid>
+              {/* --------Are any of the following known to be present in this pregnancy? Please select all that apply.--- */}
+              <InnerSectionGrid fullWidth>
+                <Label>
+                  Are any of the following known to be present in this
+                  pregnancy? Please select all that apply.
+                </Label>
+                <Block>
+                  <BlockA>
+                    <input
+                      type="checkbox"
+                      name="gestationalDiabeties"
+                      title="Pre-Existing or Gestational Diabetes"
+                      onChange={(event) => handleOnChange(event, "pregnancy")}
+                      value={0.1430483}
+                      checked={formData["pregnancy"]["gestationalDiabeties"]}
+                    />
+                    <Label inline>
+                      Gestational diabetes or pre-existing diabetes
+                    </Label>
+                  </BlockA>
+                </Block>
+                <Block>
+                  <input
+                    type="checkbox"
+                    name="hypertensiveDisease"
+                    value={-0.1673155}
+                    onChange={(event) => handleOnChange(event, "pregnancy")}
+                    checked={formData["pregnancy"]["hypertensiveDisease"]}
+                  />
+                  <Label inline>Hypertensive Disease</Label>
+                </Block>
+                <Block>
+                  <input
+                    type="checkbox"
+                    name="fetalAnomaly"
+                    value={-0.2456491}
+                    onChange={(event) => handleOnChange(event, "pregnancy")}
+                    checked={formData["pregnancy"]["fetalAnomaly"]}
+                  />
+                  <Label inline>Known fetal anomaly</Label>
+                </Block>
+                <Block>
+                  <input
+                    type="checkbox"
+                    name="none"
+                    value={0}
+                    onChange={(event) => handleOnChange(event, "pregnancy")}
+                    checked={formData["pregnancy"]["none"]}
+                  />
+                  <Label inline>None</Label>
+                </Block>
+              </InnerSectionGrid>
+              {/* -----------------Gestational Age------------------------ */}
+
+              <InnerSectionGrid fullWidth>
+                <Label>Gestational Age</Label>
+                <input
+                  type="number"
+                  name="gestationalAge"
+                  value={formData.gestationalAge}
+                  onChange={handleOnChange}
+                  className={
+                    errors["gestationalAge"]
+                      ? inputClassNameError
+                      : inputClassName
+                  }
+                />
+              </InnerSectionGrid>
               {/* -----------------Onset of Labour------------------------ */}
               <InnerSectionGrid fullWidth>
                 <Label error={errors["onsetLabour"]}>Onset of Labour</Label>
@@ -377,6 +427,54 @@ function Complete() {
                       checked={formData["onsetLabour"] === "-0.0940149"}
                     />
                     <Label inline>Induced</Label>
+                  </GridTwoSub>
+                </GridTwo>
+              </InnerSectionGrid>
+
+              {/* -------------------Analgesia. Please select all that apply.---------------------- */}
+              <InnerSectionGrid fullWidth>
+                <Label error={errors["analgesia"]}>
+                  Analgesia. Please select all that apply.
+                </Label>
+                <GridTwo twelve>
+                  <GridTwoSub one>
+                    <input
+                      type="radio"
+                      name="analgesia"
+                      value={0}
+                      onChange={handleOnChange}
+                      checked={formData["analgesia"] === "0"}
+                    />{" "}
+                  </GridTwoSub>
+                  <GridTwoSub three>
+                    <Label inlineThree>Epidural or spinal analgesia</Label>
+                  </GridTwoSub>
+
+                  <GridTwoSub one>
+                    <input
+                      type="radio"
+                      name="analgesia"
+                      onChange={handleOnChange}
+                      value={1.096508}
+                      checked={formData["analgesia"] === "1.096508"}
+                    />
+                  </GridTwoSub>
+                  <GridTwoSub three>
+                    <Label inlineThree>Nitrous or IM narcotic Analgesia</Label>
+                  </GridTwoSub>
+
+                  <GridTwoSub one>
+                    <input
+                      type="radio"
+                      name="analgesia"
+                      id="analgesia3"
+                      onChange={handleOnChange}
+                      value={-0.0872948}
+                      checked={formData["analgesia"] === "-0.0872948"}
+                    />
+                  </GridTwoSub>
+                  <GridTwoSub three>
+                    <Label inlineThree>No analgesia</Label>
                   </GridTwoSub>
                 </GridTwo>
               </InnerSectionGrid>
@@ -462,109 +560,8 @@ function Complete() {
                   </GridTwoSub>
                 </GridTwo>
               </InnerSectionGrid>
-              {/* --------Are any of the following known to be present in this pregnancy? Please select all that apply.--- */}
-              <InnerSectionGrid fullWidth>
-                <Label>
-                  Are any of the following known to be present in this
-                  pregnancy? Please select all that apply.
-                </Label>
-                <Block>
-                  <BlockA>
-                    <input
-                      type="checkbox"
-                      name="gestationalDiabeties"
-                      title="Pre-Existing or Gestational Diabetes"
-                      onChange={(event) => handleOnChange(event, "pregnancy")}
-                      value={0.1430483}
-                      checked={formData["pregnancy"]["gestationalDiabeties"]}
-                    />
-                    <Label inline>
-                      Gestational diabetes or pre-existing diabetes
-                    </Label>
-                  </BlockA>
-                </Block>
-                <Block>
-                  <input
-                    type="checkbox"
-                    name="hypertensiveDisease"
-                    value={-0.1673155}
-                    onChange={(event) => handleOnChange(event, "pregnancy")}
-                    checked={formData["pregnancy"]["hypertensiveDisease"]}
-                  />
-                  <Label inline>Hypertensive Disease</Label>
-                </Block>
-                <Block>
-                  <input
-                    type="checkbox"
-                    name="fetalAnomaly"
-                    value={-0.2456491}
-                    onChange={(event) => handleOnChange(event, "pregnancy")}
-                    checked={formData["pregnancy"]["fetalAnomaly"]}
-                  />
-                  <Label inline>Known fetal anomaly</Label>
-                </Block>
-                <Block>
-                  <input
-                    type="checkbox"
-                    name="none"
-                    value={0}
-                    onChange={(event) => handleOnChange(event, "pregnancy")}
-                    checked={formData["pregnancy"]["none"]}
-                  />
-                  <Label inline>None</Label>
-                </Block>
-              </InnerSectionGrid>
-
-              {/* -------------------Analgesia. Please select all that apply.---------------------- */}
-              <InnerSectionGrid fullWidth>
-                <Label error={errors["analgesia"]}>
-                  Analgesia. Please select all that apply.
-                </Label>
-                <GridTwo twelve>
-                  <GridTwoSub one>
-                    <input
-                      type="radio"
-                      name="analgesia"
-                      value={0}
-                      onChange={handleOnChange}
-                      checked={formData["analgesia"] === "0"}
-                    />{" "}
-                  </GridTwoSub>
-                  <GridTwoSub three>
-                    <Label inlineThree>Epidural or spinal analgesia</Label>
-                  </GridTwoSub>
-
-                  <GridTwoSub one>
-                    <input
-                      type="radio"
-                      name="analgesia"
-                      onChange={handleOnChange}
-                      value={1.096508}
-                      checked={formData["analgesia"] === "1.096508"}
-                    />
-                  </GridTwoSub>
-                  <GridTwoSub three>
-                    <Label inlineThree>Nitrous or IM narcotic Analgesia</Label>
-                  </GridTwoSub>
-
-                  <GridTwoSub one>
-                    <input
-                      type="radio"
-                      name="analgesia"
-                      id="analgesia3"
-                      onChange={handleOnChange}
-                      value={-0.0872948}
-                      checked={formData["analgesia"] === "-0.0872948"}
-                    />
-                  </GridTwoSub>
-                  <GridTwoSub three>
-                    <Label inlineThree>No analgesia</Label>
-                  </GridTwoSub>
-                </GridTwo>
-              </InnerSectionGrid>
 
               {/* -----------------Estimated Fetal Weight------------------------ */}
-              {/* =IF(D46="Under 3000g",0,0)+IF(D46="3000-3499g",0.0612233,0)+IF(D46="3500-3999g",-0.1181972,0)+IF(D46="4000g or more",-0.5706141,0) */}
               <InnerSectionGrid fullWidth>
                 <Label error={errors["fetalWeight"]}>
                   Estimated Fetal Weight
@@ -614,7 +611,6 @@ function Complete() {
                 </FlexDisplay>
               </InnerSectionGrid>
               {/* -----------------Parity------------------------ */}
-              {/* =IF(D16+D18=1,0,0)+IF(D16+D18=2,-0.1458645,0)+IF(D16+D18>2,0.1307764,0) */}
 
               <InnerSectionGrid fullWidth>
                 <Label>Parity</Label>
