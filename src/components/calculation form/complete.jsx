@@ -249,7 +249,10 @@ function Complete() {
               </InnerSectionGrid>
               {/* -----------------maternal bmi------------------------ */}
               <InnerSectionGrid fullWidth>
-                <Label>Maternal BMI</Label>
+                <Label className="large-text">
+                  Maternal BMI
+                  <div className="tooltiptitle">Body Mass Index</div>
+                </Label>
                 <input
                   type="number"
                   name="maternalBmi"
@@ -263,7 +266,13 @@ function Complete() {
               </InnerSectionGrid>
               {/* -----------------Number of previous Caesarean Sections------------------------ */}
               <InnerSectionGrid fullWidth>
-                <Label>Number of previous Caesarean Sections</Label>
+                <Label className="large-text">
+                  Number of previous Caesarean Sections
+                  <div className="tooltiptitle">
+                    Answer must be 1 or greater, this calculator is only to be
+                    used where previous Caesareans sections have occurred
+                  </div>
+                </Label>
                 <input
                   type="number"
                   name="previousCaesarean"
@@ -283,8 +292,8 @@ function Complete() {
                 <Label className="large-text">
                   Number of Previous Vaginal Births
                   <div className="tooltiptitle">
-                    Only consider Vaginal Births where Gestational age than 20
-                    weeks
+                    Only consider Vaginal Births where Gestational age greater
+                    than 20 weeks
                   </div>
                 </Label>
                 <input
