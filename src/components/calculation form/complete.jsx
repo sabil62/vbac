@@ -206,7 +206,7 @@ function Complete() {
             {/* <div className="bg-red-100 text-yellow-50"></div> */}
             <InnerGrid>
               {/* -----------------maternal age------------------------ */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label>Maternal Age</Label>
 
                 <select
@@ -228,7 +228,7 @@ function Complete() {
               {/* -----------------maternal place of birth------------------------ */}
               {/* =IF(D9="Australia",0,0)+IF(D9="Europe",-0.1833732,0)+IF(D9="Africa/Middle
                     East",-0.4323789,0)+IF(D9="Asia",-0.3443264,0)+IF(D9="Other",-0.1276015,0) */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label>Maternal Place of Birth</Label>
                 <select
                   name="birthPlace"
@@ -248,7 +248,7 @@ function Complete() {
                 </select>
               </InnerSectionGrid>
               {/* -----------------maternal bmi------------------------ */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label>Maternal BMI</Label>
                 <input
                   type="number"
@@ -262,7 +262,7 @@ function Complete() {
                 />
               </InnerSectionGrid>
               {/* -----------------Number of previous Caesarean Sections------------------------ */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label>Number of previous Caesarean Sections</Label>
                 <input
                   type="number"
@@ -279,8 +279,14 @@ function Complete() {
                 />
               </InnerSectionGrid>
               {/* -----------------Number of previous Vaginal Births------------------------ */}
-              <InnerSectionGrid>
-                <Label>Number of Previous Vaginal Births</Label>
+              <InnerSectionGrid fullWidth>
+                <Label className="large-text">
+                  Number of Previous Vaginal Births
+                  <div className="tooltiptitle">
+                    Only consider Vaginal Births where Gestational age than 20
+                    weeks
+                  </div>
+                </Label>
                 <input
                   type="number"
                   name="vaginalBirths"
@@ -296,7 +302,7 @@ function Complete() {
               </InnerSectionGrid>
               {/* -----------------Gestational Age------------------------ */}
 
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label>Gestational Age</Label>
                 <input
                   type="number"
@@ -311,7 +317,7 @@ function Complete() {
                 />
               </InnerSectionGrid>
               {/* --------------Was the last birth a Caesarean section?------------------ */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label error={errors["caesareanSection"]}>
                   Was the last birth a Caesarean section?
                 </Label>
@@ -340,7 +346,7 @@ function Complete() {
                 </GridTwo>
               </InnerSectionGrid>
               {/* -----------------Onset of Labour------------------------ */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label error={errors["onsetLabour"]}>Onset of Labour</Label>
                 <GridTwo>
                   <GridTwoSub>
@@ -366,7 +372,7 @@ function Complete() {
                 </GridTwo>
               </InnerSectionGrid>
               {/* -----------------Fetal Presentation------------------------ */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label error={errors["fetalPresentation"]}>
                   Fetal Presentation
                 </Label>
@@ -394,7 +400,7 @@ function Complete() {
                 </GridTwo>
               </InnerSectionGrid>
               {/* -----------------Was cervical ripening used?------------------------ */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label error={errors["cervicalRipening"]}>
                   Was cervical ripening used?
                 </Label>
@@ -422,7 +428,7 @@ function Complete() {
                 </GridTwo>
               </InnerSectionGrid>
               {/* -------------------Was oxytocin used?---------------------- */}
-              <InnerSectionGrid>
+              <InnerSectionGrid fullWidth>
                 <Label error={errors["oxytocin"]}>Was oxytocin used?</Label>
                 <GridTwo>
                   <GridTwoSub>
@@ -627,7 +633,7 @@ function Complete() {
           </div>
         </ShadowClass>
       </form>
-      {answer ? (
+      {answer && !Object.keys(errors).length > 0 ? (
         <div className="display-box">
           Likelihood of achieving VBAC is
           <span style={{ fontSize: "1.7rem" }}>

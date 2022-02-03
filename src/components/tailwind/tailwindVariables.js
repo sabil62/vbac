@@ -52,10 +52,10 @@ export const ShadowClass = tw.div`shadow md:shadow-xl overflow-hidden sm:rounded
 
 //classNames
 export const inputClassName =
-  "mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 border-gray-300 rounded-md";
+  "mt-1 px-2 py-[0.2rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm sm:py-[0.5rem] border-2 border-gray-300 rounded-md";
 
 export const inputClassNameError =
-  "mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-2 border-red-400 rounded-md bg-red-100";
+  "mt-1 px-2 py-[0.2rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:(text-sm py-[0.5rem]) border-2 border-red-400 rounded-md bg-red-100";
 
 export const selectClassName =
   "mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm rounded-md";

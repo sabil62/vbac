@@ -59,7 +59,7 @@ const Antenatal = () => {
 
   const [answer, setAnswer] = useState("");
 
-  useEffect(() => {}, [errors]);
+  useEffect(() => {}, [errors, parity]);
 
   const handleOnChange = (e, type) => {
     if (Object.keys(errors).length > 0) {
@@ -93,10 +93,10 @@ const Antenatal = () => {
       }
 
       setFormData(newForm);
-      // console.log(formData)
     }
 
     // console.log(formData);
+    // console.log(parity);
 
     let parityValue =
       parseInt(formData["caesarean"]) + parseInt(formData["previousVaginal"]);
@@ -375,7 +375,7 @@ const Antenatal = () => {
           </div>
         </ShadowClass>
       </form>
-      {answer ? (
+      {answer && !Object.keys(errors).length > 0 ? (
         <div className="display-box">
           {" "}
           Likelihood of achieving VBAC is

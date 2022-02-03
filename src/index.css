@@ -89,3 +89,29 @@ code {
     top: 0.52rem;
   }
 }
+
+.large-text {
+  /* font-size: 24px !important; */
+  position: relative !important;
+}
+.tooltiptitle {
+  position: absolute !important;
+  top: -30px;
+  line-height: 15px;
+  opacity: 0.2;
+  font-size: 0.72rem;
+  padding: 0.4rem 0.6rem;
+  color: white;
+  font-weight: 300;
+  background-color: palevioletred;
+}
+.large-text:hover .tooltiptitle {
+  opacity: 1;
+}
+
+@media (max-width: 530px) {
+  .tooltiptitle {
+    top: -40px;
+    padding: 0.28rem;
+  }
+}
