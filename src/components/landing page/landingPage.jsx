@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   GridInside,
   MainText,
@@ -11,9 +11,26 @@ import Layout from "../../container/layout";
 import { Link } from "react-router-dom";
 
 const LandingPage = () => {
+  const [leftValue, setLeftValue] = useState("0px");
+
+  useEffect(() => {
+    const handleLeftValue = () => {
+      if (window.innerWidth < 640) {
+        setLeftValue("100px");
+      } else {
+        setLeftValue("0px");
+      }
+    };
+
+    window.addEventListener("resize", handleLeftValue);
+    return () => {
+      window.removeEventListener("resize", handleLeftValue);
+    };
+  }, [leftValue]);
+
   let toolTipStyle = {
     top: "-30px",
-    right: "0px",
+    left: leftValue,
     opacity: 0.9,
     verticalAlign: "top",
     // transform: "scale(0.8)",
@@ -48,7 +65,10 @@ const LandingPage = () => {
                 </PinkBox>
               </Link>
               <div className="large-text" style={text}>
-                <span className="text-2xl"> &#x1F6C8;</span> What is this?
+                <span className="hover:text-blue-800">
+                  <span className="text-2xl pr-1"> &#x1F6C8;</span> What is
+                  this?
+                </span>
                 <div className="tooltiptitle" style={toolTipStyle}>
                   The complete calculator is designed for use in labour and
                   includes more variables
@@ -63,7 +83,10 @@ const LandingPage = () => {
                 </PinkBox>
               </Link>
               <div className="large-text" style={text}>
-                <span className="text-2xl"> &#x1F6C8;</span> What is this?
+                <span className="hover:text-blue-800">
+                  <span className="text-2xl pr-1"> &#x1F6C8;</span>
+                  What is this?
+                </span>
                 <div className="tooltiptitle" style={toolTipStyle}>
                   The antenatal calculator is designed for use during the
                   pregnancy prior to labour
