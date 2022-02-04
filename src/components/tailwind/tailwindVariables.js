@@ -71,19 +71,20 @@ export const buttonClassName =
 
 // export const selectClassName = "mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm";
 
-export const MainText = tw.div`text-3xl lg:text-6xl md:text-5xl font-bold tracking-[0.6px] text-center`;
+export const MainText = tw.div`text-3xl lg:text-6xl md:text-5xl font-bold tracking-[0.6px] text-center pb-2`;
 export const SmallText = tw.div`text-[0.7rem] md:text-[0.86rem] lg:text-[0.92rem] font-thin w-5/6 text-center my-3`;
 
-export const GridMain = tw.div`grid w-5/6 grid-cols-6 gap-4 mt-6`;
+export const GridMain = tw.div`grid w-5/6 grid-cols-6 gap-4 mt-6 content-center box-border`;
 export const GridInside = tw.div`col-span-6 md:col-span-3`;
 
 export const PinkBox = styled.div(({ low }) => [
-  tw`w-3/5 md:w-5/6 rounded-3xl h-[9rem]`,
+  tw`w-4/5 md:w-11/12 rounded-2xl lg:rounded-3xl cursor-pointer h-[6rem] md:h-[7rem] lg:h-[8rem] flex flex-col justify-center items-center leading-7 md:leading-8 lg:leading-9 hover:bg-pink-300`,
   `background-color:#fc34c0`,
-  low && `background-color:red`,
+  low && `background-color:#ffbcf2`,
+  // low && tw`rounded-sm`,
 ]);
 
 export const WhiteText = styled.div(({ bold }) => [
-  tw`text-white font-light`,
+  tw`text-white font-light text-[1.2rem] md:text-[1.65rem] lg:text-[2rem]`,
   bold && tw`font-bold`,
 ]);

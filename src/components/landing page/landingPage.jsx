@@ -8,6 +8,7 @@ import {
   WhiteText,
 } from "../tailwind/tailwindVariables";
 import Layout from "../../container/layout";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
@@ -28,12 +29,21 @@ const LandingPage = () => {
           </SmallText>
           <GridMain>
             <GridInside>
-              <PinkBox>
-                <WhiteText bold>Complete</WhiteText>
-                <WhiteText>Calculator</WhiteText>
-              </PinkBox>
+              <Link to="/complete">
+                <PinkBox>
+                  <WhiteText bold>Complete</WhiteText>
+                  <WhiteText>Calculator</WhiteText>
+                </PinkBox>
+              </Link>
             </GridInside>
-            <GridInside>hello</GridInside>
+            <GridInside>
+              <Link to="/antenatal">
+                <PinkBox low>
+                  <WhiteText bold>Antenatal</WhiteText>
+                  <WhiteText>Calculator</WhiteText>
+                </PinkBox>
+              </Link>
+            </GridInside>
           </GridMain>
           {/* #fc34c0 */}
         </div>
