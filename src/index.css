@@ -145,5 +145,5 @@ code {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 1rem;
+  padding: 1rem 0;
 }

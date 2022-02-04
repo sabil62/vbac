@@ -5,27 +5,21 @@ import { GridContent } from "../components/tailwind/tailwindVariables";
 // import { useState } from "react";
 // import Toggle from "../components/UI/toggle";
 // import Complete from "../components/calculation form/complete";
-import LandingPage from "../components/landing page/landingPage";
+// import LandingPage from "../components/landing page/landingPage";
 
-import { Route, Switch } from "react-router-dom";
-
-const Layout = () => {
+const Layout = (props) => {
   // const [antenatalDisplay, setAntenatalDisplay] = useState(false);
 
   // const toggleCalculator = () => {
   //   setAntenatalDisplay(!antenatalDisplay);
   // };
   return (
-    <Grid>
+    <Grid grid12={props.grid12}>
       <GridOffset />
-      <GridContent>
+      <GridContent grid12={props.grid12}>
         {/* <Toggle toggle={antenatalDisplay} onToggle={toggleCalculator} /> */}
         {/* {antenatalDisplay ? <Antenatal /> : <Complete />} */}
-        <LandingPage />
-        <div className="my-4">
-          This calculator is base on the study published here
-        </div>
-        <h1>HELLO</h1>
+        {props.children}
       </GridContent>
       <GridOffset />
     </Grid>

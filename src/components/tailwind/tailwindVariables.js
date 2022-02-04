@@ -9,14 +9,17 @@ export const Label = styled.label(({ inline, inlineThree, error }) => [
   error && tw`text-red-700`,
 ]);
 
-export const Grid = styled.div(({ grid8 }) => [
+export const Grid = styled.div(({ grid12 }) => [
   tw`md:grid md:grid-cols-6 lg:grid-cols-10 md:gap-6`,
-  grid8 && tw`grid`,
+  grid12 && tw`md:grid-cols-10 lg:grid-cols-12`,
 ]);
 
 export const GridOffset = tw.div`md:col-span-1 lg:col-span-2`;
 
-export const GridContent = tw.div`md:col-span-4 lg:col-span-6 mt-5 sm:mt-6`;
+export const GridContent = styled.div(({ grid12 }) => [
+  tw`md:col-span-4 lg:col-span-6 mt-5 sm:mt-6`,
+  grid12 && tw`md:col-span-10 lg:col-span-8`,
+]);
 
 export const InnerGrid = tw.div`grid grid-cols-6 gap-6 p-2`;
 
@@ -70,3 +73,17 @@ export const buttonClassName =
 
 export const MainText = tw.div`text-3xl lg:text-6xl md:text-5xl font-bold tracking-[0.6px] text-center`;
 export const SmallText = tw.div`text-[0.7rem] md:text-[0.86rem] lg:text-[0.92rem] font-thin w-5/6 text-center my-3`;
+
+export const GridMain = tw.div`grid w-5/6 grid-cols-6 gap-4 mt-6`;
+export const GridInside = tw.div`col-span-6 md:col-span-3`;
+
+export const PinkBox = styled.div(({ low }) => [
+  tw`w-3/5 md:w-5/6 rounded-3xl h-[9rem]`,
+  `background-color:#fc34c0`,
+  low && `background-color:red`,
+]);
+
+export const WhiteText = styled.div(({ bold }) => [
+  tw`text-white font-light`,
+  bold && tw`font-bold`,
+]);

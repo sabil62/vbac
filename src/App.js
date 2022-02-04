@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Complete from "./components/calculation form/complete";
-import Layout from "./container/layout";
+import LandingPage from "./components/landing page/landingPage";
 import Antenatal from "./components/calculation form/antenatal";
 import { Route, Routes } from "react-router-dom";
 
@@ -10,7 +10,7 @@ function App() {
   return (
     <React.Fragment>
       <Routes>
-        <Route path="/" element={a && <Layout />} />
+        <Route path="/" element={a && <LandingPage />} />
         <Route path="/complete" element={<Complete />} />
         <Route path="/antenatal" element={<Antenatal />} />
       </Routes>
