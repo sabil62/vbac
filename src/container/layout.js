@@ -1,10 +1,10 @@
-import Complete from "../components/calculation form/complete";
 import { Grid } from "../components/tailwind/tailwindVariables";
 import { GridOffset } from "../components/tailwind/tailwindVariables";
 import { GridContent } from "../components/tailwind/tailwindVariables";
-import Antenatal from "../components/calculation form/antenatal";
-import { useState } from "react";
-import Toggle from "../components/UI/toggle";
+// import Antenatal from "../components/calculation form/antenatal";
+// import { useState } from "react";
+// import Toggle from "../components/UI/toggle";
+// import Complete from "../components/calculation form/complete";
 import LandingPage from "../components/landing page/landingPage";
 
 import { Route, Switch } from "react-router-dom";

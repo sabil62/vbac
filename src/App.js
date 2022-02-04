@@ -11,7 +11,6 @@ function App() {
     <React.Fragment>
       <Routes>
         <Route path="/" element={a && <Layout />} />
-
         <Route path="/complete" element={<Complete />} />
         <Route path="/antenatal" element={<Antenatal />} />
       </Routes>
