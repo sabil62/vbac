@@ -75,10 +75,10 @@ export const MainText = tw.div`text-3xl lg:text-6xl md:text-5xl font-bold tracki
 export const SmallText = tw.div`text-[0.7rem] md:text-[0.86rem] lg:text-[0.92rem] font-thin w-5/6 text-center my-3`;
 
 export const GridMain = tw.div`grid w-5/6 grid-cols-6 gap-4 mt-6 content-center box-border`;
-export const GridInside = tw.div`col-span-6 md:col-span-3`;
+export const GridInside = tw.div`col-span-6 md:col-span-3 flex justify-center items-center flex-col sm:block`;
 
 export const PinkBox = styled.div(({ low }) => [
-  tw`w-4/5 md:w-11/12 rounded-2xl lg:rounded-3xl cursor-pointer h-[6rem] md:h-[7rem] lg:h-[8rem] flex flex-col justify-center items-center leading-7 md:leading-8 lg:leading-9 hover:bg-pink-300`,
+  tw`mb-7 w-[16rem] sm:w-11/12 rounded-2xl lg:rounded-3xl cursor-pointer h-[6rem] md:h-[7rem] lg:h-[8rem] flex flex-col justify-center items-center leading-7 md:leading-8 lg:leading-9 hover:bg-pink-300`,
   `background-color:#fc34c0`,
   low && `background-color:#ffbcf2`,
   // low && tw`rounded-sm`,

@@ -11,6 +11,18 @@ import Layout from "../../container/layout";
 import { Link } from "react-router-dom";
 
 const LandingPage = () => {
+  let toolTipStyle = {
+    top: "-30px",
+    right: "0px",
+    opacity: 0.9,
+    verticalAlign: "top",
+    // transform: "scale(0.8)",
+  };
+  let text = {
+    cursor: "pointer",
+    fontSize: "0.8rem",
+    margin: "0 0 1rem 1rem",
+  };
   return (
     <React.Fragment>
       <Layout grid12>
@@ -35,6 +47,13 @@ const LandingPage = () => {
                   <WhiteText>Calculator</WhiteText>
                 </PinkBox>
               </Link>
+              <div className="large-text" style={text}>
+                <span className="text-2xl"> &#x1F6C8;</span> What is this?
+                <div className="tooltiptitle" style={toolTipStyle}>
+                  The complete calculator is designed for use in labour and
+                  includes more variables
+                </div>
+              </div>
             </GridInside>
             <GridInside>
               <Link to="/antenatal">
@@ -43,6 +62,13 @@ const LandingPage = () => {
                   <WhiteText>Calculator</WhiteText>
                 </PinkBox>
               </Link>
+              <div className="large-text" style={text}>
+                <span className="text-2xl"> &#x1F6C8;</span> What is this?
+                <div className="tooltiptitle" style={toolTipStyle}>
+                  The antenatal calculator is designed for use during the
+                  pregnancy prior to labour
+                </div>
+              </div>
             </GridInside>
           </GridMain>
           {/* #fc34c0 */}
