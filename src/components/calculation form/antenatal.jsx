@@ -6,7 +6,7 @@ import {
   Label,
   selectClassNameError,
 } from "../tailwind/tailwindVariables";
-import { InnerGrid } from "../tailwind/tailwindVariables";
+import { InnerGrid, Title } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
 import { GridTwo, Block } from "../tailwind/tailwindVariables";
 import { GridTwoSub } from "../tailwind/tailwindVariables";
@@ -213,6 +213,7 @@ const Antenatal = () => {
     <React.Fragment>
       <Layout>
         <form action="#" method="POST">
+          <Title className="text-stroke">Antenatal VBAC</Title>
           <ShadowClass>
             <div className="px-4 py-5 bg-white sm:p-6" ref={refUse}>
               <InnerGrid>

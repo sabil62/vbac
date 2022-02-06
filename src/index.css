@@ -154,3 +154,6 @@ code {
   flex-direction: column;
   /* padding: 1rem 0; */
 }
+.text-stroke {
+  -webkit-text-stroke: 0.6px rgba(0, 0, 0, 0.11);
+}

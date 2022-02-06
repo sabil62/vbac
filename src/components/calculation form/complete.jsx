@@ -15,7 +15,7 @@ import { Block } from "../tailwind/tailwindVariables";
 import { FlexDisplay } from "../tailwind/tailwindVariables";
 import { WidthBox } from "../tailwind/tailwindVariables";
 import { inputClassName } from "../tailwind/tailwindVariables";
-import { ShadowClass } from "../tailwind/tailwindVariables";
+import { ShadowClass, Title } from "../tailwind/tailwindVariables";
 import Layout from "../../container/layout";
 
 function Complete() {
@@ -234,6 +234,7 @@ function Complete() {
     <>
       <Layout>
         <form action="#" method="POST">
+          <Title className="text-stroke">Complete VBAC</Title>
           <ShadowClass>
             <div className="px-4 py-5 bg-white sm:p-6">
               <InnerGrid>

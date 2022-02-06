@@ -94,3 +94,5 @@ export const WhiteText = styled.div(({ bold }) => [
   tw`text-white font-light text-[1.2rem] md:text-[1.65rem] lg:text-[2rem]`,
   bold && tw`font-bold`,
 ]);
+
+export const Title = tw.div`font-bold text-[1.8rem] text-[color:var(--main-button-color)] text-center`;
