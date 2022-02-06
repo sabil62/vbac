@@ -7,6 +7,8 @@
 :root {
   --tooltip-color: palevioletred;
   --tooltip-down-color: palevioletred;
+  --main-button-color: #ffbcf2;
+  --main-button-hover-color: #fc34c0;
 }
 body {
   margin: 0;

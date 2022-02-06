@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 const LandingPage = () => {
   const [leftValue, setLeftValue] = useState("0px");
   const [topValue, setTopValue] = useState("30px");
-  const [color, setColor] = useState("rgb(50, 60, 70)");
 
   useEffect(() => {
     const handleLeftValue = () => {
@@ -39,9 +38,6 @@ const LandingPage = () => {
     verticalAlign: "top",
     "--tooltip-color": "rgb(50,60,70)",
     "--tooltip-down-color": "transparent",
-    // ["--tooltip-color" as any]: "rgb(50,60,70)",
-    // backgroundColor: "rgb(50,60,70)",
-    // transform: "scale(0.8)",
   };
   let text = {
     cursor: "pointer",

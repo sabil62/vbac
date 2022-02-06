@@ -402,7 +402,11 @@ const Antenatal = () => {
               </InnerGrid>
             </div>
             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <button className={buttonClassName} onClick={handleRefresh}>
+              <button
+                className={buttonClassName}
+                onClick={handleRefresh}
+                style={{ "--main-button-color": "#D9D9D9" }}
+              >
                 Refresh
               </button>
               <button

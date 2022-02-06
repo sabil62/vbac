@@ -14,11 +14,17 @@ export const Grid = styled.div(({ grid12 }) => [
   grid12 && tw`md:grid-cols-10 lg:grid-cols-12`,
 ]);
 
-export const GridOffset = tw.div`md:col-span-1 lg:col-span-2`;
+export const GridOffset = styled.div(({ three }) => [
+  tw`md:col-span-1 lg:col-span-2`,
+  three && tw`md:col-span-2 lg:col-span-3`,
+]);
 
-export const GridContent = styled.div(({ grid12 }) => [
-  tw`md:col-span-4 lg:col-span-6 mt-5 sm:mt-6`,
+// export const GridOffset = tw.div`md:col-span-1 lg:col-span-2`;
+
+export const GridContent = styled.div(({ grid12, grid8 }) => [
+  tw`md:col-span-4 lg:col-span-6 mt-5 sm:mt-6 lg:mx-[6%]`,
   grid12 && tw`md:col-span-10 lg:col-span-8`,
+  grid8 && tw`lg:col-span-6`,
 ]);
 
 export const InnerGrid = tw.div`grid grid-cols-6 gap-6 p-2`;
@@ -67,9 +73,9 @@ export const selectClassNameError =
   "mt-1 block w-full py-2 px-3 border-2 border-red-400 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm rounded-md bg-red-100";
 
 export const buttonClassName =
-  "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-4";
+  "inline-flex justify-center py-2 px-7 box-border w-[7.2rem] border border-[rgba(200,200,200,0.1)] shadow-sm text-lg font-extrabold rounded-md text-white bg-[color:var(--main-button-color)] hover:bg-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-4";
 
-// export const selectClassName = "mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm";
+// export const selectClassName = "mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none bg-[#FFBCF2] focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm";
 
 export const MainText = tw.div`text-3xl lg:text-6xl md:text-5xl font-bold tracking-[0.6px] text-center pb-2`;
 export const SmallText = tw.div`text-[0.7rem] md:text-[0.86rem] lg:text-[0.92rem] font-thin w-5/6 text-center my-3`;

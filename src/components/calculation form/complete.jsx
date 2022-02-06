@@ -662,6 +662,7 @@ function Complete() {
                 className={buttonClassName}
                 type="submit"
                 onClick={handleRefresh}
+                style={{ "--main-button-color": "#D9D9D9" }}
               >
                 Refresh
               </button>

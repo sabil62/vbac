@@ -1,3 +1,4 @@
+import React from "react";
 import { Grid } from "../components/tailwind/tailwindVariables";
 import { GridOffset } from "../components/tailwind/tailwindVariables";
 import { GridContent } from "../components/tailwind/tailwindVariables";
@@ -12,11 +13,17 @@ const Layout = (props) => {
 
   // const toggleCalculator = () => {
   //   setAntenatalDisplay(!antenatalDisplay);
+
+  let smallGrid12 = props.grid12;
+  if (props.grid12 && props.grid8) {
+    smallGrid12 = false;
+  }
   // };
+
   return (
     <Grid grid12={props.grid12}>
       <GridOffset />
-      <GridContent grid12={props.grid12}>
+      <GridContent grid8={props.grid8} grid12={smallGrid12}>
         {/* <Toggle toggle={antenatalDisplay} onToggle={toggleCalculator} /> */}
         {/* {antenatalDisplay ? <Antenatal /> : <Complete />} */}
         {props.children}
