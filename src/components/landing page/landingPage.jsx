@@ -74,8 +74,11 @@ const LandingPage = () => {
                   this?
                 </span>
                 <div className="tooltiptitle" style={toolTipStyle}>
-                  The complete calculator is designed for use in labour and
-                  includes more variables
+                  The complete calculator is designed for use
+                  <span className="text-[0.8rem] font-extrabold tracking-[0.3px]">
+                    {" "}
+                    in labour and includes more variables
+                  </span>
                 </div>
               </div>
             </GridInside>
@@ -92,8 +95,11 @@ const LandingPage = () => {
                   What is this?
                 </span>
                 <div className="tooltiptitle" style={toolTipStyle}>
-                  The antenatal calculator is designed for use during the
-                  pregnancy prior to labour
+                  The antenatal calculator is designed for use
+                  <span className="font-extrabold text-[0.8rem] tracking-[0.3px]">
+                    {" "}
+                    during the pregnancy prior to labour
+                  </span>
                 </div>
               </div>
             </GridInside>

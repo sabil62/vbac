@@ -9,6 +9,8 @@
   --tooltip-down-color: palevioletred;
   --main-button-color: #ffbcf2;
   --main-button-hover-color: #fc34c0;
+  --clevero-color: #83b8da;
+  --clevero-hover-color: #548caf;
 }
 body {
   margin: 0;
@@ -121,9 +123,9 @@ code {
   content: "";
   width: 0px;
   height: 0px;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-top: 18px solid var(--tooltip-down-color);
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+  border-top: 16px solid var(--tooltip-down-color);
   position: absolute;
   top: 20px;
   left: 9px;
@@ -156,4 +158,24 @@ code {
 }
 .text-stroke {
   -webkit-text-stroke: 0.6px rgba(0, 0, 0, 0.11);
+}
+
+.footer {
+  display: flex;
+  flex-direction: row-reverse;
+  font-weight: 700;
+  font-size: 1.02rem;
+  cursor: pointer;
+}
+
+.footer div {
+  display: inline-block;
+}
+
+.footer div span {
+  color: var(--clevero-color);
+}
+
+.footer div:hover span {
+  color: var(--clevero-hover-color);
 }
