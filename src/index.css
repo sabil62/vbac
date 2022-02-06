@@ -4,6 +4,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
+:root {
+  --tooltip-color: palevioletred;
+  --tooltip-down-color: palevioletred;
+}
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
@@ -103,7 +107,7 @@ code {
   padding: 0.4rem 0.6rem;
   color: white;
   font-weight: 300;
-  background-color: palevioletred;
+  background-color: var(--tooltip-color);
   border-radius: 6px;
   transform: scale(0);
   transition: transform 0.3s ease;
@@ -117,7 +121,7 @@ code {
   height: 0px;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-top: 18px solid palevioletred;
+  border-top: 18px solid var(--tooltip-down-color);
   position: absolute;
   top: 20px;
   left: 9px;
