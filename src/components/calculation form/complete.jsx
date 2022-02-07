@@ -70,7 +70,7 @@ function Complete() {
   const [displayError, setDisplayError] = useState(false);
 
   const [errors, setErrors] = useState({});
-  useEffect(() => {}, [errors]);
+  useEffect(() => {}, [errors, displayError]);
 
   const handleRefresh = (e) => {
     e.preventDefault();
@@ -159,11 +159,12 @@ function Complete() {
         errorss[key] = "Cannot Be Empty";
       }
     }
-
+    // setErrors((prevError) => ({ ...prevError, errorss }));
     setErrors(errorss);
 
-    if (errors) {
+    if (errorss) {
       setDisplayError(true);
+      console.log("ture here");
       setTimeout(() => {
         setDisplayError(false);
       }, 4000);
