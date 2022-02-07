@@ -132,7 +132,7 @@ const Antenatal = () => {
     }
     setErrors(errs);
 
-    if (errors) {
+    if (errs) {
       setDisplayError(true);
       setTimeout(() => {
         setDisplayError(false);

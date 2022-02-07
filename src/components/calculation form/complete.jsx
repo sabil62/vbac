@@ -164,7 +164,6 @@ function Complete() {
 
     if (errorss) {
       setDisplayError(true);
-      console.log("ture here");
       setTimeout(() => {
         setDisplayError(false);
       }, 4000);
