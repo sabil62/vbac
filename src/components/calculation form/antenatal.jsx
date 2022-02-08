@@ -37,19 +37,22 @@ const Antenatal = () => {
   const handleRefresh = (e) => {
     e.preventDefault();
     // window.location.reload();
-    for (let key in formData) {
+    let newForm = { ...formData };
+    for (let key in newForm) {
       if (key === "maternalAge" || key === "maternalBirth") {
-        formData[key] = "0";
+        newForm[key] = "0";
       } else if (key === "caesarean") {
-        formData[key] = 1;
+        newForm[key] = 1;
       } else if (key === "pregnancy") {
-        for (let inKey in formData[key]) {
-          formData[key][inKey] = 0;
+        for (let inKey in newForm[key]) {
+          newForm[key][inKey] = 0;
         }
       } else {
-        formData[key] = "";
+        newForm[key] = "";
       }
     }
+    setFormData(newForm);
+
     setAnswer("");
     setErrors("");
     setDisplayError(false);
@@ -132,7 +135,7 @@ const Antenatal = () => {
     }
     setErrors(errs);
 
-    if (errs) {
+    if (errors) {
       setDisplayError(true);
       setTimeout(() => {
         setDisplayError(false);

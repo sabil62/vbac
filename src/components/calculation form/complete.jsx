@@ -78,21 +78,23 @@ function Complete() {
     setErrors("");
     setDisplayError(false);
     setAnswer("");
-    for (let key in formData) {
+    let newForm = { ...formData };
+    for (let key in newForm) {
       if (key === "maternalAge" || key === "birthPlace") {
-        formData[key] = "0";
+        newForm[key] = "0";
       } else if (key == "previousCaesarean") {
-        formData[key] = 1;
+        newForm[key] = 1;
       } else if (key === "parity") {
-        formData[key] = 0;
+        newForm[key] = 0;
       } else if (key === "pregnancy") {
-        for (let inKey in formData[key]) {
-          formData[key][inKey] = 0;
+        for (let inKey in newForm[key]) {
+          newForm[key][inKey] = 0;
         }
       } else {
-        formData[key] = "";
+        newForm[key] = "";
       }
     }
+    setFormData(newForm);
   };
 
   const handleOnChange = (e, type) => {
@@ -162,7 +164,7 @@ function Complete() {
     // setErrors((prevError) => ({ ...prevError, errorss }));
     setErrors(errorss);
 
-    if (errorss) {
+    if (errors) {
       setDisplayError(true);
       setTimeout(() => {
         setDisplayError(false);
