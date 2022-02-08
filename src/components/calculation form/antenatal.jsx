@@ -208,9 +208,9 @@ const Antenatal = () => {
     };
   }, [refUse]);
 
-  if (size.width < 500) {
-    console.log(size);
-  }
+  // if (size.width < 500) {
+  //   console.log(size);
+  // }
 
   return (
     <React.Fragment>
