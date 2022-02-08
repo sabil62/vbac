@@ -1,6 +1,6 @@
 const Footer = () => {
   const goToClevero = () => {
-    window.location.href = "https://clevero.co/";
+    window.open("https://clevero.co/");
   };
   return (
     <div className="footer px-5 py-3 md:px-8 md:py-4 lg:pr-[4%]">

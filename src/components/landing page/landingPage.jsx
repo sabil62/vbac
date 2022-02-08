@@ -44,6 +44,9 @@ const LandingPage = () => {
     fontSize: "0.8rem",
     margin: "0 0 1rem 1rem",
   };
+  const goToResearchPaper = () => {
+    window.open("https://obgyn.onlinelibrary.wiley.com/doi/10.1111/ajo.13473");
+  };
   return (
     <React.Fragment>
       <Layout grid12>
@@ -54,8 +57,12 @@ const LandingPage = () => {
             when women aim for a vaginal birth after caesarean. It is based on a
             study published{" "}
             <a
-              href="https://obgyn.onlinelibrary.wiley.com/doi/10.1111/ajo.13473"
-              style={{ color: "#0097a7", textDecoration: "underline" }}
+              onClick={goToResearchPaper}
+              style={{
+                color: "#0097a7",
+                textDecoration: "underline",
+                cursor: "pointer",
+              }}
             >
               here
             </a>
