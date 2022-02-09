@@ -208,9 +208,10 @@ const Antenatal = () => {
     };
   }, [refUse]);
 
-  // if (size.width < 500) {
-  //   console.log(size);
-  // }
+  let toolTipColorStyle = {
+    "--tooltip-color": "rgb(50,60,70)",
+    "--tooltip-down-color": "rgb(50,60,70)",
+  };
 
   return (
     <React.Fragment>
@@ -265,7 +266,15 @@ const Antenatal = () => {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
                     Maternal BMI
-                    <div className="tooltiptitle">Body Mass Index</div>
+                    <div
+                      className="tooltiptitle"
+                      style={{
+                        "--tooltip-color": "rgb(50,60,70)",
+                        "--tooltip-down-color": "rgb(50,60,70)",
+                      }}
+                    >
+                      Body Mass Index
+                    </div>
                   </Label>
                   <input
                     type="number"
@@ -284,7 +293,7 @@ const Antenatal = () => {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
                     Number of previous Caesarean sections
-                    <div className="tooltiptitle">
+                    <div className="tooltiptitle" style={toolTipColorStyle}>
                       This calculatior is to be used by previous Caesarean
                     </div>
                   </Label>
@@ -304,7 +313,7 @@ const Antenatal = () => {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
                     Number of previous Vaginal Births{" "}
-                    <div className="tooltiptitle">
+                    <div className="tooltiptitle" style={toolTipColorStyle}>
                       Vaginal BIrths Greather than 20 weeks
                     </div>{" "}
                   </Label>
@@ -399,10 +408,10 @@ const Antenatal = () => {
                 </InnerSectionGrid>
                 {/* ----------------------Parity------------------- */}
                 {/* =IF(C17+C19=1,0,0)+IF(C17+C19=2,-0.1637306,0)+IF(C17+C19>2,0.0923186,0) */}
-                <InnerSectionGrid>
+                {/* <InnerSectionGrid>
                   <Label>Parity</Label>
                   <div>{parity}</div>
-                </InnerSectionGrid>
+                </InnerSectionGrid> */}
               </InnerGrid>
             </div>
             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">

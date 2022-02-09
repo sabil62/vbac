@@ -15,7 +15,11 @@ import { Block } from "../tailwind/tailwindVariables";
 import { FlexDisplay } from "../tailwind/tailwindVariables";
 import { WidthBox } from "../tailwind/tailwindVariables";
 import { inputClassName } from "../tailwind/tailwindVariables";
-import { ShadowClass, Title } from "../tailwind/tailwindVariables";
+import {
+  ShadowClass,
+  Title,
+  toolTipColorStyle,
+} from "../tailwind/tailwindVariables";
 import Layout from "../../container/layout";
 
 function Complete() {
@@ -284,7 +288,9 @@ function Complete() {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
                     Maternal BMI
-                    <div className="tooltiptitle">Body Mass Index</div>
+                    <div className="tooltiptitle" style={toolTipColorStyle}>
+                      Body Mass Index
+                    </div>
                   </Label>
                   <input
                     type="number"
@@ -301,7 +307,7 @@ function Complete() {
                 </InnerSectionGrid>
                 {/* -----------------Number of previous Caesarean Sections------------------------ */}
                 <InnerSectionGrid fullWidth>
-                  <Label className="large-text">
+                  <Label className="large-text" style={toolTipColorStyle}>
                     Number of previous Caesarean Sections
                     <div className="tooltiptitle" ref={refSize}>
                       Answer must be 1 or greater, this calculator is only to be
@@ -324,7 +330,7 @@ function Complete() {
                 </InnerSectionGrid>
                 {/* -----------------Number of previous Vaginal Births------------------------ */}
                 <InnerSectionGrid fullWidth>
-                  <Label className="large-text">
+                  <Label className="large-text" style={toolTipColorStyle}>
                     Number of Previous Vaginal Births
                     <div className="tooltiptitle" ref={refSmall}>
                       Only consider Vaginal Births where Gestational age greater
@@ -652,11 +658,11 @@ function Complete() {
                 </InnerSectionGrid>
                 {/* -----------------Parity------------------------ */}
 
-                <InnerSectionGrid fullWidth>
+                {/* <InnerSectionGrid fullWidth>
                   <Label>Parity</Label>
-                  <Label>{formData.parity}</Label>
-                  {/* Line number 107 and 128  */}
-                </InnerSectionGrid>
+                  <Label>{formData.parity}</Label> */}
+                {/* Line number 107 and 128  */}
+                {/* </InnerSectionGrid> */}
                 {/* -----------------Finish------------------------ */}
               </InnerGrid>
             </div>
