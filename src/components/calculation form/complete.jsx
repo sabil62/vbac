@@ -288,6 +288,10 @@ function Complete() {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
                     Maternal BMI
+                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                      {" "}
+                      &#x1F6C8;
+                    </span>
                     <div className="tooltiptitle" style={toolTipColorStyle}>
                       Body Mass Index
                     </div>
@@ -309,6 +313,10 @@ function Complete() {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text" style={toolTipColorStyle}>
                     Number of previous Caesarean Sections
+                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                      {" "}
+                      &#x1F6C8;
+                    </span>
                     <div className="tooltiptitle" ref={refSize}>
                       Answer must be 1 or greater, this calculator is only to be
                       used where previous Caesareans sections have occurred
@@ -332,6 +340,10 @@ function Complete() {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text" style={toolTipColorStyle}>
                     Number of Previous Vaginal Births
+                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                      {" "}
+                      &#x1F6C8;
+                    </span>
                     <div className="tooltiptitle" ref={refSmall}>
                       Only consider Vaginal Births where Gestational age greater
                       than 20 weeks

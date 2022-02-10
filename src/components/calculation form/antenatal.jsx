@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useRef } from "react/cjs/react.development";
+import React, { useEffect, useState, useRef } from "react";
+
 import {
   buttonClassName,
   inputClassNameError,
@@ -266,6 +266,14 @@ const Antenatal = () => {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
                     Maternal BMI
+                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                      {" "}
+                      &#x1F6C8;
+                    </span>
+                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                      {" "}
+                      &#x1F6C8;
+                    </span>
                     <div
                       className="tooltiptitle"
                       style={{
@@ -293,6 +301,10 @@ const Antenatal = () => {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
                     Number of previous Caesarean sections
+                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                      {" "}
+                      &#x1F6C8;
+                    </span>
                     <div className="tooltiptitle" style={toolTipColorStyle}>
                       This calculatior is to be used by previous Caesarean
                     </div>

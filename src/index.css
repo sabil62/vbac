@@ -135,6 +135,10 @@ code {
   transform: scale(0.9);
 }
 
+.opacityClass {
+  opacity: 0.1;
+}
+
 @media (max-width: 540px) {
   .tooltiptitle {
     top: -40px;
@@ -145,6 +149,9 @@ code {
   .tooltiptitle::before {
     top: 26px;
     transform: scale(0.85);
+  }
+  .opacityClass {
+    opacity: 1;
   }
 }
 
