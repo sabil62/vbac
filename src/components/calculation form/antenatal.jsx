@@ -398,20 +398,26 @@ const Antenatal = () => {
                       type="checkbox"
                       name="gestationalDiabeties"
                       value={0.0514722}
+                      id="gest"
                       onChange={(event) => handleOnChange(event, "pregnancy")}
                       checked={formData["pregnancy"]["gestationalDiabeties"]}
                     />
-                    <Label inline>Diabetes</Label>
+                    <Label inline for="gest">
+                      Diabetes
+                    </Label>
                   </Block>
                   <Block>
                     <input
                       type="checkbox"
                       name="hypertensiveDisease"
                       value={-0.164456}
+                      id="hyper"
                       onChange={(event) => handleOnChange(event, "pregnancy")}
                       checked={formData["pregnancy"]["hypertensiveDisease"]}
                     />
-                    <Label inline>Hypertensive DIsease</Label>
+                    <Label inline for="hyper">
+                      Hypertensive DIsease
+                    </Label>
                   </Block>
                   <Block>
                     <input
@@ -420,18 +426,24 @@ const Antenatal = () => {
                       value={-0.2731908}
                       onChange={(event) => handleOnChange(event, "pregnancy")}
                       checked={formData["pregnancy"]["fetalAnomally"]}
+                      id="fetal"
                     />
-                    <Label inline>Known fetal anomaly</Label>
+                    <Label inline for="fetal">
+                      Known fetal anomaly
+                    </Label>
                   </Block>
                   <Block>
                     <input
                       type="checkbox"
                       name="none"
                       value={1}
+                      id="non"
                       onChange={(event) => handleOnChange(event, "pregnancy")}
                       checked={formData["pregnancy"]["none"]}
                     />
-                    <Label inline>None</Label>
+                    <Label inline for="non">
+                      None
+                    </Label>
                   </Block>
                 </InnerSectionGrid>
                 {/* ----------------------Parity------------------- */}

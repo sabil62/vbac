@@ -384,22 +384,28 @@ function Complete() {
                       <input
                         type="radio"
                         name="caesareanSection"
+                        id="caesareanSection"
                         value={-1.390563}
                         onChange={handleOnChange}
                         checked={formData["caesareanSection"] === "-1.390563"}
                       />
 
-                      <Label inline>Yes</Label>
+                      <Label inline for="caesareanSection">
+                        Yes
+                      </Label>
                     </GridTwoSub>
                     <GridTwoSub>
                       <input
                         type="radio"
                         name="caesareanSection"
+                        id="caesareanSection2"
                         value={0}
                         onChange={handleOnChange}
                         checked={formData["caesareanSection"] === "0"}
                       />
-                      <Label inline>No</Label>
+                      <Label inline for="caesareanSection2">
+                        No
+                      </Label>
                     </GridTwoSub>
                   </GridTwo>
                 </InnerSectionGrid>
@@ -418,8 +424,9 @@ function Complete() {
                         onChange={(event) => handleOnChange(event, "pregnancy")}
                         value={0.1430483}
                         checked={formData["pregnancy"]["gestationalDiabeties"]}
+                        id="gestat"
                       />
-                      <Label inline>
+                      <Label inline for="gestat">
                         Gestational diabetes or pre-existing diabetes
                       </Label>
                     </BlockA>
@@ -431,8 +438,11 @@ function Complete() {
                       value={-0.1673155}
                       onChange={(event) => handleOnChange(event, "pregnancy")}
                       checked={formData["pregnancy"]["hypertensiveDisease"]}
+                      id="hyperten"
                     />
-                    <Label inline>Hypertensive Disease</Label>
+                    <Label inline for="hyperten">
+                      Hypertensive Disease
+                    </Label>
                   </Block>
                   <Block>
                     <input
@@ -441,8 +451,11 @@ function Complete() {
                       value={-0.2456491}
                       onChange={(event) => handleOnChange(event, "pregnancy")}
                       checked={formData["pregnancy"]["fetalAnomaly"]}
+                      id="fetalana"
                     />
-                    <Label inline>Known fetal anomaly</Label>
+                    <Label inline for="fetalana">
+                      Known fetal anomaly
+                    </Label>
                   </Block>
                   <Block>
                     <input
@@ -451,8 +464,11 @@ function Complete() {
                       value={0}
                       onChange={(event) => handleOnChange(event, "pregnancy")}
                       checked={formData["pregnancy"]["none"]}
+                      id="noneCom"
                     />
-                    <Label inline>None</Label>
+                    <Label inline for="noneCom">
+                      None
+                    </Label>
                   </Block>
                 </InnerSectionGrid>
                 {/* -----------------Gestational Age------------------------ */}
@@ -482,8 +498,11 @@ function Complete() {
                         onChange={handleOnChange}
                         value={0}
                         checked={formData["onsetLabour"] === "0"}
+                        id="onsetl"
                       />
-                      <Label inline>Spontaneous</Label>
+                      <Label inline for="onsetl">
+                        Spontaneous
+                      </Label>
                     </GridTwoSub>
                     <GridTwoSub>
                       <input
@@ -492,8 +511,11 @@ function Complete() {
                         onChange={handleOnChange}
                         value={-0.0940149}
                         checked={formData["onsetLabour"] === "-0.0940149"}
+                        id="onsetlB"
                       />
-                      <Label inline>Induced</Label>
+                      <Label inline for="onsetlB">
+                        Induced
+                      </Label>
                     </GridTwoSub>
                   </GridTwo>
                 </InnerSectionGrid>
@@ -511,10 +533,13 @@ function Complete() {
                         value={0}
                         onChange={handleOnChange}
                         checked={formData["analgesia"] === "0"}
+                        id="analC"
                       />{" "}
                     </GridTwoSub>
                     <GridTwoSub three>
-                      <Label inlineThree>Epidural or spinal analgesia</Label>
+                      <Label inlineThree for="analC">
+                        Epidural or spinal analgesia
+                      </Label>
                     </GridTwoSub>
 
                     <GridTwoSub one>
@@ -524,10 +549,11 @@ function Complete() {
                         onChange={handleOnChange}
                         value={1.096508}
                         checked={formData["analgesia"] === "1.096508"}
+                        id="analCb"
                       />
                     </GridTwoSub>
                     <GridTwoSub three>
-                      <Label inlineThree>
+                      <Label inlineThree for="analCb">
                         Nitrous or IM narcotic Analgesia
                       </Label>
                     </GridTwoSub>
@@ -540,10 +566,13 @@ function Complete() {
                         onChange={handleOnChange}
                         value={-0.0872948}
                         checked={formData["analgesia"] === "-0.0872948"}
+                        id="analCc"
                       />
                     </GridTwoSub>
                     <GridTwoSub three>
-                      <Label inlineThree>No analgesia</Label>
+                      <Label inlineThree for="analCc">
+                        No analgesia
+                      </Label>
                     </GridTwoSub>
                   </GridTwo>
                 </InnerSectionGrid>
@@ -560,8 +589,11 @@ function Complete() {
                         onChange={handleOnChange}
                         value={1.400273}
                         checked={formData["fetalPresentation"] === "1.400273"}
+                        id="fetalCa"
                       />
-                      <Label inline>Vertex</Label>
+                      <Label inline for="fetalCa">
+                        Vertex
+                      </Label>
                     </GridTwoSub>
                     <GridTwoSub>
                       <input
@@ -570,8 +602,11 @@ function Complete() {
                         onChange={handleOnChange}
                         value={0}
                         checked={formData["fetalPresentation"] === "0"}
+                        id="fetalCb"
                       />
-                      <Label inline>Non-vertex</Label>
+                      <Label inline for="fetalCb">
+                        Non-vertex
+                      </Label>
                     </GridTwoSub>
                   </GridTwo>
                 </InnerSectionGrid>
@@ -588,8 +623,11 @@ function Complete() {
                         onChange={handleOnChange}
                         value={-0.0949787}
                         checked={formData["cervicalRipening"] === "-0.0949787"}
+                        id="cervicalCa"
                       />
-                      <Label inline>Yes</Label>
+                      <Label inline for="cervicalCa">
+                        Yes
+                      </Label>
                     </GridTwoSub>
                     <GridTwoSub>
                       <input
@@ -598,8 +636,11 @@ function Complete() {
                         onChange={handleOnChange}
                         checked={formData["cervicalRipening"] === "0"}
                         value={0}
+                        id="cervicalCb"
                       />
-                      <Label inline>No</Label>
+                      <Label inline for="cervicalCb">
+                        No
+                      </Label>
                     </GridTwoSub>
                   </GridTwo>
                 </InnerSectionGrid>
@@ -614,8 +655,11 @@ function Complete() {
                         onChange={handleOnChange}
                         value={0.191545}
                         checked={formData["oxytocin"] === "0.191545"}
+                        id="oxytA"
                       />
-                      <Label inline>Yes</Label>
+                      <Label inline for="oxytA">
+                        Yes
+                      </Label>
                     </GridTwoSub>
                     <GridTwoSub>
                       <input
@@ -624,8 +668,11 @@ function Complete() {
                         onChange={handleOnChange}
                         value={0}
                         checked={formData["oxytocin"] === "0"}
+                        id="oxytB"
                       />
-                      <Label inline>No</Label>
+                      <Label inline for="oxytB">
+                        No
+                      </Label>
                     </GridTwoSub>
                   </GridTwo>
                 </InnerSectionGrid>
@@ -643,8 +690,11 @@ function Complete() {
                         onChange={handleOnChange}
                         value={0}
                         checked={formData["fetalWeight"] === "0"}
+                        id="fetalA"
                       />
-                      <Label inline>Under 3000g</Label>
+                      <Label inline for="fetalA">
+                        Under 3000g
+                      </Label>
                     </WidthBox>
                     <WidthBox>
                       <input
@@ -653,8 +703,11 @@ function Complete() {
                         onChange={handleOnChange}
                         value={0.0612233}
                         checked={formData["fetalWeight"] === "0.0612233"}
+                        id="fetalB"
                       />
-                      <Label inline>3000 - 3499g</Label>
+                      <Label inline for="fetalB">
+                        3000 - 3499g
+                      </Label>
                     </WidthBox>
                     <WidthBox>
                       <input
@@ -663,8 +716,12 @@ function Complete() {
                         onChange={handleOnChange}
                         value={-0.1181972}
                         checked={formData["fetalWeight"] === "-0.1181972"}
+                        id="fetalC"
                       />
-                      <Label inline> 3500-3999g</Label>
+                      <Label inline for="fetalC">
+                        {" "}
+                        3500-3999g
+                      </Label>
                     </WidthBox>
                     <WidthBox>
                       <input
@@ -674,8 +731,11 @@ function Complete() {
                         id="fetalWeight1"
                         value={-0.5706141}
                         checked={formData["fetalWeight"] === "-0.5706141"}
+                        id="fetalD"
                       />
-                      <Label inline>4000g or more</Label>
+                      <Label inline for="fetalD">
+                        4000g or more
+                      </Label>
                     </WidthBox>
                   </FlexDisplay>
                 </InnerSectionGrid>
