@@ -362,21 +362,27 @@ const Antenatal = () => {
                       <input
                         type="radio"
                         name="caesareanA"
+                        id="caesareanA"
                         value={-1.35218}
                         onChange={handleOnChange}
                         checked={formData["caesareanA"] === "-1.35218"}
                       />
-                      <Label inline>Yes</Label>
+                      <Label inline for="caesareanA">
+                        Yes
+                      </Label>
                     </GridTwoSub>
                     <GridTwoSub>
                       <input
                         type="radio"
                         name="caesareanA"
+                        id="caesareanB"
                         value={0}
                         onChange={handleOnChange}
                         checked={formData["caesareanA"] === "0"}
                       />
-                      <Label inline>No</Label>
+                      <Label inline for="caesareanB">
+                        No
+                      </Label>
                     </GridTwoSub>
                   </GridTwo>
                 </InnerSectionGrid>
