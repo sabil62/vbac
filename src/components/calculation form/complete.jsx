@@ -525,8 +525,8 @@ function Complete() {
                   <Label error={errors["analgesia"]}>
                     Analgesia. Please select all that apply.
                   </Label>
-                  <GridTwo twelve>
-                    <GridTwoSub one>
+                  <FlexDisplay className="px-2 py-[0.2rem] sm:py-[0.6rem] ">
+                    <div>
                       <input
                         type="radio"
                         name="analgesia"
@@ -534,15 +534,13 @@ function Complete() {
                         onChange={handleOnChange}
                         checked={formData["analgesia"] === "0"}
                         id="analC"
+                        className="mr-[0.8rem]"
                       />{" "}
-                    </GridTwoSub>
-                    <GridTwoSub three>
                       <Label inlineThree for="analC">
                         Epidural or spinal analgesia
                       </Label>
-                    </GridTwoSub>
-
-                    <GridTwoSub one>
+                    </div>
+                    <div>
                       <input
                         type="radio"
                         name="analgesia"
@@ -550,15 +548,13 @@ function Complete() {
                         value={1.096508}
                         checked={formData["analgesia"] === "1.096508"}
                         id="analCb"
+                        className="mr-[0.8rem]"
                       />
-                    </GridTwoSub>
-                    <GridTwoSub three>
                       <Label inlineThree for="analCb">
                         Nitrous or IM narcotic Analgesia
                       </Label>
-                    </GridTwoSub>
-
-                    <GridTwoSub one>
+                    </div>
+                    <div>
                       <input
                         type="radio"
                         name="analgesia"
@@ -566,15 +562,14 @@ function Complete() {
                         onChange={handleOnChange}
                         value={-0.0872948}
                         checked={formData["analgesia"] === "-0.0872948"}
+                        className="mr-[0.8rem]"
                         id="analCc"
                       />
-                    </GridTwoSub>
-                    <GridTwoSub three>
-                      <Label inlineThree for="analCc">
+                      <Label inlineThree for="analCc" className="mr-4">
                         No analgesia
                       </Label>
-                    </GridTwoSub>
-                  </GridTwo>
+                    </div>
+                  </FlexDisplay>
                 </InnerSectionGrid>
                 {/* -----------------Fetal Presentation------------------------ */}
                 <InnerSectionGrid fullWidth>
