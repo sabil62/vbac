@@ -87,7 +87,7 @@ function Complete() {
     for (let key in newForm) {
       if (key === "maternalAge" || key === "birthPlace") {
         newForm[key] = "0";
-      } else if (key == "previousCaesarean") {
+      } else if (key === "previousCaesarean") {
         newForm[key] = 1;
       } else if (key === "parity") {
         newForm[key] = 0;
