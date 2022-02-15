@@ -95,7 +95,7 @@ export const WhiteText = styled.div(({ bold }) => [
   bold && tw`font-bold`,
 ]);
 
-export const Title = tw.div`font-bold text-[1.8rem] text-[color:var(--main-button-color)] text-center`;
+export const Title = tw.div`py-1 px-3 md:px-5 font-bold text-[1.8rem] text-[color:var(--main-button-color)] flex justify-between items-center`;
 
 export const toolTipColorStyle = {
   "--tooltip-color": "rgb(50,60,70)",

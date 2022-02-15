@@ -21,6 +21,7 @@ import {
   toolTipColorStyle,
 } from "../tailwind/tailwindVariables";
 import Layout from "../../container/layout";
+import Home from "../../image/home.jpg";
 
 function Complete() {
   const [answer, setAnswer] = useState("");
@@ -226,6 +227,10 @@ function Complete() {
     }
   };
 
+  const goHome = () => {
+    window.location.href = "/";
+  };
+
   const refSmall = useRef(null);
   // useEffect(() => {}, [refSmall]);
   // if (refSmall.current.offsetWidth < 400) {
@@ -240,7 +245,13 @@ function Complete() {
     <>
       <Layout>
         <form action="#" method="POST">
-          <Title className="text-stroke">Complete VBAC</Title>
+          <Title className="text-stroke">
+            {" "}
+            <span> Complete VBAC</span>
+            <span onClick={goHome}>
+              <img src={Home} alt="home image" className="image-size" />
+            </span>
+          </Title>
           <ShadowClass>
             <div className="px-4 py-5 bg-white sm:p-6">
               <InnerGrid>

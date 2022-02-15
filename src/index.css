@@ -135,10 +135,6 @@ code {
   transform: scale(0.9);
 }
 
-.opacityClass {
-  opacity: 0.1;
-}
-
 @media (max-width: 540px) {
   .tooltiptitle {
     top: -40px;
@@ -149,9 +145,6 @@ code {
   .tooltiptitle::before {
     top: 26px;
     transform: scale(0.85);
-  }
-  .opacityClass {
-    opacity: 1;
   }
 }
 
@@ -185,4 +178,10 @@ code {
 
 .footer div:hover span {
   color: var(--clevero-hover-color);
+}
+
+.image-size {
+  height: 33px;
+  cursor: pointer;
+  width: 33px;
 }

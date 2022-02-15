@@ -15,6 +15,7 @@ import { inputClassName } from "../tailwind/tailwindVariables";
 import { selectClassName } from "../tailwind/tailwindVariables";
 
 import Layout from "../../container/layout";
+import Home from "../../image/home.jpg";
 
 const Antenatal = () => {
   //After form is submit change string to number parseInt()
@@ -213,11 +214,20 @@ const Antenatal = () => {
     "--tooltip-down-color": "rgb(50,60,70)",
   };
 
+  const goHome = () => {
+    window.location.href = "/";
+  };
+
   return (
     <React.Fragment>
       <Layout>
         <form action="#" method="POST">
-          <Title className="text-stroke">Antenatal VBAC</Title>
+          <Title className="text-stroke">
+            <span> Antenatal VBAC</span>
+            <span onClick={goHome}>
+              <img src={Home} alt="home image" className="image-size" />
+            </span>
+          </Title>
           <ShadowClass>
             <div className="px-4 py-5 bg-white sm:p-6" ref={refUse}>
               <InnerGrid>
