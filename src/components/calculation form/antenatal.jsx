@@ -227,10 +227,15 @@ const Antenatal = () => {
     window.location.href = "/";
   };
 
+  //stop scroll behaviour
+  const stopScroll = (e) => {
+    e.target.blur();
+  };
+
   return (
     <React.Fragment>
       <Layout>
-        <form action="#" method="POST" style={{ height: "94vh" }}>
+        <form action="#" method="POST" className="md:h-[94vh] mb-5">
           <Title className="text-stroke">
             <span> Antenatal VBAC calculator</span>
             <span onClick={goHome}>
@@ -322,6 +327,7 @@ const Antenatal = () => {
                         : inputClassName
                     }
                     onChange={handleOnChange}
+                    onWheel={stopScroll}
                   />
                 </InnerSectionGrid>
                 {/* ---------------------Number of previous Caesarean sections------------- */}
@@ -345,6 +351,7 @@ const Antenatal = () => {
                       errors["caesarean"] ? inputClassNameError : inputClassName
                     }
                     onChange={handleOnChange}
+                    onWheel={stopScroll}
                     title="This calculator is to be used by previous Caesarean"
                   />
                 </InnerSectionGrid>
@@ -367,6 +374,7 @@ const Antenatal = () => {
                         ? inputClassNameError
                         : inputClassName
                     }
+                    onWheel={stopScroll}
                   />
                 </InnerSectionGrid>
                 {/* ---------------------------Was the last birth a Caesarean section?----------- */}

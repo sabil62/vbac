@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   BlockA,
+  BottomFormFlex,
   buttonClassName,
   clickhere,
   inputClassNameError,
@@ -169,6 +170,24 @@ function Complete() {
         errorss[key] = "Cannot Be Empty";
       }
     }
+    if (formData["previousCaesarean"] < 1) {
+      formIsValid = false;
+      errorss["previousCaesarean"] = "Value must be greater than 1";
+      console.log("down");
+    }
+    if (formData["vaginalBirths"] < 0) {
+      formIsValid = false;
+      errorss["vaginalBirths"] = "Value must be greater than 0";
+      console.log("this");
+    }
+    if (formData["maternalBmi"] < 10 || formData["maternalBmi"] > 70) {
+      formIsValid = false;
+      errorss["maternalBmi"] = "Value should be between 10 and 70";
+    }
+    if (formData["gestationalAge"] < 37 || formData["gestationalAge"] > 44) {
+      formIsValid = false;
+      errorss["gestationalAge"] = "Value should be between 37 and 44";
+    }
     // setErrors((prevError) => ({ ...prevError, errorss }));
     setErrors(errorss);
 
@@ -232,6 +251,11 @@ function Complete() {
 
   const goHome = () => {
     window.location.href = "/";
+  };
+
+  //for scroll wheel in input number
+  const stopScroll = (e) => {
+    e.target.blur();
   };
 
   const refSmall = useRef(null);
@@ -322,6 +346,8 @@ function Complete() {
                   <input
                     type="number"
                     name="maternalBmi"
+                    min={10}
+                    max={70}
                     onChange={handleOnChange}
                     value={formData.maternalBmi}
                     title="Body Mass Index"
@@ -330,6 +356,7 @@ function Complete() {
                         ? inputClassNameError
                         : inputClassName
                     }
+                    onWheel={stopScroll}
                   />
                 </InnerSectionGrid>
                 {/* -----------------Number of previous Caesarean Sections------------------------ */}
@@ -347,16 +374,17 @@ function Complete() {
                   </Label>
                   <input
                     type="number"
+                    min={1}
                     name="previousCaesarean"
                     value={formData.previousCaesarean}
                     onChange={handleOnChange}
                     title="Answer must be 1 or greater, this calculator is only to be used where previous Caesareans sections have occurred"
-                    min={1}
                     className={
                       errors["previousCaesarean"]
                         ? inputClassNameError
                         : inputClassName
                     }
+                    onWheel={stopScroll}
                   />
                 </InnerSectionGrid>
                 {/* -----------------Number of previous Vaginal Births------------------------ */}
@@ -368,21 +396,26 @@ function Complete() {
                       &#x1F6C8;
                     </span>
                     <div className="tooltiptitle" ref={refSmall}>
-                      Only consider Vaginal Births where Gestational age greater
-                      than 20 weeks
+                      {/* Only consider Vaginal Births where Gestational age greater
+                      than 20 weeks */}
+                      Response must be between 37 and 44 weeks. This calculator
+                      was created based on term singleton births
                     </div>
                   </Label>
                   <input
                     type="number"
                     name="vaginalBirths"
+                    min={37}
+                    max={44}
                     value={formData.vaginalBirths}
                     onChange={handleOnChange}
-                    title="Only consider Vaginal Births where Gestational age > than 20 weeks"
+                    title="Response must be between 37 and 44 weeks. This calculator was created based on term singleton births"
                     className={
                       errors["vaginalBirths"]
                         ? inputClassNameError
                         : inputClassName
                     }
+                    onWheel={stopScroll}
                   />
                 </InnerSectionGrid>
 
@@ -497,6 +530,7 @@ function Complete() {
                         ? inputClassNameError
                         : inputClassName
                     }
+                    onWheel={stopScroll}
                   />
                 </InnerSectionGrid>
                 {/* -----------------Onset of Labour------------------------ */}
@@ -756,34 +790,36 @@ function Complete() {
                 {/* -----------------Finish------------------------ */}
               </InnerGrid>
             </div>
-            <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <button
-                className={buttonClassName}
-                type="submit"
-                onClick={handleRefresh}
-                style={{ "--main-button-color": "#D9D9D9" }}
-              >
-                Refresh
-              </button>
-              <button
-                type="submit"
-                onClick={handleSubmit}
-                className={buttonClassName}
-                style={{ backgroundColor: "var(--landing-page-main-button)" }}
-              >
-                Calculate
-              </button>
-            </div>
+            <BottomFormFlex>
+              {answer && !Object.keys(errors).length > 0 ? (
+                <div className="text-[0.8rem] lg:text-[1rem]">
+                  Likelihood of achieving VBAC is
+                  <span className="text-[1.2rem] lg:text-[1.5rem] font-semibold">
+                    {" " + Math.floor(answer * 100) + "%"}
+                  </span>
+                </div>
+              ) : null}
+              <div className="flex justify-between items-center">
+                <button
+                  className={buttonClassName}
+                  type="submit"
+                  onClick={handleRefresh}
+                  style={{ "--main-button-color": "#D9D9D9" }}
+                >
+                  Refresh
+                </button>
+                <button
+                  type="submit"
+                  onClick={handleSubmit}
+                  className={buttonClassName}
+                  style={{ backgroundColor: "var(--landing-page-main-button)" }}
+                >
+                  Calculate
+                </button>
+              </div>
+            </BottomFormFlex>
           </ShadowClass>
         </form>
-        {answer && !Object.keys(errors).length > 0 ? (
-          <div className="display-box">
-            Likelihood of achieving VBAC is
-            <span style={{ fontSize: "1.7rem" }}>
-              {" " + (parseFloat(answer) * 100).toFixed(2) + "%"}
-            </span>
-          </div>
-        ) : null}
 
         {Object.keys(errors).length > 0
           ? displayError && (

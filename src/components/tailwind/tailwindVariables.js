@@ -73,7 +73,7 @@ export const selectClassNameError =
   "mt-1 block w-full py-2 px-3 border-2 border-red-400 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm rounded-md bg-red-100";
 
 export const buttonClassName =
-  "inline-flex justify-center py-2 px-7 box-border w-[7.2rem] border border-[rgba(200,200,200,0.1)] shadow-sm text-lg font-extrabold rounded-md text-white bg-[color:var(--main-button-color)] hover:bg-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-4 outline-none";
+  "inline-flex justify-center py-2 text-center box-border w-[5rem] lg:w-[6rem] xl:w-[7.2rem] border border-[rgba(200,200,200,0.1)] shadow-sm text-[0.92rem] lg:text-[1.1rem] xl:text-lg font-extrabold rounded-md text-white bg-[color:var(--main-button-color)] hover:bg-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-2 lg:ml-4 outline-none";
 
 // export const selectClassName = "mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none bg-[#FFBCF2] focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm";
 
@@ -96,16 +96,18 @@ export const WhiteText = styled.div(({ bold }) => [
 ]);
 
 export const Title = styled.div(({ hotpink }) => [
-  tw`py-1 px-3 md:px-5 font-bold text-[1.8rem] text-[color:var(--main-button-color)] flex justify-between items-center`,
+  tw`py-1 px-3 md:px-5 font-bold text-[1.4rem] md:text-[1.8rem] text-[color:var(--main-button-color)] flex justify-between items-center`,
   hotpink && tw`text-[color:var(--landing-page-main-button)]`,
 ]);
+
+export const BottomFormFlex = tw.div`bg-gray-50 px-4 py-3 flex justify-between items-center`;
 
 export const toolTipColorStyle = {
   "--tooltip-color": "rgb(50,60,70)",
   "--tooltip-down-color": "rgb(50,60,70)",
 };
 
-export const Subtitle = tw.div`font-medium text-[0.79rem] tracking-[0.01rem] pt-1 pb-2 px-3 md:px-5 text-[rgb(100,100,100)]`;
+export const Subtitle = tw.div`font-medium text-justify text-[0.7rem] md:text-[0.79rem] tracking-[0.01rem] pt-1 pb-3 px-3 md:px-5 text-[rgb(100,100,100)]`;
 
 export const clickhere = "text-pink-600 hover:text-pink-500 font-semibold ";
 
