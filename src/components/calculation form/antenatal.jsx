@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import {
+  BottomFormFlex,
   buttonClassName,
   inputClassNameError,
   Label,
@@ -143,6 +144,22 @@ const Antenatal = () => {
         isFormValid = false;
       }
     }
+
+    if (formData["previousVaginal"] < 0) {
+      isFormValid = false;
+      errs["previousVaginal"] =
+        "Previous Vaginal births should be greater than 0";
+    }
+    if (formData["maternalBmi"] > 70 || formData["maternalBmi"] < 10) {
+      isFormValid = false;
+      errs["maternalBmi"] = "Maternal BMI should be between 10 and 70";
+    }
+    if (formData["caesarean"] < 1) {
+      isFormValid = false;
+      errs["caesarean"] =
+        "Number of previous caesareans should be greater or equal to 1";
+    }
+
     setErrors(errs);
 
     if (errors) {
@@ -256,7 +273,7 @@ const Antenatal = () => {
                 {/* -----------------maternal age------------------------ */}
 
                 <InnerSectionGrid fullWidth>
-                  <Label>Maternal Age</Label>
+                  <Label>Maternal age</Label>
                   <select
                     name="maternalAge"
                     className={
@@ -302,10 +319,6 @@ const Antenatal = () => {
                       {" "}
                       &#x1F6C8;
                     </span>
-                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
-                      {" "}
-                      &#x1F6C8;
-                    </span>
                     <div
                       className="tooltiptitle"
                       style={{
@@ -319,6 +332,8 @@ const Antenatal = () => {
                   <input
                     type="number"
                     name="maternalBmi"
+                    min={10}
+                    max={70}
                     value={formData.maternalBmi}
                     title="Body Mass Index"
                     className={
@@ -333,13 +348,15 @@ const Antenatal = () => {
                 {/* ---------------------Number of previous Caesarean sections------------- */}
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
-                    Number of previous Caesarean sections
+                    Number of previous caesarean sections
                     <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
                       {" "}
                       &#x1F6C8;
                     </span>
                     <div className="tooltiptitle" style={toolTipColorStyle}>
-                      This calculator is to be used by previous Caesarean
+                      Response must be one or more. This calculator is only
+                      suitable for women who have previously had a Caesarean
+                      section.
                     </div>
                   </Label>
                   <input
@@ -352,21 +369,23 @@ const Antenatal = () => {
                     }
                     onChange={handleOnChange}
                     onWheel={stopScroll}
-                    title="This calculator is to be used by previous Caesarean"
+                    title="Response must be one or more. This calculator is only suitable for women who have previously had a Caesarean section."
                   />
                 </InnerSectionGrid>
                 {/* -----------------------Number of previous vaginal births------------- */}
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
-                    Number of previous Vaginal Births{" "}
+                    Number of previous vaginal births{" "}
                     <div className="tooltiptitle" style={toolTipColorStyle}>
-                      Vaginal BIrths Greather than 20 weeks
+                      Number of previous vaginal births beyond 20 weeks'
+                      gestation
                     </div>{" "}
                   </Label>
                   <input
                     type="number"
                     name="previousVaginal"
-                    title="Vaginal Births Greater than 20 weeks"
+                    min={0}
+                    title="Number of previous vaginal births beyond 20 weeks' gestation"
                     value={formData.previousVaginal}
                     onChange={handleOnChange}
                     className={
@@ -380,7 +399,7 @@ const Antenatal = () => {
                 {/* ---------------------------Was the last birth a Caesarean section?----------- */}
                 <InnerSectionGrid fullWidth>
                   <Label error={errors["caesareanA"]}>
-                    Was the last birth a Caesarean section?
+                    Was the last birth a caesarean section?
                   </Label>
                   <GridTwo>
                     <GridTwoSub>
@@ -479,37 +498,42 @@ const Antenatal = () => {
                 </InnerSectionGrid> */}
               </InnerGrid>
             </div>
-            <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <button
-                className={buttonClassName}
-                onClick={handleRefresh}
-                style={{ "--main-button-color": "#D9D9D9" }}
-              >
-                Refresh
-              </button>
-              <button
-                type="submit"
-                className={buttonClassName}
-                onClick={handleOnSubmit}
-              >
-                Calculate
-              </button>
-            </div>
+            <BottomFormFlex>
+              {answer && !Object.keys(errors).length > 0 ? (
+                <div className="text-[0.8rem] lg:text-[1rem]">
+                  {" "}
+                  Likelihood of achieving VBAC is
+                  <span className="text-[1.2rem] lg:text-[1.5rem] font-semibold">
+                    {" " + Math.floor(answer * 100) + "%"}
+                  </span>
+                </div>
+              ) : (
+                <div className="opacity-0">_</div>
+              )}
+              <div>
+                <button
+                  className={buttonClassName}
+                  onClick={handleRefresh}
+                  style={{ "--main-button-color": "#D9D9D9" }}
+                >
+                  Refresh
+                </button>
+                <button
+                  type="submit"
+                  className={buttonClassName}
+                  onClick={handleOnSubmit}
+                >
+                  Calculate
+                </button>
+              </div>
+            </BottomFormFlex>
           </ShadowClass>
         </form>
-        {answer && !Object.keys(errors).length > 0 ? (
-          <div className="display-box">
-            {" "}
-            Likelihood of achieving VBAC is
-            <span style={{ fontSize: "1.7rem" }}>
-              {" " + (parseFloat(answer) * 100).toFixed(2) + "%"}
-            </span>
-          </div>
-        ) : null}
+
         {Object.keys(errors).length > 0
           ? displayError && (
               <div className="display-box box-red">
-                Please Complete all the Fields
+                {errors[Object.keys(errors)[0]]}
               </div>
             )
           : null}
