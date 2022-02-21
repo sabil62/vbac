@@ -167,26 +167,28 @@ function Complete() {
     for (let key in formData) {
       if (!formData[key]) {
         formIsValid = false;
-        errorss[key] = "Cannot Be Empty";
+        errorss[key] = "Please Complete all the fields";
       }
     }
     if (formData["previousCaesarean"] < 1) {
       formIsValid = false;
-      errorss["previousCaesarean"] = "Value must be greater than 1";
+      errorss["previousCaesarean"] =
+        "Previous Caesarean value must be greater than 1";
       console.log("down");
     }
     if (formData["vaginalBirths"] < 0) {
       formIsValid = false;
-      errorss["vaginalBirths"] = "Value must be greater than 0";
+      errorss["vaginalBirths"] = "Vaginal Births value must be greater than 0";
       console.log("this");
     }
     if (formData["maternalBmi"] < 10 || formData["maternalBmi"] > 70) {
       formIsValid = false;
-      errorss["maternalBmi"] = "Value should be between 10 and 70";
+      errorss["maternalBmi"] = "Maternal BMI value should be between 10 and 70";
     }
     if (formData["gestationalAge"] < 37 || formData["gestationalAge"] > 44) {
       formIsValid = false;
-      errorss["gestationalAge"] = "Value should be between 37 and 44";
+      errorss["gestationalAge"] =
+        "Gestational Age value should be between 37 and 44";
     }
     // setErrors((prevError) => ({ ...prevError, errorss }));
     setErrors(errorss);
@@ -293,7 +295,7 @@ function Complete() {
               <InnerGrid>
                 {/* -----------------maternal age------------------------ */}
                 <InnerSectionGrid fullWidth>
-                  <Label>Maternal Age</Label>
+                  <Label>Maternal age</Label>
 
                   <select
                     name="maternalAge"
@@ -313,7 +315,7 @@ function Complete() {
                 </InnerSectionGrid>
                 {/* -----------------maternal place of birth------------------------ */}
                 <InnerSectionGrid fullWidth>
-                  <Label>Maternal Place of Birth</Label>
+                  <Label>Maternal place of birth</Label>
                   <select
                     name="birthPlace"
                     onChange={handleOnChange}
@@ -362,14 +364,15 @@ function Complete() {
                 {/* -----------------Number of previous Caesarean Sections------------------------ */}
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text" style={toolTipColorStyle}>
-                    Number of previous Caesarean Sections
+                    Number of previous caesarean sections
                     <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
                       {" "}
                       &#x1F6C8;
                     </span>
                     <div className="tooltiptitle" ref={refSize}>
-                      Answer must be 1 or greater, this calculator is only to be
-                      used where previous Caesareans sections have occurred
+                      Response must be one or more. This calculator is only
+                      suitable for women who have previously had a Caesarean
+                      section
                     </div>
                   </Label>
                   <input
@@ -378,7 +381,7 @@ function Complete() {
                     name="previousCaesarean"
                     value={formData.previousCaesarean}
                     onChange={handleOnChange}
-                    title="Answer must be 1 or greater, this calculator is only to be used where previous Caesareans sections have occurred"
+                    title="Response must be one or more. This calculator is only suitable for women who have previously had a Caesarean section"
                     className={
                       errors["previousCaesarean"]
                         ? inputClassNameError
@@ -390,16 +393,14 @@ function Complete() {
                 {/* -----------------Number of previous Vaginal Births------------------------ */}
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text" style={toolTipColorStyle}>
-                    Number of Previous Vaginal Births
+                    Number of previous vaginal births
                     <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
                       {" "}
                       &#x1F6C8;
                     </span>
                     <div className="tooltiptitle" ref={refSmall}>
-                      {/* Only consider Vaginal Births where Gestational age greater
-                      than 20 weeks */}
-                      Response must be between 37 and 44 weeks. This calculator
-                      was created based on term singleton births
+                      Number of previous vaginal births beyond 20 weeks'
+                      gestation
                     </div>
                   </Label>
                   <input
@@ -409,7 +410,7 @@ function Complete() {
                     max={44}
                     value={formData.vaginalBirths}
                     onChange={handleOnChange}
-                    title="Response must be between 37 and 44 weeks. This calculator was created based on term singleton births"
+                    title="Number of previous vaginal births beyond 20 weeks' gestation"
                     className={
                       errors["vaginalBirths"]
                         ? inputClassNameError
@@ -422,7 +423,7 @@ function Complete() {
                 {/* --------------Was the last birth a Caesarean section?------------------ */}
                 <InnerSectionGrid fullWidth>
                   <Label error={errors["caesareanSection"]}>
-                    Was the last birth a Caesarean section?
+                    Was the last birth a caesarean section?
                   </Label>
                   <GridTwo>
                     <GridTwoSub>
@@ -519,7 +520,17 @@ function Complete() {
                 {/* -----------------Gestational Age------------------------ */}
 
                 <InnerSectionGrid fullWidth>
-                  <Label>Gestational Age</Label>
+                  <Label className="large-text">
+                    Gestational age
+                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                      {" "}
+                      &#x1F6C8;
+                    </span>
+                    <div className="tooltiptitle">
+                      Response must be between 37 and 44 weeks. This calculator
+                      was created based on term singleton births
+                    </div>
+                  </Label>
                   <input
                     type="number"
                     name="gestationalAge"
@@ -530,12 +541,14 @@ function Complete() {
                         ? inputClassNameError
                         : inputClassName
                     }
+                    title="Response must be between 37 and 44 weeks. This calculator
+                    was created based on term singleton births"
                     onWheel={stopScroll}
                   />
                 </InnerSectionGrid>
                 {/* -----------------Onset of Labour------------------------ */}
                 <InnerSectionGrid fullWidth>
-                  <Label error={errors["onsetLabour"]}>Onset of Labour</Label>
+                  <Label error={errors["onsetLabour"]}>Onset of labour</Label>
                   <GridTwo>
                     <GridTwoSub>
                       <input
@@ -620,7 +633,7 @@ function Complete() {
                 {/* -----------------Fetal Presentation------------------------ */}
                 <InnerSectionGrid fullWidth>
                   <Label error={errors["fetalPresentation"]}>
-                    Fetal Presentation
+                    Fetal presentation
                   </Label>
                   <GridTwo>
                     <GridTwoSub>
@@ -721,7 +734,7 @@ function Complete() {
                 {/* -----------------Estimated Fetal Weight------------------------ */}
                 <InnerSectionGrid fullWidth>
                   <Label error={errors["fetalWeight"]}>
-                    Estimated Fetal Weight
+                    Estimated fetal weight
                   </Label>
                   <FlexDisplay>
                     <WidthBox>
@@ -798,7 +811,9 @@ function Complete() {
                     {" " + Math.floor(answer * 100) + "%"}
                   </span>
                 </div>
-              ) : null}
+              ) : (
+                <div className="opacity-0">_</div>
+              )}
               <div className="flex justify-between items-center">
                 <button
                   className={buttonClassName}
@@ -824,7 +839,8 @@ function Complete() {
         {Object.keys(errors).length > 0
           ? displayError && (
               <div className="display-box box-red ">
-                Please Complete all the fields
+                {/* {Object.keys(errors).map((c) => errors[c])} */}
+                {errors[Object.keys(errors)[0]]}
               </div>
             )
           : null}

@@ -107,7 +107,7 @@ export const toolTipColorStyle = {
   "--tooltip-down-color": "rgb(50,60,70)",
 };
 
-export const Subtitle = tw.div`font-medium text-justify text-[0.7rem] md:text-[0.79rem] tracking-[0.01rem] pt-1 pb-3 px-3 md:px-5 text-[rgb(100,100,100)]`;
+export const Subtitle = tw.div`font-medium text-justify text-[0.7rem] md:text-[0.79rem] tracking-[0.01rem] pt-2 pb-3 px-3 md:px-5 text-[rgb(100,100,100)]`;
 
 export const clickhere = "text-pink-600 hover:text-pink-500 font-semibold ";
 
