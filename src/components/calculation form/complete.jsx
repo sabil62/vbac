@@ -48,7 +48,11 @@ function Complete() {
       fetalAnomaly: 0,
       none: 0,
     },
-    analgesia: "",
+    analgesia: {
+      epidural: 0,
+      nitrous: 0,
+      none: 0,
+    },
     fetalWeight: "",
     parity: 0,
   });
@@ -99,6 +103,10 @@ function Complete() {
         for (let inKey in newForm[key]) {
           newForm[key][inKey] = 0;
         }
+      } else if (key === "analgesia") {
+        for (let inkey in newForm[key]) {
+          newForm[key][inkey] = 0;
+        }
       } else {
         newForm[key] = "";
       }
@@ -110,6 +118,8 @@ function Complete() {
     if (Object.keys(errors).length > 0) {
       let newErrObj = { ...errors };
       newErrObj[e.target.name] = "";
+      newErrObj[type] = "";
+
       setErrors(newErrObj);
     }
 
@@ -117,14 +127,15 @@ function Complete() {
       let name = e.target.name;
       let value = e.target.value;
       setFormData({ ...formData, [name]: value });
-    } else {
+    } else if (type === "pregnancy") {
       let newForm = { ...formData };
       if (e.target.name === "none" && e.target.checked) {
         //if none is checked then uncheck all other fields
         for (let inKey in newForm["pregnancy"]) {
           newForm["pregnancy"][inKey] = 0;
-          newForm["pregnancy"]["none"] = 0.00001;
         }
+        // //none should not be 0 as it is clicked
+        newForm["pregnancy"]["none"] = 0.00001;
       } else {
         //if other checkboxes are pressed then none should be unchecked
         newForm["pregnancy"]["none"] = 0;
@@ -136,7 +147,25 @@ function Complete() {
           newForm[type][e.target.name] = 0;
         }
       }
-
+      setFormData(newForm);
+    } else if (type === "analgesia") {
+      let newForm = { ...formData };
+      //ppbb
+      // newForm["analgesia"][e.target.name] = e.target.value;
+      if (e.target.name === "none" && e.target.checked) {
+        for (let inkey in newForm["analgesia"]) {
+          newForm["analgesia"][inkey] = 0;
+        }
+        //-0.0872948 because if we click none then thats the value given
+        newForm["analgesia"]["none"] = -0.0872948;
+      } else {
+        newForm["analgesia"]["none"] = 0;
+        if (e.target.checked) {
+          newForm[type][e.target.name] = e.target.value;
+        } else {
+          newForm[type][e.target.name] = 0;
+        }
+      }
       setFormData(newForm);
     }
     // console.log(formData);
@@ -190,6 +219,22 @@ function Complete() {
       errorss["gestationalAge"] =
         "Gestational Age value should be between 37 and 44";
     }
+    if (formData["analgesia"]) {
+      let sum = Object.values(formData["analgesia"]).reduce((a, b) => a + b);
+
+      if (sum === 0) {
+        formIsValid = false;
+        errorss["analgesia"] = "Please select values";
+      }
+    }
+    if (formData["pregnancy"]) {
+      let sum = Object.values(formData["pregnancy"]).reduce((a, b) => a + b);
+      if (sum === 0) {
+        formIsValid = false;
+        errorss["pregnancy"] =
+          "Please check atleast one in pregnancy conditions";
+      }
+    }
     // setErrors((prevError) => ({ ...prevError, errorss }));
     setErrors(errorss);
 
@@ -236,6 +281,12 @@ function Complete() {
           }
         } else if (key === "gestationalAge") {
           total += parseInt(formData[key]) * 0.233957;
+        } else if (key === "analgesia") {
+          for (let inkey in formData["analgesia"]) {
+            console.log(formData["analgesia"][inkey]);
+
+            total += parseFloat(formData["analgesia"][inkey]);
+          }
         } else {
           total += parseFloat(formData[key]);
         }
@@ -245,6 +296,7 @@ function Complete() {
       // console.log(total);
       let variable = Math.exp(-8.091264 + total);
       let answer = variable / (1 + variable);
+      console.log(answer);
       setAnswer(answer);
     } else {
       console.log("unsuccessful");
@@ -457,7 +509,7 @@ function Complete() {
                 </InnerSectionGrid>
                 {/* --------Are any of the following known to be present in this pregnancy? Please select all that apply.--- */}
                 <InnerSectionGrid fullWidth>
-                  <Label>
+                  <Label error={errors["pregnancy"]}>
                     Are any of the following known to be present in this
                     pregnancy? Please select all that apply.
                   </Label>
@@ -581,17 +633,19 @@ function Complete() {
 
                 {/* -------------------Analgesia. Please select all that apply.---------------------- */}
                 <InnerSectionGrid fullWidth>
+                  {/* {//ppbb} */}
+
                   <Label error={errors["analgesia"]}>
                     Analgesia. Please select all that apply.
                   </Label>
                   <FlexDisplay className="px-2 py-[0.2rem] sm:py-[0.6rem] ">
                     <div>
                       <input
-                        type="radio"
-                        name="analgesia"
+                        type="checkbox"
+                        name="epidural"
                         value={0}
-                        onChange={handleOnChange}
-                        checked={formData["analgesia"] === "0"}
+                        onChange={(event) => handleOnChange(event, "analgesia")}
+                        checked={formData["analgesia"]["epidural"] === "0"}
                         id="analC"
                         className="mr-[0.8rem]"
                       />{" "}
@@ -601,11 +655,11 @@ function Complete() {
                     </div>
                     <div>
                       <input
-                        type="radio"
-                        name="analgesia"
-                        onChange={handleOnChange}
+                        type="checkbox"
+                        name="nitrous"
+                        onChange={(event) => handleOnChange(event, "analgesia")}
                         value={1.096508}
-                        checked={formData["analgesia"] === "1.096508"}
+                        checked={formData["analgesia"]["nitrous"]}
                         id="analCb"
                         className="mr-[0.8rem]"
                       />
@@ -615,12 +669,12 @@ function Complete() {
                     </div>
                     <div>
                       <input
-                        type="radio"
-                        name="analgesia"
+                        type="checkbox"
+                        name="none"
                         id="analgesia3"
-                        onChange={handleOnChange}
+                        onChange={(event) => handleOnChange(event, "analgesia")}
                         value={-0.0872948}
-                        checked={formData["analgesia"] === "-0.0872948"}
+                        checked={formData["analgesia"]["none"]}
                         className="mr-[0.8rem]"
                         id="analCc"
                       />
