@@ -80,7 +80,11 @@ const Antenatal = () => {
 
   const handleOnChange = (e, type) => {
     if (Object.keys(errors).length > 0) {
-      setErrors({ ...errors, [e.target.name]: "" });
+      if (type) {
+        setErrors({ ...errors, [type]: "" });
+      } else {
+        setErrors({ ...errors, [e.target.name]: "" });
+      }
     }
 
     let name = e.target.name;
@@ -158,6 +162,14 @@ const Antenatal = () => {
       isFormValid = false;
       errs["caesarean"] =
         "Number of previous caesareans should be greater or equal to 1";
+    }
+
+    if (formData["pregnancy"]) {
+      let sum = Object.values(formData["pregnancy"]).reduce((a, b) => a + b);
+      if (sum === 0) {
+        isFormValid = false;
+        errs["pregnancy"] = "Please Select atleast one checkbox";
+      }
     }
 
     setErrors(errs);
@@ -432,7 +444,7 @@ const Antenatal = () => {
                 </InnerSectionGrid>
                 {/* --------Are any of the following known to be present in this pregnancy? Please select all that apply.-----  */}
                 <InnerSectionGrid fullWidth>
-                  <Label>
+                  <Label error={errors["pregnancy"]}>
                     Are any of the following known to be present in this
                     pregnancy? Please select all that apply.
                   </Label>
