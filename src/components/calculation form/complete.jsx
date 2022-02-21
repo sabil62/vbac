@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import {
   BlockA,
   buttonClassName,
+  clickhere,
   inputClassNameError,
   Label,
   selectClassName,
   selectClassNameError,
+  Subtitle,
 } from "../tailwind/tailwindVariables";
 import { InnerGrid } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
@@ -22,6 +24,7 @@ import {
 } from "../tailwind/tailwindVariables";
 import Layout from "../../container/layout";
 import Home from "../../image/home.jpg";
+import { Link } from "react-router-dom";
 
 function Complete() {
   const [answer, setAnswer] = useState("");
@@ -252,6 +255,15 @@ function Complete() {
               <img src={Home} alt="home image" className="image-size" />
             </span>
           </Title>
+          <Subtitle>
+            The complete calculator is designed for use in labour, and requires
+            some variables that are only known in labour. If this calculator is
+            not right for you, the{" "}
+            <Link to="/antenatal" className={clickhere}>
+              antenatal calculator{" "}
+            </Link>{" "}
+            may be more suitable
+          </Subtitle>
           <ShadowClass>
             <div className="px-4 py-5 bg-white sm:p-6">
               <InnerGrid>

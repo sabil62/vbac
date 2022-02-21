@@ -6,9 +6,10 @@ const Footer = () => {
     <div className="footer">
       <div className="text-[0.7rem] font-light">
         Questions about the calculators?{" "}
-        <span className="vbacspan" href="maito: vbaccalculator@outlook.com">
+        <span className="large-text">
           {" "}
-          Contact us here
+          <a href="maito: vbaccalculator@outlook.com"> Contact us here</a>
+          <div className="tooltiptitle">vbaccalculator@outlook.com</div>
         </span>
       </div>
       <div onClick={goToClevero}>

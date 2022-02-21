@@ -5,17 +5,26 @@ import {
   inputClassNameError,
   Label,
   selectClassNameError,
+  Subtitle,
 } from "../tailwind/tailwindVariables";
 import { InnerGrid, Title } from "../tailwind/tailwindVariables";
 import { InnerSectionGrid } from "../tailwind/tailwindVariables";
-import { GridTwo, Block } from "../tailwind/tailwindVariables";
-import { GridTwoSub } from "../tailwind/tailwindVariables";
-import { ShadowClass } from "../tailwind/tailwindVariables";
-import { inputClassName } from "../tailwind/tailwindVariables";
-import { selectClassName } from "../tailwind/tailwindVariables";
+import {
+  GridTwoSub,
+  clickhere2,
+  clickhere22,
+  ShadowClass,
+  inputClassName,
+  selectClassName,
+  GridTwo,
+  Block,
+} from "../tailwind/tailwindVariables";
 
 import Layout from "../../container/layout";
 import Home from "../../image/home.jpg";
+import { Link } from "react-router-dom";
+
+import {} from "../tailwind/tailwindVariables";
 
 const Antenatal = () => {
   //After form is submit change string to number parseInt()
@@ -228,6 +237,14 @@ const Antenatal = () => {
               <img src={Home} alt="home image" className="image-size" />
             </span>
           </Title>
+          <Subtitle>
+            The antenatal calculator is designed for use prior to labour. If in
+            labour, the{" "}
+            <Link to="/complete" className={clickhere2}>
+              complete calculator
+            </Link>{" "}
+            may be more suitable.
+          </Subtitle>
           <ShadowClass>
             <div className="px-4 py-5 bg-white sm:p-6" ref={refUse}>
               <InnerGrid>
