@@ -73,7 +73,7 @@ export const selectClassNameError =
   "mt-1 block w-full py-2 px-3 border-2 border-red-400 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm rounded-md bg-red-100";
 
 export const buttonClassName =
-  "inline-flex justify-center py-2 px-7 box-border w-[7.2rem] border border-[rgba(200,200,200,0.1)] shadow-sm text-lg font-extrabold rounded-md text-white bg-[color:var(--main-button-color)] hover:bg-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-4";
+  "inline-flex justify-center py-2 px-7 box-border w-[7.2rem] border border-[rgba(200,200,200,0.1)] shadow-sm text-lg font-extrabold rounded-md text-white bg-[color:var(--main-button-color)] hover:bg-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-4 outline-none";
 
 // export const selectClassName = "mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none bg-[#FFBCF2] focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm";
 
@@ -95,7 +95,10 @@ export const WhiteText = styled.div(({ bold }) => [
   bold && tw`font-bold`,
 ]);
 
-export const Title = tw.div`py-1 px-3 md:px-5 font-bold text-[1.8rem] text-[color:var(--main-button-color)] flex justify-between items-center`;
+export const Title = styled.div(({ hotpink }) => [
+  tw`py-1 px-3 md:px-5 font-bold text-[1.8rem] text-[color:var(--main-button-color)] flex justify-between items-center`,
+  hotpink && tw`text-[color:var(--landing-page-main-button)]`,
+]);
 
 export const toolTipColorStyle = {
   "--tooltip-color": "rgb(50,60,70)",

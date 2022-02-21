@@ -221,9 +221,9 @@ const Antenatal = () => {
   return (
     <React.Fragment>
       <Layout>
-        <form action="#" method="POST">
+        <form action="#" method="POST" style={{ height: "94vh" }}>
           <Title className="text-stroke">
-            <span> Antenatal VBAC</span>
+            <span> Antenatal VBAC calculator</span>
             <span onClick={goHome}>
               <img src={Home} alt="home image" className="image-size" />
             </span>
@@ -316,7 +316,7 @@ const Antenatal = () => {
                       &#x1F6C8;
                     </span>
                     <div className="tooltiptitle" style={toolTipColorStyle}>
-                      This calculatior is to be used by previous Caesarean
+                      This calculator is to be used by previous Caesarean
                     </div>
                   </Label>
                   <input

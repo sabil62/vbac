@@ -244,10 +244,10 @@ function Complete() {
   return (
     <>
       <Layout>
-        <form action="#" method="POST">
-          <Title className="text-stroke">
+        <form action="#" method="POST" className="pb-[1rem]">
+          <Title hotpink className="text-stroke">
             {" "}
-            <span> Complete VBAC</span>
+            <span> Complete VBAC calculator</span>
             <span onClick={goHome}>
               <img src={Home} alt="home image" className="image-size" />
             </span>
@@ -757,6 +757,7 @@ function Complete() {
                 type="submit"
                 onClick={handleSubmit}
                 className={buttonClassName}
+                style={{ backgroundColor: "var(--landing-page-main-button)" }}
               >
                 Calculate
               </button>

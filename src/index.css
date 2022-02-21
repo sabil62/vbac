@@ -9,6 +9,9 @@
   --tooltip-down-color: palevioletred;
   --main-button-color: #ffbcf2;
   --main-button-hover-color: #fc34c0;
+
+  --landing-page-main-button: #fb34c0;
+
   --clevero-color: #83b8da;
   --clevero-hover-color: #548caf;
 }
@@ -149,12 +152,11 @@ code {
 }
 
 .landing-page-main {
-  height: 100vh;
+  height: 94vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* padding: 1rem 0; */
 }
 .text-stroke {
   -webkit-text-stroke: 0.6px rgba(0, 0, 0, 0.11);
@@ -162,26 +164,48 @@ code {
 
 .footer {
   display: flex;
-  flex-direction: row-reverse;
   font-weight: 700;
   font-size: 1.02rem;
-  cursor: pointer;
+  height: 3vh;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 4%;
+  margin-bottom: 0.5rem;
 }
 
 .footer div {
   display: inline-block;
+  cursor: pointer;
 }
 
 .footer div span {
   color: var(--clevero-color);
 }
 
-.footer div:hover span {
-  color: var(--clevero-hover-color);
+.footer div span {
+  color: var(--clevero-color);
+  font-weight: 700;
 }
+/* 
+.footer div:hover span.vbacspan {
+  color: var(--clevero-hover-color);
+} */
 
 .image-size {
   height: 33px;
   cursor: pointer;
   width: 33px;
+}
+
+@media (max-width: 698px) {
+  .landing-page-main {
+    height: 100vh;
+  }
+  .footer {
+    height: 7vh;
+    font-size: 0.8rem;
+  }
+  .footer div span {
+    display: block;
+  }
 }
