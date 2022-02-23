@@ -10,7 +10,7 @@ import {
 import Layout from "../../container/layout";
 import { Link } from "react-router-dom";
 
-const LandingPage = () => {
+const LandingPage = ({ setPath }) => {
   const [leftValue, setLeftValue] = useState("0px");
   const [topValue, setTopValue] = useState("30px");
 
@@ -30,6 +30,11 @@ const LandingPage = () => {
       window.removeEventListener("resize", handleLeftValue);
     };
   }, [leftValue]);
+
+  useEffect(() => {
+    setPath("app");
+    // console.log(props);
+  });
 
   let toolTipStyle = {
     top: topValue,
@@ -101,7 +106,7 @@ const LandingPage = () => {
                   <span className="text-[1.2rem] pr-1"> &#x1F6C8;</span> What is
                   this?
                 </span>
-                <div className="tooltiptitle p-3" style={toolTipStyle}>
+                <div className="tooltiptitle" style={toolTipStyle}>
                   The antenatal calculator is designed for use
                   <span className="font-extrabold text-[0.8rem] tracking-[0.3px]">
                     {" "}

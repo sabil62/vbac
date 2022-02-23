@@ -27,7 +27,7 @@ import { Link } from "react-router-dom";
 
 import {} from "../tailwind/tailwindVariables";
 
-const Antenatal = () => {
+const Antenatal = ({ setPath }) => {
   //After form is submit change string to number parseInt()
   const [parity, setParity] = useState(0);
   const [formData, setFormData] = useState({
@@ -43,6 +43,10 @@ const Antenatal = () => {
       fetalAnomally: 0,
       none: 0,
     },
+  });
+
+  useEffect(() => {
+    setPath();
   });
 
   const handleRefresh = (e) => {

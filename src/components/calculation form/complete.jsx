@@ -27,7 +27,7 @@ import Layout from "../../container/layout";
 import Home from "../../image/home.jpg";
 import { Link } from "react-router-dom";
 
-function Complete() {
+function Complete({ setPath }) {
   const [answer, setAnswer] = useState("");
 
   const [formData, setFormData] = useState({
@@ -55,6 +55,10 @@ function Complete() {
     },
     fetalWeight: "",
     parity: 0,
+  });
+
+  useEffect(() => {
+    setPath("complete");
   });
 
   //useref

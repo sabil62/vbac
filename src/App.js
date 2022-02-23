@@ -10,21 +10,22 @@ import { withRouter } from "./withrouter";
 
 function App() {
   // let a = true;
+  const [path, setPath] = useState("App");
 
   useEffect(() => {
     ReactGA.initialize("UA-154571472-2");
     ReactGA.pageview(window.location.pathname + window.location.search);
 
     console.log(window.location.pathname);
-  }, []);
+  }, [path]);
 
   return (
     <React.Fragment>
       <Routes>
         {/* <Route path="/" element={a && <LandingPage />} /> */}
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/complete" element={<Complete />} />
-        <Route path="/antenatal" element={<Antenatal />} />
+        <Route path="/" element={<LandingPage setPath={setPath} />} />
+        <Route path="/complete" element={<Complete setPath={setPath} />} />
+        <Route path="/antenatal" element={<Antenatal setPath={setPath} />} />
       </Routes>
       <Footer />
     </React.Fragment>
