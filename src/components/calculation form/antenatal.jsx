@@ -327,9 +327,9 @@ const Antenatal = () => {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
                     Maternal BMI
-                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                    <span className="opacity-100 md:opacity-0 pl-1 hover:text-blue-800">
                       {" "}
-                      &#x1F6C8;
+                      &#9432;
                     </span>
                     <div
                       className="tooltiptitle"
@@ -361,9 +361,9 @@ const Antenatal = () => {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
                     Number of previous caesarean sections
-                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                    <span className="opacity-100 md:opacity-0 pl-1 hover:text-blue-800">
                       {" "}
-                      &#x1F6C8;
+                      &#9432;
                     </span>
                     <div className="tooltiptitle" style={toolTipColorStyle}>
                       Response must be one or more. This calculator is only
@@ -388,6 +388,10 @@ const Antenatal = () => {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
                     Number of previous vaginal births{" "}
+                    <span className="opacity-100 md:opacity-0 pl-1 hover:text-blue-800">
+                      {" "}
+                      &#9432;
+                    </span>
                     <div className="tooltiptitle" style={toolTipColorStyle}>
                       Number of previous vaginal births beyond 20 weeks'
                       gestation
