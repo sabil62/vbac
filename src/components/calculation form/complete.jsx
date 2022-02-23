@@ -203,12 +203,10 @@ function Complete() {
       formIsValid = false;
       errorss["previousCaesarean"] =
         "Previous Caesarean value must be greater than 1";
-      console.log("down");
     }
     if (formData["vaginalBirths"] < 0) {
       formIsValid = false;
       errorss["vaginalBirths"] = "Vaginal Births value must be greater than 0";
-      console.log("this");
     }
     if (formData["maternalBmi"] < 10 || formData["maternalBmi"] > 70) {
       formIsValid = false;
@@ -283,8 +281,6 @@ function Complete() {
           total += parseInt(formData[key]) * 0.233957;
         } else if (key === "analgesia") {
           for (let inkey in formData["analgesia"]) {
-            console.log(formData["analgesia"][inkey]);
-
             total += parseFloat(formData["analgesia"][inkey]);
           }
         } else {
@@ -296,7 +292,7 @@ function Complete() {
       // console.log(total);
       let variable = Math.exp(-8.091264 + total);
       let answer = variable / (1 + variable);
-      console.log(answer);
+      // console.log(answer);
       setAnswer(answer);
     } else {
       console.log("unsuccessful");
@@ -389,9 +385,9 @@ function Complete() {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
                     Maternal BMI
-                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                    <span className="opacity-100 md:opacity-0 pl-1 hover:text-blue-800">
                       {" "}
-                      &#x1F6C8;
+                      &#9432;
                     </span>
                     <div className="tooltiptitle" style={toolTipColorStyle}>
                       Body Mass Index
@@ -417,9 +413,9 @@ function Complete() {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text" style={toolTipColorStyle}>
                     Number of previous caesarean sections
-                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                    <span className="opacity-100 md:opacity-0 pl-1 hover:text-blue-800">
                       {" "}
-                      &#x1F6C8;
+                      &#9432;
                     </span>
                     <div className="tooltiptitle" ref={refSize}>
                       Response must be one or more. This calculator is only
@@ -446,9 +442,9 @@ function Complete() {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text" style={toolTipColorStyle}>
                     Number of previous vaginal births
-                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                    <span className="opacity-100 md:opacity-0 pl-1 hover:text-blue-800">
                       {" "}
-                      &#x1F6C8;
+                      &#9432;
                     </span>
                     <div className="tooltiptitle" ref={refSmall}>
                       Number of previous vaginal births beyond 20 weeks'
@@ -574,9 +570,9 @@ function Complete() {
                 <InnerSectionGrid fullWidth>
                   <Label className="large-text">
                     Gestational age
-                    <span className="opacity-100 md:opacity-0 pr-1 hover:text-blue-800">
+                    <span className="opacity-100 md:opacity-0 pl-1 hover:text-blue-800">
                       {" "}
-                      &#x1F6C8;
+                      &#9432;
                     </span>
                     <div className="tooltiptitle">
                       Response must be between 37 and 44 weeks. This calculator

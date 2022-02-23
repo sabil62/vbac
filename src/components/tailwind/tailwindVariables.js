@@ -2,10 +2,9 @@ import tw, { styled } from "twin.macro";
 
 //fads
 export const Label = styled.label(({ inline, inlineThree, error }) => [
-  tw`block text-sm font-medium text-gray-700`,
-  inline &&
-    tw`inline-block pl-[0.5rem] sm:pl-[1rem] text-sm md:text-base font-normal`,
-  inlineThree && tw`inline-block md:text-base text-sm font-normal p-0`,
+  tw`block text-[0.7rem] md:text-sm font-medium text-gray-700`,
+  inline && tw`inline-block pl-[0.5rem] sm:pl-[1rem] md:text-base font-normal`,
+  inlineThree && tw`inline-block md:text-base font-normal p-0`,
   error && tw`text-red-700`,
 ]);
 
@@ -27,15 +26,15 @@ export const GridContent = styled.div(({ grid12, grid8 }) => [
   grid8 && tw`lg:col-span-6`,
 ]);
 
-export const InnerGrid = tw.div`grid grid-cols-6 gap-6 p-2`;
+export const InnerGrid = tw.div`grid grid-cols-6 gap-4 md:gap-6 p-2`;
 
 export const InnerSectionGrid = styled.div(({ fullWidth }) => [
-  tw`col-span-6 lg:col-span-3 px-6 py-2 md:(p-0 pt-3)`,
+  tw`col-span-6 lg:col-span-3 px-6 py-1 md:py-2 md:(p-0 pt-3)`,
   fullWidth && tw`lg:col-span-6`,
 ]);
 
 export const GridTwo = styled.div(({ three, twelve }) => [
-  tw`grid grid-cols-4 p-2 pt-3 gap-2`,
+  tw`grid grid-cols-4 p-1 md:p-2 md:pt-3 gap-2`,
   three && tw`grid-cols-6`,
   twelve && tw`grid-cols-12 `,
 ]);
@@ -52,7 +51,7 @@ export const BlockA = tw.div`flex items-center`;
 export const FlexDisplay = tw.div`flex justify-between flex-wrap`;
 
 export const WidthBox = styled.div(({ five, six }) => [
-  tw`w-[10rem] mt-3`,
+  tw`w-[10rem] mt-1 md:mt-3`,
   five && tw`w-[5rem]`,
   six && tw`w-[6rem]`,
 ]);
@@ -61,16 +60,16 @@ export const ShadowClass = tw.div`shadow md:shadow-xl overflow-hidden sm:rounded
 
 //classNames
 export const inputClassName =
-  "mt-1 px-2 py-[0.2rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm sm:py-[0.5rem] border-2 border-gray-300 rounded-md";
+  "mt-1 px-2 py-[0.2rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-[0.7rem] sm:text-sm sm:py-[0.5rem] border-2 border-gray-300 rounded-md";
 
 export const inputClassNameError =
-  "mt-1 px-2 py-[0.2rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:(text-sm py-[0.5rem]) border-2 border-red-400 rounded-md bg-red-100";
+  "mt-1 px-2 py-[0.2rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-[0.7rem] sm:(text-sm py-[0.5rem]) border-2 border-red-400 rounded-md bg-red-100";
 
 export const selectClassName =
-  "mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm rounded-md";
+  "mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 text-[0.7rem] sm:text-sm rounded-md";
 
 export const selectClassNameError =
-  "mt-1 block w-full py-2 px-3 border-2 border-red-400 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 sm:text-sm rounded-md bg-red-100";
+  "mt-1 block w-full py-2 px-3 border-2 border-red-400 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 text-[0.7rem] sm:text-sm rounded-md bg-red-100";
 
 export const buttonClassName =
   "inline-flex justify-center py-2 text-center box-border w-[5rem] lg:w-[6rem] xl:w-[7.2rem] border border-[rgba(200,200,200,0.1)] shadow-sm text-[0.92rem] lg:text-[1.1rem] xl:text-lg font-extrabold rounded-md text-white bg-[color:var(--main-button-color)] hover:bg-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-2 lg:ml-4 outline-none";
