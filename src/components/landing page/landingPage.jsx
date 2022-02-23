@@ -75,9 +75,9 @@ const LandingPage = () => {
                   <WhiteText>Calculator</WhiteText>
                 </PinkBox>
               </Link>
-              <div className="large-text" style={text}>
-                <span className="hover:text-blue-800">
-                  <span className="text-2xl pr-1"> &#x1F6C8;</span> What is
+              <div className="large-text mb-5" style={text}>
+                <span className="hover:text-blue-800 text-gray-800">
+                  <span className="text-[1.2rem] pr-1"> &#x1F6C8;</span> What is
                   this?
                 </span>
                 <div className="tooltiptitle" style={toolTipStyle}>
@@ -96,12 +96,12 @@ const LandingPage = () => {
                   <WhiteText>Calculator</WhiteText>
                 </PinkBox>
               </Link>
-              <div className="large-text" style={text}>
-                <span className="hover:text-blue-800">
-                  <span className="text-2xl pr-1"> &#x1F6C8;</span>
-                  What is this?
+              <div className="large-text mb-5" style={text}>
+                <span className="hover:text-blue-800 text-gray-800">
+                  <span className="text-[1.2rem] pr-1"> &#x1F6C8;</span> What is
+                  this?
                 </span>
-                <div className="tooltiptitle" style={toolTipStyle}>
+                <div className="tooltiptitle p-3" style={toolTipStyle}>
                   The antenatal calculator is designed for use
                   <span className="font-extrabold text-[0.8rem] tracking-[0.3px]">
                     {" "}
