@@ -9,6 +9,7 @@ import {
 } from "../tailwind/tailwindVariables";
 import Layout from "../../container/layout";
 import { Link } from "react-router-dom";
+import ReactGA from "react-ga";
 
 const LandingPage = ({ setPath }) => {
   const [leftValue, setLeftValue] = useState("0px");
@@ -50,6 +51,10 @@ const LandingPage = ({ setPath }) => {
     margin: "0 0 1rem 1rem",
   };
   const goToResearchPaper = () => {
+    ReactGA.event({
+      category: "Button",
+      action: "Clicked on Research Paper",
+    });
     window.open("https://obgyn.onlinelibrary.wiley.com/doi/10.1111/ajo.13473");
   };
   return (
