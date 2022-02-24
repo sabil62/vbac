@@ -87,7 +87,7 @@ const LandingPage = ({ setPath }) => {
               </Link>
               <div className="large-text mb-5" style={text}>
                 <span className="hover:text-blue-800 text-gray-800">
-                  <span className="text-[1.2rem] pr-1"> &#x1F6C8;</span> What is
+                  <span className="text-[1.2rem] pr-1">&#9432;</span> What is
                   this?
                 </span>
                 <div className="tooltiptitle" style={toolTipStyle}>
@@ -108,7 +108,7 @@ const LandingPage = ({ setPath }) => {
               </Link>
               <div className="large-text mb-5" style={text}>
                 <span className="hover:text-blue-800 text-gray-800">
-                  <span className="text-[1.2rem] pr-1"> &#x1F6C8;</span> What is
+                  <span className="text-[1.2rem] pr-1">&#9432;</span> What is
                   this?
                 </span>
                 <div className="tooltiptitle" style={toolTipStyle}>

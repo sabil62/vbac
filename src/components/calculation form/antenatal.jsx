@@ -480,7 +480,7 @@ const Antenatal = ({ setPath }) => {
                       checked={formData["pregnancy"]["hypertensiveDisease"]}
                     />
                     <Label inline for="hyper">
-                      Hypertensive DIsease
+                      Hypertensive disease
                     </Label>
                   </Block>
                   <Block>

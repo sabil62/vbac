@@ -539,7 +539,7 @@ function Complete({ setPath }) {
                       id="hyperten"
                     />
                     <Label inline for="hyperten">
-                      Hypertensive Disease
+                      Hypertensive disease
                     </Label>
                   </Block>
                   <Block>
@@ -664,7 +664,7 @@ function Complete({ setPath }) {
                         className="mr-[0.8rem]"
                       />
                       <Label inlineThree for="analCb">
-                        Nitrous or IM narcotic Analgesia
+                        Nitrous or IM narcotic analgesia
                       </Label>
                     </div>
                     <div>
