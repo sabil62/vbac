@@ -4,6 +4,7 @@ import {
   BottomFormFlex,
   buttonClassName,
   clickhere,
+  ErrorText,
   inputClassNameError,
   Label,
   selectClassName,
@@ -412,6 +413,9 @@ function Complete({ setPath }) {
                     }
                     onWheel={stopScroll}
                   />
+                  <ErrorText error={errors["maternalBmi"]}>
+                    {errors["maternalBmi"]}
+                  </ErrorText>
                 </InnerSectionGrid>
                 {/* -----------------Number of previous Caesarean Sections------------------------ */}
                 <InnerSectionGrid fullWidth>
@@ -441,6 +445,9 @@ function Complete({ setPath }) {
                     }
                     onWheel={stopScroll}
                   />
+                  <ErrorText error={errors["previousCaesarean"]}>
+                    {errors["previousCaesarean"]}
+                  </ErrorText>
                 </InnerSectionGrid>
                 {/* -----------------Number of previous Vaginal Births------------------------ */}
                 <InnerSectionGrid fullWidth>
@@ -470,6 +477,9 @@ function Complete({ setPath }) {
                     }
                     onWheel={stopScroll}
                   />
+                  <ErrorText error={errors["vaginalBirths"]}>
+                    {errors["vaginalBirths"]}
+                  </ErrorText>
                 </InnerSectionGrid>
 
                 {/* --------------Was the last birth a Caesarean section?------------------ */}
@@ -597,6 +607,9 @@ function Complete({ setPath }) {
                     was created based on term singleton births"
                     onWheel={stopScroll}
                   />
+                  <ErrorText error={errors["gestationalAge"]}>
+                    {errors["gestationalAge"]}
+                  </ErrorText>
                 </InnerSectionGrid>
                 {/* -----------------Onset of Labour------------------------ */}
                 <InnerSectionGrid fullWidth>
