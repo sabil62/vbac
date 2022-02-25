@@ -63,7 +63,7 @@ export const inputClassName =
   "mt-1 px-2 py-[0.2rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-[0.7rem] sm:text-sm sm:py-[0.5rem] border-2 border-gray-300 rounded-md";
 
 export const inputClassNameError =
-  "mt-1 px-2 py-[0.2rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-[0.7rem] sm:(text-sm py-[0.5rem]) border-2 border-red-400 rounded-md bg-red-100";
+  "mt-1 px-2 py-[0.2rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-[0.7rem] sm:text-sm sm:py-[0.45rem] border-2 border-red-400 rounded-md bg-red-100";
 
 export const selectClassName =
   "mt-1 block w-full py-2 px-3 border-gray-300 bg-white orunded-md shadow-sm focus:outline-none focus:ring-indigo-500 foucs:border-indigo-500 text-[0.7rem] sm:text-sm rounded-md";
@@ -111,3 +111,9 @@ export const Subtitle = tw.div`font-medium text-justify text-[0.7rem] md:text-[0
 export const clickhere = "text-pink-600 hover:text-pink-500 font-semibold ";
 
 export const clickhere2 = "text-pink-300 hover:text-pink-400 font-semibold ";
+
+export const ErrorText = styled.div(({ error }) => [
+  tw`hidden`,
+  error &&
+    tw`block text-[0.58rem] sm:text-[0.68rem] text-red-600 font-medium p-1 pb-0`,
+]);

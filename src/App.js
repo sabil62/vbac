@@ -16,7 +16,7 @@ function App() {
     ReactGA.initialize("UA-154571472-2");
     ReactGA.pageview(window.location.pathname + window.location.search);
 
-    console.log(window.location.pathname);
+    // console.log(window.location.pathname);
   }, [path]);
 
   return (

@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import {
   BottomFormFlex,
   buttonClassName,
+  ErrorText,
   inputClassNameError,
   Label,
   selectClassNameError,
@@ -148,7 +149,7 @@ const Antenatal = ({ setPath }) => {
 
     for (let key in formData) {
       if (!formData[key]) {
-        errs[key] = "Complete the form ";
+        errs[key] = "Complete the field ";
         isFormValid = false;
       }
     }
@@ -360,6 +361,9 @@ const Antenatal = ({ setPath }) => {
                     onChange={handleOnChange}
                     onWheel={stopScroll}
                   />
+                  <ErrorText error={errors["maternalBmi"]}>
+                    {errors["maternalBmi"]}
+                  </ErrorText>
                 </InnerSectionGrid>
                 {/* ---------------------Number of previous Caesarean sections------------- */}
                 <InnerSectionGrid fullWidth>
@@ -387,6 +391,9 @@ const Antenatal = ({ setPath }) => {
                     onWheel={stopScroll}
                     title="Response must be one or more. This calculator is only suitable for women who have previously had a Caesarean section."
                   />
+                  <ErrorText error={errors["caesarean"]}>
+                    {errors["caesarean"]}
+                  </ErrorText>
                 </InnerSectionGrid>
                 {/* -----------------------Number of previous vaginal births------------- */}
                 <InnerSectionGrid fullWidth>
@@ -415,6 +422,9 @@ const Antenatal = ({ setPath }) => {
                     }
                     onWheel={stopScroll}
                   />
+                  <ErrorText error={errors["previousVaginal"]}>
+                    {errors["previousVaginal"]}
+                  </ErrorText>
                 </InnerSectionGrid>
                 {/* ---------------------------Was the last birth a Caesarean section?----------- */}
                 <InnerSectionGrid fullWidth>
