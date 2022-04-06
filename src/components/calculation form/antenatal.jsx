@@ -14,7 +14,6 @@ import { InnerSectionGrid } from "../tailwind/tailwindVariables";
 import {
   GridTwoSub,
   clickhere2,
-  clickhere22,
   ShadowClass,
   inputClassName,
   selectClassName,
@@ -269,7 +268,7 @@ const Antenatal = ({ setPath }) => {
   return (
     <React.Fragment>
       <Layout>
-        <form action="#" method="POST" className="md:h-[94vh] mb-5">
+        <form action="#" method="POST" className="mb-5">
           <Title className="text-stroke">
             <span> Antenatal VBAC calculator</span>
             <span onClick={goHome}>
@@ -521,11 +520,6 @@ const Antenatal = ({ setPath }) => {
                   </Block>
                 </InnerSectionGrid>
                 {/* ----------------------Parity------------------- */}
-                {/* =IF(C17+C19=1,0,0)+IF(C17+C19=2,-0.1637306,0)+IF(C17+C19>2,0.0923186,0) */}
-                {/* <InnerSectionGrid>
-                  <Label>Parity</Label>
-                  <div>{parity}</div>
-                </InnerSectionGrid> */}
               </InnerGrid>
             </div>
             <BottomFormFlex>
