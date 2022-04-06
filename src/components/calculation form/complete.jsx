@@ -684,7 +684,6 @@ function Complete({ setPath }) {
                       <input
                         type="checkbox"
                         name="none"
-                        id="analgesia3"
                         onChange={(event) => handleOnChange(event, "analgesia")}
                         value={-0.0872948}
                         checked={formData["analgesia"]["none"]}
@@ -849,7 +848,6 @@ function Complete({ setPath }) {
                         type="radio"
                         name="fetalWeight"
                         onChange={handleOnChange}
-                        id="fetalWeight1"
                         value={-0.5706141}
                         checked={formData["fetalWeight"] === "-0.5706141"}
                         id="fetalD"
