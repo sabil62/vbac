@@ -155,7 +155,6 @@ function Complete({ setPath }) {
       setFormData(newForm);
     } else if (type === "analgesia") {
       let newForm = { ...formData };
-      //ppbb
       // newForm["analgesia"][e.target.name] = e.target.value;
       if (e.target.name === "none" && e.target.checked) {
         for (let inkey in newForm["analgesia"]) {
@@ -173,7 +172,6 @@ function Complete({ setPath }) {
       }
       setFormData(newForm);
     }
-    // console.log(formData);
 
     if (formData["parity"] === 0) {
       let parityVariable =
@@ -254,12 +252,9 @@ function Complete({ setPath }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (handleValidation()) {
-      // console.log("successful");
-
       let total = 0;
 
       for (let key in formData) {
-        // console.log(total);
         if (key === "pregnancy") {
           for (let inKey in formData[key]) {
             if (inKey !== "none") {
@@ -291,13 +286,11 @@ function Complete({ setPath }) {
         } else {
           total += parseFloat(formData[key]);
         }
-        // console.log(key);
-        // console.log(formData[key]);
       }
-      // console.log(total);
+
       let variable = Math.exp(-8.091264 + total);
       let answer = variable / (1 + variable);
-      // console.log(answer);
+
       setAnswer(answer);
     } else {
       console.log("unsuccessful");

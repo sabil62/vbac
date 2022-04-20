@@ -13,11 +13,11 @@ function App() {
   const [path, setPath] = useState("App");
 
   useEffect(() => {
-    // ReactGA.initialize("UA-154571472-2");
-    ReactGA.initialize("UA-219875149-1");
+    ReactGA.initialize("UA-154571472-2");
+    // ReactGA.initialize("UA-219875149-1");
     ReactGA.pageview(window.location.pathname + window.location.search);
 
-    console.log(window.location.pathname);
+    // console.log(window.location.pathname);
   }, [path]);
 
   return (

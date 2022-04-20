@@ -1,13 +1,12 @@
 import ReactGA from "react-ga";
 
 const Footer = () => {
-  const goToClevero = () => {
-    reactgaevent("Clicked on Powered by Clevero");
-    window.open("https://clevero.co/");
+  const goToSabil = () => {
+    reactgaevent("Clicked on Powered by Sabil");
   };
   const mailto = () => {
     reactgaevent("Clicked on mail");
-    window.open("mailto:vbaccalculator@outlook.com");
+    window.open("sabilshrestha62@gmail.com");
   };
   const reactgaevent = (act) => {
     ReactGA.event({ category: "Button", action: act });
@@ -19,11 +18,11 @@ const Footer = () => {
         <span className="large-text">
           {" "}
           <a onClick={mailto}> Contact us here</a>
-          <div className="tooltiptitle">vbaccalculator@outlook.com</div>
+          <div className="tooltiptitle">sabilshrestha62@gmail.com</div>
         </span>
       </div>
-      <div onClick={goToClevero}>
-        Powered by <span>Clevero</span>
+      <div onClick={goToSabil}>
+        Powered by <span>Sabil</span>
       </div>
     </div>
   );

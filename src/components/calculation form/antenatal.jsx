@@ -100,13 +100,11 @@ const Antenatal = ({ setPath }) => {
       //multiple option checked
       let newForm = { ...formData };
       if (name === "none" && e.target.checked) {
-        // console.log("none checked")
         for (let inKey in newForm["pregnancy"]) {
           newForm["pregnancy"][inKey] = 0;
           newForm["pregnancy"]["none"] = 0.00001; //setting none only true so that it can be checked
         }
       } else {
-        // console.log(e.target.checked);
         if (e.target.checked) {
           //if individual option is checked then put its data
           newForm[type][e.target.name] = e.target.value;
@@ -119,13 +117,8 @@ const Antenatal = ({ setPath }) => {
 
       setFormData(newForm);
     }
-
-    // console.log(formData);
-    // console.log(parity);
-
     let parityValue =
       parseInt(formData["caesarean"]) + parseInt(formData["previousVaginal"]);
-    // console.log(parityValue);
 
     handleParity(parityValue);
   };
@@ -185,8 +178,6 @@ const Antenatal = ({ setPath }) => {
       }, 4000);
     }
 
-    // console.log(errors);
-
     return isFormValid;
   };
 
@@ -221,14 +212,12 @@ const Antenatal = ({ setPath }) => {
           }
         } else {
           total += parseFloat(formData[key]);
-          // console.log(total);
         }
       }
       total += parity;
       let expAns = Math.exp(2.801237 + total);
       let ans = expAns / (1 + expAns);
       setAnswer(ans);
-      // console.log(total);
     } else {
       console.log("Unsuccessful");
     }
